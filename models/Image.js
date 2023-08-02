@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const { PropertySchema } = require("./Property");
 const { UtilitySchema } = require("./Utility");
+const { AdminSchema } = require("./Admin");
+const { ServiceOfferedSchema } = require("./ServiceOffered");
 
 const ImageSchema = new mongoose.Schema(
   {
@@ -24,6 +26,12 @@ const ImageSchema = new mongoose.Schema(
     Property: {
       type: PropertySchema,
     },
+    Admin: {
+      type: AdminSchema,
+    },
+    ServiceOffered: {
+      type: ServiceOfferedSchema,
+    },
   },
   {
     timestamps: {
@@ -35,4 +43,4 @@ const ImageSchema = new mongoose.Schema(
 
 const Image = mongoose.model("Image", ImageSchema);
 
-module.exports = Image;
+module.exports = {Image,ImageSchema};

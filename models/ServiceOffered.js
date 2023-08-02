@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { ProfilePictureSchema } = require("./ProfilePicture");
 
 const ServiceOfferedSchema = new mongoose.Schema(
   {
@@ -21,8 +20,9 @@ const ServiceOfferedSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Service",
     },
-    ProfilePicture: {
-      type: ProfilePictureSchema,
+    Icon: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Image",
     },
   },
   {

@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { PropertySchema } = require("./Property");
-const { ProfilePictureSchema } = require("./ProfilePicture");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -30,10 +29,24 @@ const UserSchema = new mongoose.Schema(
     otp: {
       type: Number,
       required: true,
-      default: 0,
-      unique: true,
+      default: 1234,
     },
     notifications: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
+    TermsAndConditions: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    verifiedByAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    isVerified: {
       type: Boolean,
       required: true,
       default: false,
@@ -42,7 +55,8 @@ const UserSchema = new mongoose.Schema(
       type: PropertySchema,
     },
     profilePicture: {
-      type: ProfilePictureSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Image",
     },
     Event: {
       type: mongoose.Schema.Types.ObjectId,
@@ -63,4 +77,4 @@ const UserSchema = new mongoose.Schema(
 
 const User = mongoose.model("User", UserSchema);
 
-module.exports = {User,UserSchema};
+module.exports = { User, UserSchema };

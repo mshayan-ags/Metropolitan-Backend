@@ -3,6 +3,7 @@ const http = require("http");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const { default: mongoose } = require("mongoose");
+const User = require("./routes/User");
 
 const app = Express();
 
@@ -12,7 +13,7 @@ app.use(bodyParser.json());
 
 mongoose
   .connect(
-    "mongodb+srv://POS:M7RlAZ92nXOGfNYh@pos.enxh5ry.mongodb.net/test?retryWrites=true&w=majority"
+    "mongodb+srv://user:RgBCB1vlcT0Cow6A@chatapp.4yxjjzq.mongodb.net/Metropolitan?retryWrites=true&w=majority"
   )
   .then(() => console.log("Connected to mongodb"))
   .catch((err) => console.log(err));
@@ -20,6 +21,8 @@ mongoose
 const httpServer = http.createServer(app);
 
 const port = process.env.PORT || 5000;
+
+app.use(User);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);

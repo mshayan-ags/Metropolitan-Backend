@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { PropertySchema } = require("./Property");
-const { ProfilePictureSchema } = require("./ProfilePicture");
 const { AdminSchema } = require("./Admin");
 const { EventSchema } = require("./Event");
 
