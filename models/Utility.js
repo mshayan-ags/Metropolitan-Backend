@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { PropertySchema } = require("./Property");
 
 const UtilitySchema = new mongoose.Schema(
   {
@@ -22,7 +23,13 @@ const UtilitySchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-  
+    Property: {
+      type: PropertySchema,
+    },
+    Image: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Image",
+    },
   },
   {
     timestamps: {
@@ -34,4 +41,4 @@ const UtilitySchema = new mongoose.Schema(
 
 const Utility = mongoose.model("Utility", UtilitySchema);
 
-module.exports = Utility;
+module.exports = {Utility,UtilitySchema};

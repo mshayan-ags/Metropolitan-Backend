@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const { ServiceSchema } = require("./Service");
+const { UserSchema } = require("./User");
+const { PropertySchema } = require("./Property");
 
 const ReviewSchema = new mongoose.Schema(
   {
@@ -12,6 +15,15 @@ const ReviewSchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    Service: {
+      type: ServiceSchema,
+    },
+    User: {
+      type: UserSchema,
+    },
+    Property: {
+      type: PropertySchema,
+    },
   },
   {
     timestamps: {
@@ -23,4 +35,4 @@ const ReviewSchema = new mongoose.Schema(
 
 const Review = mongoose.model("Review", ReviewSchema);
 
-module.exports = Review;
+module.exports = {Review,ReviewSchema};

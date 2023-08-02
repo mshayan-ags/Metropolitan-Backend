@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const { PropertySchema } = require("./Property");
+const { UtilitySchema } = require("./Utility");
 
 const ImageSchema = new mongoose.Schema(
   {
@@ -15,6 +17,12 @@ const ImageSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+    },
+    Utility: {
+      type: UtilitySchema,
+    },
+    Property: {
+      type: PropertySchema,
     },
   },
   {

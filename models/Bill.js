@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
+const { PropertySchema } = require("./Property");
+const { ServiceSchema } = require("./Service");
+const { ServiceOfferedSchema } = require("./ServiceOffered");
 
-const UserSchema = new mongoose.Schema(
+const BillSchema = new mongoose.Schema(
   {
     status: {
       type: String,
@@ -12,7 +15,15 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-  
+    Property: {
+      type: PropertySchema,
+    },
+    Service: {
+      type: ServiceSchema,
+    },
+    ServiceOffered: {
+      type: ServiceOfferedSchema,
+    },
   },
   {
     timestamps: {
@@ -22,6 +33,6 @@ const UserSchema = new mongoose.Schema(
   }
 );
 
-const User = mongoose.model("User", UserSchema);
+const Bill = mongoose.model("Bill", BillSchema);
 
-module.exports = User;
+module.exports = { Bill, BillSchema };

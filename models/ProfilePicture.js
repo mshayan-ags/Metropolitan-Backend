@@ -1,4 +1,7 @@
 const mongoose = require("mongoose");
+const { AdminSchema } = require("./Admin");
+const { UserSchema } = require("./User");
+const { ServiceOfferedSchema } = require("./ServiceOffered");
 
 const ProfilePictureSchema = new mongoose.Schema(
   {
@@ -16,6 +19,15 @@ const ProfilePictureSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    Admin: {
+      type: AdminSchema,
+    },
+    User: {
+      type: UserSchema,
+    },
+    ServiceOffered: {
+      type: ServiceOfferedSchema,
+    },
   },
   {
     timestamps: {
@@ -27,4 +39,4 @@ const ProfilePictureSchema = new mongoose.Schema(
 
 const ProfilePicture = mongoose.model("ProfilePicture", ProfilePictureSchema);
 
-module.exports = ProfilePicture;
+module.exports = {ProfilePicture,ProfilePictureSchema};

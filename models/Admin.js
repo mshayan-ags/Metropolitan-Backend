@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ProfilePictureSchema } = require("./ProfilePicture");
 
 const AdminSchema = new mongoose.Schema(
   {
@@ -29,6 +30,21 @@ const AdminSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    profilePicture: {
+      type: ProfilePictureSchema,
+    },
+    Service: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Service",
+    },
+    Event: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Event",
+    },
+    Notification: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Notification",
+    },
   },
   {
     timestamps: {
@@ -40,4 +56,4 @@ const AdminSchema = new mongoose.Schema(
 
 const Admin = mongoose.model("Admin", AdminSchema);
 
-module.exports = Admin;
+module.exports = {Admin,AdminSchema};

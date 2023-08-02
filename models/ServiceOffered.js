@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { ProfilePictureSchema } = require("./ProfilePicture");
 
 const ServiceOfferedSchema = new mongoose.Schema(
   {
@@ -16,6 +17,13 @@ const ServiceOfferedSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    Service: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Service",
+    },
+    ProfilePicture: {
+      type: ProfilePictureSchema,
+    },
   },
   {
     timestamps: {
@@ -27,4 +35,4 @@ const ServiceOfferedSchema = new mongoose.Schema(
 
 const ServiceOffered = mongoose.model("ServiceOffered", ServiceOfferedSchema);
 
-module.exports = ServiceOffered;
+module.exports = {ServiceOffered,ServiceOfferedSchema};

@@ -1,4 +1,9 @@
 const mongoose = require("mongoose");
+const { ServiceOfferedSchema } = require("./ServiceOffered");
+const { ReviewSchema } = require("./Review");
+const { PropertySchema } = require("./Property");
+const { AdminSchema } = require("./Admin");
+const { BillSchema } = require("./Bill");
 
 const ServiceSchema = new mongoose.Schema(
   {
@@ -18,6 +23,21 @@ const ServiceSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    ServiceOffered: {
+      type: ServiceOfferedSchema,
+    },
+    Review: {
+      type: ReviewSchema,
+    },
+    Bill: {
+      type: BillSchema,
+    },
+    Property: {
+      type: PropertySchema,
+    },
+    Admin: {
+      type: AdminSchema,
+    },
   },
   {
     timestamps: {
@@ -29,4 +49,4 @@ const ServiceSchema = new mongoose.Schema(
 
 const Service = mongoose.model("Service", ServiceSchema);
 
-module.exports = Service;
+module.exports = {Service,ServiceSchema};

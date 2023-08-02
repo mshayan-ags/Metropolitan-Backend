@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const { PropertySchema } = require("./Property");
+const { ProfilePictureSchema } = require("./ProfilePicture");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -36,6 +38,20 @@ const UserSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
+    Property: {
+      type: PropertySchema,
+    },
+    profilePicture: {
+      type: ProfilePictureSchema,
+    },
+    Event: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Event",
+    },
+    Review: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
   },
   {
     timestamps: {
@@ -47,4 +63,4 @@ const UserSchema = new mongoose.Schema(
 
 const User = mongoose.model("User", UserSchema);
 
-module.exports = User;
+module.exports = {User,UserSchema};
