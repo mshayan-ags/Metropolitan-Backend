@@ -208,6 +208,39 @@ router.post("/Change-Password", async (req, res) => {
   }
 });
 
+router.post("/Update-User", async (req, res) => {
+  try {
+    const { id, message } = getUserId(req);
+    if (id) {
+      const Credentials = req.body;
+
+      User.findOne({ email: id })
+        .then(async (data) => {
+          await User.updateOne({ _id: data?._id }, Credentials, {
+            new: false,
+          })
+            .then((docs) => {
+              res.status(401).json({
+                id: docs?._id,
+                status: 200,
+                message: "Your User has been Updated",
+              });
+            })
+            .catch((error) => {
+              res.status(500).json({ status: 500, message: error });
+            });
+        })
+        .catch((error) => {
+          res.status(500).json({ status: 500, message: error });
+        });
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
 router.post("/Login", async (req, res) => {
   try {
     const Credentials = req.body;
