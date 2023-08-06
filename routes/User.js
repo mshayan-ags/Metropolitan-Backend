@@ -5,8 +5,17 @@ const { APP_SECRET, getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const Verifier = require("email-verifier");
 const { generateOTP, SendOtp } = require("../utils/SendOtp");
+const formidable = require("formidable");
+const saveImage = require("../utils/saveImage");
 
 const router = Router();
+
+router.post("/saveFile", async (req, res) => {
+  const form = new formidable.IncomingForm();
+  form.parse(req, function (err, fields, files) {
+    saveImage(files.image[0])
+  });
+});
 
 router.post("/SignUp", async (req, res) => {
   try {
@@ -214,7 +223,7 @@ router.post("/Update-User", async (req, res) => {
     if (id) {
       const Credentials = req.body;
 
-      User.findOne({ email: id })
+      User.findOne({ _id: id })
         .then(async (data) => {
           await User.updateOne({ _id: data?._id }, Credentials, {
             new: false,
@@ -251,7 +260,6 @@ router.post("/Login", async (req, res) => {
     }
     User.findOne({ email: req.body?.email })
       .then((docs) => {
-        console.log(docs);
         if (docs?.password && docs?._id) {
           const valid = bcrypt.compare(req.body?.password, docs?.password);
           if (

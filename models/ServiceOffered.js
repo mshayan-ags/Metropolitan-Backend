@@ -35,4 +35,4 @@ const ServiceOfferedSchema = new mongoose.Schema(
 
 const ServiceOffered = mongoose.model("ServiceOffered", ServiceOfferedSchema);
 
-module.exports = {ServiceOffered,ServiceOfferedSchema};
+module.exports = { ServiceOffered, ServiceOfferedSchema };

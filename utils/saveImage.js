@@ -2,6 +2,7 @@ const { existsSync, mkdirSync, unlinkSync, createWriteStream } = require("fs");
 const path = require("path");
 
 async function saveImage(image) {
+  console.log(image)
   return await new Promise((resolve, reject) => {
     try {
       image

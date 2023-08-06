@@ -23,8 +23,7 @@ router.post("/Create-Admin", async (req, res) => {
     await newAdmin.save();
 
     const token = jwt.sign(
-      { id: newAdmin?._id },
-      { Role: newAdmin?.Role },
+      { id: newAdmin?._id, Role: newAdmin?.Role },
       APP_SECRET
     );
 
@@ -54,14 +53,13 @@ router.post("/Update-Admin", async (req, res) => {
     if (id) {
       const Credentials = req.body;
 
-      Admin.findOne({ email: id })
+      Admin.findOne({ _id: id })
         .then(async (data) => {
           await Admin.updateOne({ _id: data?._id }, Credentials, {
             new: false,
           })
             .then((docs) => {
               res.status(401).json({
-                id: docs?._id,
                 status: 200,
                 message: "Your Admin has been Updated",
               });
@@ -91,16 +89,13 @@ router.post("/Login-Admin", async (req, res) => {
     }
     Admin.findOne({ email: req.body?.email })
       .then((docs) => {
-        console.log(docs);
         if (docs?.password && docs?._id) {
           const valid = bcrypt.compare(req.body?.password, docs?.password);
-          if (
-            valid &&
-            docs?.TermsAndConditions &&
-            docs?.isVerified &&
-            docs?.verifiedByAdmin
-          ) {
-            const token = jwt.sign({ id: docs?._id }, APP_SECRET);
+          if (valid) {
+            const token = jwt.sign(
+              { id: docs?._id, Role: docs?.Role },
+              APP_SECRET
+            );
             res.status(200).json({
               token,
               status: 200,
