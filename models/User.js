@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { PropertySchema } = require("./Property");
+const { ImageSchema } = require("./Image");
 
 const UserSchema = new mongoose.Schema(
   {
@@ -54,10 +55,7 @@ const UserSchema = new mongoose.Schema(
     Property: {
       type: PropertySchema,
     },
-    profilePicture: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Image",
-    },
+    profilePicture: ImageSchema,
     Event: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Event",
