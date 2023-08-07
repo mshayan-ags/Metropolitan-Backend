@@ -24,10 +24,11 @@ const UtilitySchema = new mongoose.Schema(
       unique: true,
     },
     Property: {
-      type: PropertySchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Property",
     },
     Image: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Image",
     },
   },
@@ -41,4 +42,4 @@ const UtilitySchema = new mongoose.Schema(
 
 const Utility = mongoose.model("Utility", UtilitySchema);
 
-module.exports = {Utility,UtilitySchema};
+module.exports = { Utility };

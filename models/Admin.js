@@ -34,15 +34,15 @@ const AdminSchema = new mongoose.Schema(
       ref: "Image",
     },
     Service: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Service",
     },
     Event: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Event",
     },
     Notification: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Notification",
     },
   },
@@ -56,4 +56,4 @@ const AdminSchema = new mongoose.Schema(
 
 const Admin = mongoose.model("Admin", AdminSchema);
 
-module.exports = { Admin, AdminSchema };
+module.exports = { Admin };

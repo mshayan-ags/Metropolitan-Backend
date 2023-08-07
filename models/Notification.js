@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const { PropertySchema } = require("./Property");
-const { AdminSchema } = require("./Admin");
-const { EventSchema } = require("./Event");
 
 const NotificationSchema = new mongoose.Schema(
   {
@@ -11,13 +8,16 @@ const NotificationSchema = new mongoose.Schema(
       trim: true,
     },
     Property: {
-      type: PropertySchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Property",
     },
     Admin: {
-      type: AdminSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
     },
     Event: {
-      type: EventSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Event",
     },
   },
   {
@@ -30,4 +30,4 @@ const NotificationSchema = new mongoose.Schema(
 
 const Notification = mongoose.model("Notification", NotificationSchema);
 
-module.exports = { Notification, NotificationSchema };
+module.exports = { Notification };

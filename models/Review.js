@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const { ServiceSchema } = require("./Service");
-const { UserSchema } = require("./User");
-const { PropertySchema } = require("./Property");
 
 const ReviewSchema = new mongoose.Schema(
   {
@@ -16,13 +13,16 @@ const ReviewSchema = new mongoose.Schema(
       default: 0,
     },
     Service: {
-      type: ServiceSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Service",
     },
     User: {
-      type: UserSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
     Property: {
-      type: PropertySchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Property",
     },
   },
   {
@@ -35,4 +35,4 @@ const ReviewSchema = new mongoose.Schema(
 
 const Review = mongoose.model("Review", ReviewSchema);
 
-module.exports = {Review,ReviewSchema};
+module.exports = { Review };

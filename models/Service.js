@@ -1,9 +1,4 @@
 const mongoose = require("mongoose");
-const { ServiceOfferedSchema } = require("./ServiceOffered");
-const { ReviewSchema } = require("./Review");
-const { PropertySchema } = require("./Property");
-const { AdminSchema } = require("./Admin");
-const { BillSchema } = require("./Bill");
 
 const ServiceSchema = new mongoose.Schema(
   {
@@ -24,19 +19,24 @@ const ServiceSchema = new mongoose.Schema(
       required: true,
     },
     ServiceOffered: {
-      type: ServiceOfferedSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ServiceOffered",
     },
     Review: {
-      type: ReviewSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
     },
     Bill: {
-      type: BillSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Bill",
     },
     Property: {
-      type: PropertySchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Property",
     },
     Admin: {
-      type: AdminSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
     },
   },
   {
@@ -49,4 +49,4 @@ const ServiceSchema = new mongoose.Schema(
 
 const Service = mongoose.model("Service", ServiceSchema);
 
-module.exports = {Service,ServiceSchema};
+module.exports = { Service };

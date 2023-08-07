@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { AdminSchema } = require("./Admin");
 
 const EventSchema = new mongoose.Schema(
   {
@@ -43,7 +42,8 @@ const EventSchema = new mongoose.Schema(
       ref: "Notification",
     },
     Admin: {
-      type: AdminSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
     },
   },
   {
@@ -56,4 +56,4 @@ const EventSchema = new mongoose.Schema(
 
 const Event = mongoose.model("Event", EventSchema);
 
-module.exports = {Event,EventSchema};
+module.exports = {Event};

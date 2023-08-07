@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const { PropertySchema } = require("./Property");
-const { ServiceSchema } = require("./Service");
-const { ServiceOfferedSchema } = require("./ServiceOffered");
 
 const BillSchema = new mongoose.Schema(
   {
@@ -16,13 +13,16 @@ const BillSchema = new mongoose.Schema(
       unique: true,
     },
     Property: {
-      type: PropertySchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Property",
     },
     Service: {
-      type: ServiceSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Service",
     },
     ServiceOffered: {
-      type: ServiceOfferedSchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ServiceOffered",
     },
   },
   {
@@ -35,4 +35,4 @@ const BillSchema = new mongoose.Schema(
 
 const Bill = mongoose.model("Bill", BillSchema);
 
-module.exports = { Bill, BillSchema };
+module.exports = { Bill };

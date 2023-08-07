@@ -17,7 +17,7 @@ const ServiceOfferedSchema = new mongoose.Schema(
       trim: true,
     },
     Service: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Service",
     },
     Icon: {
@@ -35,4 +35,4 @@ const ServiceOfferedSchema = new mongoose.Schema(
 
 const ServiceOffered = mongoose.model("ServiceOffered", ServiceOfferedSchema);
 
-module.exports = { ServiceOffered, ServiceOfferedSchema };
+module.exports = { ServiceOffered };

@@ -17,27 +17,27 @@ const PropertySchema = new mongoose.Schema(
       ref: "User",
     },
     Service: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Service",
     },
     Utility: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Utility",
     },
     Bill: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Bill",
     },
     Image: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Image",
     },
     Review: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Review",
     },
     Notification: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Notification",
     },
   },
@@ -51,4 +51,4 @@ const PropertySchema = new mongoose.Schema(
 
 const Property = mongoose.model("Property", PropertySchema);
 
-module.exports = {Property,PropertySchema};
+module.exports = { Property };
