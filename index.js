@@ -6,6 +6,7 @@ const { default: mongoose } = require("mongoose");
 const User = require("./routes/User");
 const Admin = require("./routes/Admin");
 const Property = require("./routes/Property");
+const ServiceOffered = require("./routes/ServiceOffered");
 
 const app = Express();
 
@@ -27,6 +28,7 @@ const port = process.env.PORT || 5000;
 app.use(User);
 app.use(Admin);
 app.use(Property);
+app.use(ServiceOffered);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);

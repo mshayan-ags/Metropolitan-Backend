@@ -1,7 +1,5 @@
 const { Property } = require("../models/Property");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { APP_SECRET, getAdminId } = require("../utils/AuthCheck");
+const {  getAdminId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { User } = require("../models/User");
 const { default: mongoose } = require("mongoose");

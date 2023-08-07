@@ -6,11 +6,14 @@ const ServiceOfferedSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      lowercase: true,
+      unique: true,
     },
     Fields: {
       type: [
         new mongoose.Schema({
           name: String,
+          type: String,
         }),
       ],
       required: true,
