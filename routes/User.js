@@ -1,7 +1,7 @@
 const { User } = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { APP_SECRET, getUserId } = require("../utils/AuthCheck");
+const { APP_SECRET, getUserId, getAdminId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const Verifier = require("email-verifier");
 const { generateOTP, SendOtp } = require("../utils/SendOtp");
@@ -13,7 +13,7 @@ const router = Router();
 router.post("/saveFile", async (req, res) => {
   const form = new formidable.IncomingForm();
   form.parse(req, function (err, fields, files) {
-    saveImage(files.image[0])
+    saveImage(files.image[0]);
   });
 });
 
@@ -298,6 +298,27 @@ router.get("/userInfo", async (req, res) => {
     const { id, message } = getUserId(req);
     if (id) {
       User.findOne({ _id: id })
+        .populate("Property", "profilePicture")
+        .then((data) => {
+          res.status(200).json({ status: 200, data: data });
+        })
+        .catch((err) => {
+          res.status(500).json({ status: 500, message: err });
+        });
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.get("/GetAllUsers", async (req, res) => {
+  try {
+    const { id, message } = getAdminId(req);
+    if (id) {
+      User.find()
+        .populate("Property", "profilePicture")
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })

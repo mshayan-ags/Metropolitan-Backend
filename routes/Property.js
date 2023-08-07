@@ -79,6 +79,27 @@ router.get("/PropertyInfo/:id", async (req, res) => {
     const { id, message } = getAdminId(req);
     if (id) {
       Property.findOne({ _id: req.params.id })
+        .populate("User")
+        .then((data) => {
+          res.status(200).json({ status: 200, data: data });
+        })
+        .catch((err) => {
+          res.status(500).json({ status: 500, message: err });
+        });
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.get("/GetAllProperty", async (req, res) => {
+  try {
+    const { id, message } = getAdminId(req);
+    if (id) {
+      Property.find()
+        .populate("User")
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
@@ -116,7 +137,10 @@ router.post("/Property-User", async (req, res) => {
       if (searchProperty?._id && searchUser?._id) {
         User.updateOne(
           { _id: req.body.user },
-          { Property: new mongoose.Types.ObjectId(req.body.property) }
+          {
+            Property: new mongoose.Types.ObjectId(req.body.property),
+            verifiedByAdmin: true,
+          }
         )
           .then(async (data) => {
             const setArr = await SetArrManyRelationhip(
