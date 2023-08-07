@@ -13,7 +13,7 @@ const PropertySchema = new mongoose.Schema(
       default: 0,
     },
     User: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "User",
     },
     Service: {

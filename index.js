@@ -5,6 +5,7 @@ const cors = require("cors");
 const { default: mongoose } = require("mongoose");
 const User = require("./routes/User");
 const Admin = require("./routes/Admin");
+const Property = require("./routes/Property");
 
 const app = Express();
 
@@ -25,6 +26,7 @@ const port = process.env.PORT || 5000;
 
 app.use(User);
 app.use(Admin);
+app.use(Property);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);

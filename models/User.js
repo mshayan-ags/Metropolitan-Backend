@@ -53,7 +53,8 @@ const UserSchema = new mongoose.Schema(
       default: false,
     },
     Property: {
-      type: PropertySchema,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Property",
     },
     profilePicture: ImageSchema,
     Event: {
