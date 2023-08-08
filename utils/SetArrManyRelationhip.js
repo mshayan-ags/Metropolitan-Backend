@@ -9,7 +9,7 @@ async function SetArrManyRelationhip(field, checkValue, res, mes) {
     });
     Msg = "Error";
   }
-  const Arr = field.length >= 1 ? [...field] : field.length > 0 ? [field] : [];
+  const Arr = field?.length >= 1 ? [...field] : field?.length > 0 ? [field] : [];
   if (Arr.length > 0) {
     await Arr.filter((a, i) => {
       if (a == checkValue) {
