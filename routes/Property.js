@@ -1,17 +1,28 @@
 const { Property } = require("../models/Property");
-const {  getAdminId } = require("../utils/AuthCheck");
+const { getAdminId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { User } = require("../models/User");
 const { default: mongoose } = require("mongoose");
 const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
+const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 
 const router = Router();
 
 router.post("/Create-Property", async (req, res) => {
   try {
-    const { id, message } = getAdminId(req);
+    const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
+
+      const Check = CheckAllRequiredFieldsAvailaible(
+        Credentials,
+        ["noRooms", "noBathrooms"],
+        res
+      );
+      if (Check == "Error") {
+        return;
+      }
+
       const newProperty = new Property({
         noRooms: Credentials?.noRooms,
         noBathrooms: Credentials?.noBathrooms,
@@ -42,28 +53,32 @@ router.post("/Create-Property", async (req, res) => {
 
 router.post("/Update-Property", async (req, res) => {
   try {
-    const { id, message } = getAdminId(req);
+    const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
 
-      Property.findOne({ _id: req.body.id })
-        .then(async (data) => {
-          await Property.updateOne({ _id: data?._id }, Credentials, {
-            new: false,
-          })
-            .then((docs) => {
-              res.status(401).json({
-                status: 200,
-                message: "Your Property has been Updated",
-              });
-            })
-            .catch((error) => {
-              res.status(500).json({ status: 500, message: error });
-            });
+      const Check = CheckAllRequiredFieldsAvailaible(Credentials, ["id"], res);
+      if (Check == "Error") {
+        return;
+      }
+
+      const searchProperty = await Property.findOne({ _id: Credentials.id });
+      if (searchProperty?._id) {
+        await Property.updateOne({ _id: data?._id }, Credentials, {
+          new: false,
         })
-        .catch((error) => {
-          res.status(500).json({ status: 500, message: error });
-        });
+          .then((docs) => {
+            res.status(200).json({
+              status: 200,
+              message: "Your Property has been Updated",
+            });
+          })
+          .catch((error) => {
+            res.status(500).json({ status: 500, message: error });
+          });
+      } else {
+        res.status(500).json({ status: 500, message: "Property not Found" });
+      }
     } else {
       res.status(401).json({ status: 401, message: message });
     }
@@ -74,8 +89,13 @@ router.post("/Update-Property", async (req, res) => {
 
 router.get("/PropertyInfo/:id", async (req, res) => {
   try {
-    const { id, message } = getAdminId(req);
+    const { id, message } = await getAdminId(req);
     if (id) {
+      const Check = CheckAllRequiredFieldsAvailaible(req.params, ["id"], res);
+      if (Check == "Error") {
+        return;
+      }
+
       Property.findOne({ _id: req.params.id })
         .populate("User")
         .then((data) => {
@@ -94,7 +114,7 @@ router.get("/PropertyInfo/:id", async (req, res) => {
 
 router.get("/GetAllProperty", async (req, res) => {
   try {
-    const { id, message } = getAdminId(req);
+    const { id, message } = await getAdminId(req);
     if (id) {
       Property.find()
         .populate("User")
@@ -114,23 +134,18 @@ router.get("/GetAllProperty", async (req, res) => {
 
 router.post("/Property-User", async (req, res) => {
   try {
-    const { id, message } = getAdminId(req);
+    const { id, message } = await getAdminId(req);
     if (id) {
-      const searchProperty = await Property.findOne({ _id: req.body.property })
-        .then((data) => {
-          return data;
-        })
-        .catch((err) => {
-          res.status(500).json({ status: 500, message: err });
-        });
-
-      const searchUser = await User.findOne({ _id: req.body.user })
-        .then((data) => {
-          return data;
-        })
-        .catch((err) => {
-          res.status(500).json({ status: 500, message: err });
-        });
+      const Check = CheckAllRequiredFieldsAvailaible(
+        req.body,
+        ["property", "user"],
+        res
+      );
+      if (Check == "Error") {
+        return;
+      }
+      const searchProperty = await Property.findOne({ _id: req.body.property });
+      const searchUser = await User.findOne({ _id: req.body.user });
 
       if (searchProperty?._id && searchUser?._id) {
         User.updateOne(
@@ -163,7 +178,6 @@ router.post("/Property-User", async (req, res) => {
                   .json({ status: 200, data: "Property was added to user" });
               })
               .catch((err) => {
-                console.log(err);
                 res.status(500).json({ status: 500, message: err });
               });
           })
@@ -179,8 +193,6 @@ router.post("/Property-User", async (req, res) => {
       res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
-    console.log(error);
-
     res.status(500).json({ status: 500, message: error });
   }
 });

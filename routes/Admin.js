@@ -64,7 +64,7 @@ router.post("/Update-Admin", async (req, res) => {
 
       const searchAdmin = await Admin.findOne({ _id: id });
 
-      if (searchAdmin?._id)
+      if (searchAdmin?._id) {
         await Admin.updateOne({ _id: id }, Credentials, {
           new: false,
         })
@@ -77,6 +77,9 @@ router.post("/Update-Admin", async (req, res) => {
           .catch((error) => {
             res.status(500).json({ status: 500, message: error });
           });
+      } else {
+        res.status(500).json({ status: 500, message: "Admin Not Found" });
+      }
     } else {
       res.status(401).json({ status: 401, message: message });
     }
