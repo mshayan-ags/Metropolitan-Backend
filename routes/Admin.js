@@ -3,12 +3,22 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { APP_SECRET, getAdminId } = require("../utils/AuthCheck");
 const { Router } = require("express");
+const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 
 const router = Router();
 
 router.post("/Create-Admin", async (req, res) => {
   try {
     const Credentials = req.body;
+
+    const Check = await CheckAllRequiredFieldsAvailaible(
+      Credentials,
+      ["name", "email", "phoneNumber", "Role", "password"],
+      res
+    );
+    if (Check == "Error") {
+      return;
+    }
 
     const password = await bcrypt.hash(Credentials?.password, 15);
 
@@ -33,7 +43,6 @@ router.post("/Create-Admin", async (req, res) => {
       message: "Admin Created in Succesfully",
     });
   } catch (error) {
-    console.log(error);
     if (error?.code == 11000) {
       res.status(500).json({
         status: 500,
@@ -49,28 +58,25 @@ router.post("/Create-Admin", async (req, res) => {
 
 router.post("/Update-Admin", async (req, res) => {
   try {
-    const { id, message } = getAdminId(req);
+    const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
 
-      Admin.findOne({ _id: id })
-        .then(async (data) => {
-          await Admin.updateOne({ _id: data?._id }, Credentials, {
-            new: false,
-          })
-            .then((docs) => {
-              res.status(401).json({
-                status: 200,
-                message: "Your Admin has been Updated",
-              });
-            })
-            .catch((error) => {
-              res.status(500).json({ status: 500, message: error });
-            });
+      const searchAdmin = await Admin.findOne({ _id: id });
+
+      if (searchAdmin?._id)
+        await Admin.updateOne({ _id: id }, Credentials, {
+          new: false,
         })
-        .catch((error) => {
-          res.status(500).json({ status: 500, message: error });
-        });
+          .then((docs) => {
+            res.status(401).json({
+              status: 200,
+              message: "Your Admin has been Updated",
+            });
+          })
+          .catch((error) => {
+            res.status(500).json({ status: 500, message: error });
+          });
     } else {
       res.status(401).json({ status: 401, message: message });
     }
@@ -82,41 +88,43 @@ router.post("/Update-Admin", async (req, res) => {
 router.post("/Login-Admin", async (req, res) => {
   try {
     const Credentials = req.body;
-    if (!Credentials?.password && !Credentials?.email) {
+
+    const Check = CheckAllRequiredFieldsAvailaible(
+      Credentials,
+      ["email", "password"],
       res
-        .status(400)
-        .json({ status: 400, message: "Please Fill All The Fields" });
+    );
+    if (Check == "Error") {
+      return;
     }
-    Admin.findOne({ email: req.body?.email })
-      .then((docs) => {
-        if (docs?.password && docs?._id) {
-          const valid = bcrypt.compare(req.body?.password, docs?.password);
-          if (valid) {
-            const token = jwt.sign(
-              { id: docs?._id, Role: docs?.Role },
-              APP_SECRET
-            );
-            res.status(200).json({
-              token,
-              status: 200,
-              message: "Admin Logged in Succesfully",
-            });
-          } else if (!valid) {
-            res
-              .status(500)
-              .json({ status: 500, message: "Your Password is incorrect" });
-          } else {
-            res
-              .status(500)
-              .json({ status: 500, message: "Admin Not Verified" });
-          }
-        } else {
-          res.status(500).json({ status: 500, message: "Admin Not Found" });
-        }
-      })
-      .catch((error) => {
-        res.status(500).json({ status: 500, message: error });
-      });
+
+    const searchAdmin = await Admin.findOne({ email: Credentials?.email });
+
+    if (searchAdmin?.password && searchAdmin?._id) {
+      const valid = bcrypt.compare(
+        Credentials?.password,
+        searchAdmin?.password
+      );
+      if (valid) {
+        const token = jwt.sign(
+          { id: searchAdmin?._id, Role: searchAdmin?.Role },
+          APP_SECRET
+        );
+        res.status(200).json({
+          token,
+          status: 200,
+          message: "Admin Logged in Succesfully",
+        });
+      } else if (!valid) {
+        res
+          .status(500)
+          .json({ status: 500, message: "Your Password is incorrect" });
+      } else {
+        res.status(500).json({ status: 500, message: "Admin Not Verified" });
+      }
+    } else {
+      res.status(500).json({ status: 500, message: "Admin Not Found" });
+    }
   } catch (error) {
     res.status(500).json({ status: 500, message: error });
   }
@@ -124,7 +132,7 @@ router.post("/Login-Admin", async (req, res) => {
 
 router.get("/AdminInfo", async (req, res) => {
   try {
-    const { id, message } = getAdminId(req);
+    const { id, message } = await getAdminId(req);
     if (id) {
       Admin.findOne({ _id: id })
         .then((data) => {
