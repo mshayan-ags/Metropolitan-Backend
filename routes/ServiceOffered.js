@@ -1,7 +1,7 @@
 const { ServiceOffered } = require("../models/ServiceOffered");
 const { getAdminId } = require("../utils/AuthCheck");
 const { Router } = require("express");
-const { filterArrayAndRemoveRepetitions } = require("../utils/functions");
+const { filterArrayOfObjectAndRemoveRepetitions } = require("../utils/functions");
 
 const router = Router();
 
@@ -13,7 +13,7 @@ router.post("/Create-ServiceOffered", async (req, res) => {
 
       console.log(Credentials?.Fields);
       const FieldsArr = JSON.parse(Credentials?.Fields);
-      const newFieldsArr = filterArrayAndRemoveRepetitions(FieldsArr, "name");
+      const newFieldsArr = filterArrayOfObjectAndRemoveRepetitions(FieldsArr, "name");
 
       const newServiceOffered = new ServiceOffered({
         title: Credentials?.title,
@@ -56,7 +56,7 @@ router.post("/Update-ServiceOffered", async (req, res) => {
             ...JSON.parse(Credentials?.Fields),
             ...data?.Fields,
           ];
-          const newFieldsArr = filterArrayAndRemoveRepetitions(
+          const newFieldsArr = filterArrayOfObjectAndRemoveRepetitions(
             FieldsArr,
             "name"
           );

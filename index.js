@@ -7,6 +7,7 @@ const User = require("./routes/User");
 const Admin = require("./routes/Admin");
 const Property = require("./routes/Property");
 const ServiceOffered = require("./routes/ServiceOffered");
+const Service = require("./routes/Service");
 
 const app = Express();
 
@@ -29,6 +30,7 @@ app.use(User);
 app.use(Admin);
 app.use(Property);
 app.use(ServiceOffered);
+app.use(Service);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);

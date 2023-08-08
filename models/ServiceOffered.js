@@ -14,6 +14,7 @@ const ServiceOfferedSchema = new mongoose.Schema(
         new mongoose.Schema({
           name: String,
           type: String,
+          forUser: { type: Boolean, default: false },
         }),
       ],
       required: true,

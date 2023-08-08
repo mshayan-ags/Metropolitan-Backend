@@ -9,14 +9,16 @@ const ServiceSchema = new mongoose.Schema(
     },
     reason: {
       type: String,
-      required: true,
       trim: true,
       lowercase: true,
-      unique: true,
     },
     description: {
       type: String,
       required: true,
+    },
+    FieldValues: {
+      type: Map,
+      of: String
     },
     ServiceOffered: {
       type: mongoose.Schema.Types.ObjectId,

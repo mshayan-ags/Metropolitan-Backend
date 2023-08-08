@@ -1,4 +1,4 @@
-function filterArrayAndRemoveRepetitions(arr, property) {
+function filterArrayOfObjectAndRemoveRepetitions(arr, property) {
     const uniqueValues = new Set();
     const filteredArr = arr.filter(obj => {
         if (!uniqueValues.has(obj[property])) {
@@ -12,5 +12,5 @@ function filterArrayAndRemoveRepetitions(arr, property) {
 
 
 module.exports={
-    filterArrayAndRemoveRepetitions
+    filterArrayOfObjectAndRemoveRepetitions
 }
