@@ -1,5 +1,5 @@
 const { Property } = require("../models/Property");
-const { getAdminId } = require("../utils/AuthCheck");
+const { getAdminId, getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { User } = require("../models/User");
 const { default: mongoose } = require("mongoose");
@@ -90,7 +90,8 @@ router.post("/Update-Property", async (req, res) => {
 router.get("/PropertyInfo/:id", async (req, res) => {
   try {
     const { id, message } = await getAdminId(req);
-    if (id) {
+    const { id: userId, message: userMessage } = await getUserId(req);
+    if (id || userId) {
       const Check = CheckAllRequiredFieldsAvailaible(req.params, ["id"], res);
       if (Check == "Error") {
         return;
@@ -105,7 +106,7 @@ router.get("/PropertyInfo/:id", async (req, res) => {
           res.status(500).json({ status: 500, message: err });
         });
     } else {
-      res.status(401).json({ status: 401, message: message });
+      res.status(401).json({ status: 401, message: message || userMessage });
     }
   } catch (error) {
     res.status(500).json({ status: 500, message: error });
@@ -115,7 +116,9 @@ router.get("/PropertyInfo/:id", async (req, res) => {
 router.get("/GetAllProperty", async (req, res) => {
   try {
     const { id, message } = await getAdminId(req);
-    if (id) {
+    const { id: userId, message: userMessage } = await getUserId(req);
+
+    if (id || userId) {
       Property.find()
         .populate("User")
         .then((data) => {
@@ -125,7 +128,7 @@ router.get("/GetAllProperty", async (req, res) => {
           res.status(500).json({ status: 500, message: err });
         });
     } else {
-      res.status(401).json({ status: 401, message: message });
+      res.status(401).json({ status: 401, message: message || userMessage });
     }
   } catch (error) {
     res.status(500).json({ status: 500, message: error });
