@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const { User } = require("../models/User");
+const { Admin } = require("../models/Admin");
 
 const APP_SECRET = "Metropolitan";
 
@@ -6,7 +8,7 @@ function getTokenPayload(token) {
   return jwt.verify(token, APP_SECRET);
 }
 
-function getUserId(req) {
+async function getUserId(req) {
   if (req) {
     const authHeader = req?.headers?.authorization;
     if (authHeader) {
@@ -15,14 +17,18 @@ function getUserId(req) {
         return { message: "No token found" };
       }
       const { id } = getTokenPayload(token);
-      return { id };
+
+      const isUser = await User.findOne({ _id: id });
+
+      if (isUser?._id) return { id };
+      else return { message: "Not authenticated" };
     }
   } else {
     return { message: "Not authenticated" };
   }
 }
 
-function getAdminId(req) {
+async function getAdminId(req) {
   if (req) {
     const authHeader = req?.headers?.authorization;
     if (authHeader) {
@@ -31,7 +37,11 @@ function getAdminId(req) {
         return { message: "No token found" };
       }
       const { id, Role } = getTokenPayload(token);
-      return { id, Role };
+
+      const isAdmin = await Admin.findOne({ _id: id });
+
+      if (isAdmin?._id && isAdmin?.Role == Role) return { id, Role };
+      else return { message: "Not authenticated" };
     }
   } else {
     return { message: "Not authenticated" };
@@ -41,5 +51,5 @@ function getAdminId(req) {
 module.exports = {
   APP_SECRET,
   getUserId,
-  getAdminId
+  getAdminId,
 };
