@@ -7,6 +7,7 @@ const Verifier = require("email-verifier");
 const { generateOTP, SendOtp } = require("../utils/SendOtp");
 const formidable = require("formidable");
 const saveImage = require("../utils/saveImage");
+const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 
 const router = Router();
 
@@ -20,6 +21,15 @@ router.post("/saveFile", async (req, res) => {
 router.post("/SignUp", async (req, res) => {
   try {
     const Credentials = req.body;
+
+    const Check = CheckAllRequiredFieldsAvailaible(
+      Credentials,
+      ["name", "email", "phoneNumber", "TermsAndConditions", "password"],
+      res
+    );
+    if (Check == "Error") {
+      return;
+    }
 
     const password = await bcrypt.hash(Credentials?.password, 15);
 
@@ -67,7 +77,6 @@ router.post("/SignUp", async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
     if (error?.code == 11000) {
       res.status(500).json({
         status: 500,
@@ -83,42 +92,40 @@ router.post("/SignUp", async (req, res) => {
 
 router.post("/Verify-OTP", async (req, res) => {
   try {
-    if (!req.body?.otp && !req.body?.email) {
+    const Check = CheckAllRequiredFieldsAvailaible(
+      req.body,
+      ["email", "otp"],
       res
-        .status(400)
-        .json({ status: 400, message: "Please Fill All The Fields" });
+    );
+    if (Check == "Error") {
+      return;
     }
-    User.findOne({ email: req.body?.email })
-      .then(async (data) => {
-        if (data.otp == req.body?.otp) {
-          await User.updateOne(
-            { _id: data?._id },
-            { isVerified: true },
-            {
-              new: false,
-            }
-          )
-            .then((docs) => {
-              res.status(401).json({
-                id: docs?._id,
-                status: 200,
-                message: "Your Account is Verified Wait for Admin Verification",
-              });
-            })
-            .catch((error) => {
-              console.log(error);
-              res.status(500).json({ status: 500, message: error });
-            });
-        } else {
-          res
-            .status(401)
-            .json({ status: 401, message: "You Have Entered Wrong Otp" });
+
+    const searchUser = await User.findOne({ email: req.body?.email });
+
+    if (searchUser?._id && searchUser?.otp == req.body?.otp) {
+      await User.updateOne(
+        { _id: searchUser?._id },
+        { isVerified: true },
+        {
+          new: false,
         }
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json({ status: 500, message: err });
-      });
+      )
+        .then((docs) => {
+          res.status(200).json({
+            id: docs?._id,
+            status: 200,
+            message: "Your Account is Verified Wait for Admin Verification",
+          });
+        })
+        .catch((error) => {
+          res.status(500).json({ status: 500, message: error });
+        });
+    } else {
+      res
+        .status(401)
+        .json({ status: 401, message: "You Have Entered Wrong Otp or email" });
+    }
   } catch (error) {
     res.status(500).json({ status: 500, message: error });
   }
@@ -126,40 +133,39 @@ router.post("/Verify-OTP", async (req, res) => {
 
 router.post("/Forget-Password", async (req, res) => {
   try {
-    if (!req.body?.email) {
-      res
-        .status(400)
-        .json({ status: 400, message: "Please Fill All The Fields" });
+    const Check = CheckAllRequiredFieldsAvailaible(req?.body, ["email"], res);
+    if (Check == "Error") {
+      return;
     }
+
     const otp = generateOTP(6);
 
     SendOtp(newUser?.email, otp);
 
-    User.findOne({ email: req.body?.email })
-      .then(async (data) => {
-        await User.updateOne(
-          { _id: data?._id },
-          { isVerified: false, otp: otp, password: `${otp}` },
-          {
-            new: false,
-          }
-        )
-          .then((docs) => {
-            res.status(401).json({
-              id: docs?._id,
-              status: 200,
-              message: "An Email is sent to your id",
-            });
-          })
-          .catch((error) => {
-            console.log(error);
-            res.status(500).json({ status: 500, message: error });
+    const searchUser = await User.findOne({ email: req.body?.email });
+    if (searchUser?._id) {
+      await User.updateOne(
+        { _id: searchUser?._id },
+        { isVerified: false, otp: otp, password: `${otp}` },
+        {
+          new: false,
+        }
+      )
+        .then((docs) => {
+          res.status(200).json({
+            status: 200,
+            message: "An Email is sent to your id",
           });
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json({ status: 500, message: err });
-      });
+        })
+        .catch((error) => {
+          console.log(error);
+          res.status(500).json({ status: 500, message: error });
+        });
+    } else {
+      res
+        .status(401)
+        .json({ status: 401, message: "You Have Entered Wrong email" });
+    }
   } catch (error) {
     res.status(500).json({ status: 500, message: error });
   }
@@ -168,50 +174,45 @@ router.post("/Forget-Password", async (req, res) => {
 router.post("/Change-Password", async (req, res) => {
   try {
     const Credentials = req.body;
-    if (
-      !Credentials?.password &&
-      !Credentials?.email &&
-      !Credentials?.newPassword
-    ) {
+
+    const Check = CheckAllRequiredFieldsAvailaible(
+      Credentials,
+      ["password", "email", "newPassword"],
       res
-        .status(400)
-        .json({ status: 400, message: "Please Fill All The Fields" });
+    );
+    if (Check == "Error") {
+      return;
     }
-    User.findOne({ email: req.body?.email })
-      .then(async (data) => {
-        if (data?.password && data?._id) {
-          const valid = bcrypt.compare(req.body?.password, data?.password);
-          if (valid) {
-            const password = await bcrypt.hash(Credentials?.newPassword, 15);
-            await User.updateOne(
-              { _id: data?._id },
-              { password: password },
-              {
-                new: false,
-              }
-            )
-              .then((docs) => {
-                res.status(401).json({
-                  id: docs?._id,
-                  status: 200,
-                  message: "Your Password has been Changed",
-                });
-              })
-              .catch((error) => {
-                res.status(500).json({ status: 500, message: error });
-              });
-          } else {
-            res
-              .status(500)
-              .json({ status: 500, message: "Password Not Valid" });
+
+    const searchUser = await User.findOne({ email: Credentials?.email });
+    if (searchUser?.password && searchUser?._id) {
+      const valid = bcrypt.compare(Credentials?.password, searchUser?.password);
+      if (valid) {
+        const password = await bcrypt.hash(Credentials?.newPassword, 15);
+        await User.updateOne(
+          { _id: searchUser?._id },
+          { password: password },
+          {
+            new: false,
           }
-        } else {
-          res.status(500).json({ status: 500, message: "User Not Found" });
-        }
-      })
-      .catch((error) => {
-        res.status(500).json({ status: 500, message: error });
-      });
+        )
+          .then((docs) => {
+            res.status(200).json({
+              status: 200,
+              message: "Your Password has been Changed",
+            });
+          })
+          .catch((error) => {
+            res.status(500).json({ status: 500, message: error });
+          });
+      } else {
+        res.status(500).json({ status: 500, message: "Password Not Valid" });
+      }
+    } else {
+      res
+        .status(500)
+        .json({ status: 500, message: "User Not Found or wrong email" });
+    }
   } catch (error) {
     res.status(500).json({ status: 500, message: error });
   }
@@ -219,29 +220,28 @@ router.post("/Change-Password", async (req, res) => {
 
 router.post("/Update-User", async (req, res) => {
   try {
-    const { id, message } = getUserId(req);
+    const { id, message } = await getUserId(req);
     if (id) {
       const Credentials = req.body;
 
-      User.findOne({ _id: id })
-        .then(async (data) => {
-          await User.updateOne({ _id: data?._id }, Credentials, {
-            new: false,
-          })
-            .then((docs) => {
-              res.status(401).json({
-                id: docs?._id,
-                status: 200,
-                message: "Your User has been Updated",
-              });
-            })
-            .catch((error) => {
-              res.status(500).json({ status: 500, message: error });
-            });
+      const searchUser = await User.findOne({ _id: id });
+
+      if (searchUser?._id) {
+        await User.updateOne({ _id: searchUser?._id }, Credentials, {
+          new: false,
         })
-        .catch((error) => {
-          res.status(500).json({ status: 500, message: error });
-        });
+          .then((docs) => {
+            res.status(200).json({
+              status: 200,
+              message: "Your User has been Updated",
+            });
+          })
+          .catch((error) => {
+            res.status(500).json({ status: 500, message: error });
+          });
+      } else {
+        res.status(401).json({ status: 401, message: "User Not Found" });
+      }
     } else {
       res.status(401).json({ status: 401, message: message });
     }
@@ -253,41 +253,41 @@ router.post("/Update-User", async (req, res) => {
 router.post("/Login", async (req, res) => {
   try {
     const Credentials = req.body;
-    if (!Credentials?.password && !Credentials?.email) {
+
+    const Check = CheckAllRequiredFieldsAvailaible(
+      Credentials,
+      ["email", "password"],
       res
-        .status(400)
-        .json({ status: 400, message: "Please Fill All The Fields" });
+    );
+    if (Check == "Error") {
+      return;
     }
-    User.findOne({ email: req.body?.email })
-      .then((docs) => {
-        if (docs?.password && docs?._id) {
-          const valid = bcrypt.compare(req.body?.password, docs?.password);
-          if (
-            valid &&
-            docs?.TermsAndConditions &&
-            docs?.isVerified &&
-            docs?.verifiedByAdmin
-          ) {
-            const token = jwt.sign({ id: docs?._id }, APP_SECRET);
-            res.status(200).json({
-              token,
-              status: 200,
-              message: "User Logged in Succesfully",
-            });
-          } else if (!valid) {
-            res
-              .status(500)
-              .json({ status: 500, message: "Your Password is incorrect" });
-          } else {
-            res.status(500).json({ status: 500, message: "User Not Verified" });
-          }
-        } else {
-          res.status(500).json({ status: 500, message: "User Not Found" });
-        }
-      })
-      .catch((error) => {
-        res.status(500).json({ status: 500, message: error });
-      });
+
+    const searchUser = await User.findOne({ email: Credentials?.email });
+    if (searchUser?.password && searchUser?._id) {
+      const valid = bcrypt.compare(Credentials?.password, searchUser?.password);
+      if (
+        valid &&
+        searchUser?.TermsAndConditions &&
+        searchUser?.isVerified &&
+        searchUser?.verifiedByAdmin
+      ) {
+        const token = jwt.sign({ id: searchUser?._id }, APP_SECRET);
+        res.status(200).json({
+          token,
+          status: 200,
+          message: "User Logged in Succesfully",
+        });
+      } else if (!valid) {
+        res
+          .status(500)
+          .json({ status: 500, message: "Your Password is incorrect" });
+      } else {
+        res.status(500).json({ status: 500, message: "User Not Verified" });
+      }
+    } else {
+      res.status(500).json({ status: 500, message: "User Not Found" });
+    }
   } catch (error) {
     res.status(500).json({ status: 500, message: error });
   }
@@ -295,7 +295,7 @@ router.post("/Login", async (req, res) => {
 
 router.get("/userInfo", async (req, res) => {
   try {
-    const { id, message } = getUserId(req);
+    const { id, message } = await getUserId(req);
     if (id) {
       User.findOne({ _id: id })
         .populate("Property", "profilePicture")
