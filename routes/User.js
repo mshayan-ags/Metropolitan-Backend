@@ -45,7 +45,7 @@ router.post("/SignUp", async (req, res) => {
 
     if (newUser) {
       const verifierkey = new Verifier("at_Qc0l6wLRvlfI875zbloS9GD7YLltj");
-      await verifierkey.verify(newUser?.email, async (err, data) => {
+      return await verifierkey.verify(newUser?.email, async (err, data) => {
         if (
           data &&
           data?.freeCheck &&
@@ -58,17 +58,32 @@ router.post("/SignUp", async (req, res) => {
 
           SendOtp(newUser?.email, otp);
 
-          await newUser.save();
-
-          const token = jwt.sign({ id: newUser?._id }, APP_SECRET);
-
-          res.status(200).json({
-            token,
-            status: 200,
-            message: "User Created in Succesfully",
+          const saveUser = await newUser.save().catch((error) => {
+            if (error?.code == 11000) {
+              res.status(500).json({
+                status: 500,
+                message: `Please Change your ${
+                  Object.keys(error?.keyValue)[0]
+                } as it's not unique`,
+              });
+              return;
+            } else {
+              res.status(500).json({ status: 500, message: error });
+              return;
+            }
           });
+          if (saveUser?._id) {
+            const token = jwt.sign({ id: newUser?._id }, APP_SECRET);
+
+            res.status(200).json({
+              token,
+              status: 200,
+              message: "User Created in Succesfully",
+            });
+          } else {
+            return;
+          }
         } else {
-          console.log(err);
           res.status(500).json({
             status: 500,
             message: `Please Change your email as it's not valid`,
