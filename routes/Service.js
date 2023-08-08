@@ -8,11 +8,13 @@ const { ServiceOffered } = require("../models/ServiceOffered");
 const { Property } = require("../models/Property");
 const { Admin } = require("../models/Admin");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
+const { connectToDB } = require("../Middlewares/Db");
 
 const router = Router();
 
 router.post("/Request-Service", async (req, res) => {
   try {
+    connectToDB();
     const { id, message } = await getUserId(req);
     if (id) {
       const Credentials = req.body;
@@ -142,6 +144,7 @@ router.post("/Request-Service", async (req, res) => {
 
 router.post("/Create-Service", async (req, res) => {
   try {
+    connectToDB();
     const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
@@ -303,6 +306,7 @@ router.post("/Create-Service", async (req, res) => {
 
 router.post("/Update-Service", async (req, res) => {
   try {
+    connectToDB();
     const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
@@ -415,6 +419,7 @@ router.post("/Update-Service", async (req, res) => {
 
 router.get("/ServiceInfo/:id", async (req, res) => {
   try {
+    connectToDB();
     const { id: userId, message: userMessage } = await getUserId(req);
     const { id, message } = await getAdminId(req);
     if (id || userId) {
@@ -445,21 +450,24 @@ router.get("/ServiceInfo/:id", async (req, res) => {
 
 router.get("/GetAllService", async (req, res) => {
   try {
+    connectToDB();
     const { id: userId, message: userMessage } = await getUserId(req);
     const { id, message } = await getAdminId(req);
     if (id || userId) {
       Service.find()
-        .populate("ServiceOffered", "Bill", "Review", "Property", "Admin")
+        // .populate("ServiceOffered", "Bill", "Review", "Property", "Admin")
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
         .catch((err) => {
+          console.log(err);
           res.status(500).json({ status: 500, message: err });
         });
     } else {
       res.status(401).json({ status: 401, message: message || userMessage });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ status: 500, message: error });
   }
 });

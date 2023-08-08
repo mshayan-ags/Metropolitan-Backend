@@ -4,11 +4,14 @@ const jwt = require("jsonwebtoken");
 const { APP_SECRET, getAdminId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
+const { connectToDB } = require("../Middlewares/Db");
 
 const router = Router();
 
 router.post("/Create-Admin", async (req, res) => {
   try {
+    connectToDB();
+
     const Credentials = req.body;
 
     const Check = await CheckAllRequiredFieldsAvailaible(
@@ -58,6 +61,8 @@ router.post("/Create-Admin", async (req, res) => {
 
 router.post("/Update-Admin", async (req, res) => {
   try {
+    connectToDB();
+
     const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
@@ -90,6 +95,8 @@ router.post("/Update-Admin", async (req, res) => {
 
 router.post("/Login-Admin", async (req, res) => {
   try {
+    connectToDB();
+
     const Credentials = req.body;
 
     const Check = await CheckAllRequiredFieldsAvailaible(
@@ -135,6 +142,8 @@ router.post("/Login-Admin", async (req, res) => {
 
 router.get("/AdminInfo", async (req, res) => {
   try {
+    connectToDB();
+
     const { id, message } = await getAdminId(req);
     if (id) {
       Admin.findOne({ _id: id })

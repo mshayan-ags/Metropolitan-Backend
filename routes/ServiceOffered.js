@@ -5,11 +5,13 @@ const {
   filterArrayOfObjectAndRemoveRepetitions,
   CheckAllRequiredFieldsAvailaible,
 } = require("../utils/functions");
+const { connectToDB } = require("../Middlewares/Db");
 
 const router = Router();
 
 router.post("/Create-ServiceOffered", async (req, res) => {
   try {
+    connectToDB();
     const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
@@ -59,6 +61,7 @@ router.post("/Create-ServiceOffered", async (req, res) => {
 
 router.post("/Update-ServiceOffered", async (req, res) => {
   try {
+    connectToDB();
     const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
@@ -117,6 +120,7 @@ router.post("/Update-ServiceOffered", async (req, res) => {
 
 router.get("/ServiceOfferedInfo/:id", async (req, res) => {
   try {
+    connectToDB();
     const Check = await CheckAllRequiredFieldsAvailaible(req?.params, ["id"], res);
     if (Check == "Error") {
       return;
@@ -136,6 +140,7 @@ router.get("/ServiceOfferedInfo/:id", async (req, res) => {
 
 router.get("/GetAllServiceOffered", async (req, res) => {
   try {
+    connectToDB();
     ServiceOffered.find()
       .populate("Icon")
       .then((data) => {

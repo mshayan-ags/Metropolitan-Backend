@@ -8,6 +8,7 @@ const { generateOTP, SendOtp } = require("../utils/SendOtp");
 const formidable = require("formidable");
 const saveImage = require("../utils/saveImage");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
+const { connectToDB } = require("../Middlewares/Db");
 
 const router = Router();
 
@@ -20,6 +21,7 @@ router.post("/saveFile", async (req, res) => {
 
 router.post("/SignUp", async (req, res) => {
   try {
+    connectToDB();
     const Credentials = req.body;
 
     const Check = await CheckAllRequiredFieldsAvailaible(
@@ -107,6 +109,7 @@ router.post("/SignUp", async (req, res) => {
 
 router.post("/Verify-OTP", async (req, res) => {
   try {
+    connectToDB();
     const Check = await CheckAllRequiredFieldsAvailaible(
       req.body,
       ["email", "otp"],
@@ -148,6 +151,7 @@ router.post("/Verify-OTP", async (req, res) => {
 
 router.post("/Forget-Password", async (req, res) => {
   try {
+    connectToDB();
     const Check = await CheckAllRequiredFieldsAvailaible(req?.body, ["email"], res);
     if (Check == "Error") {
       return;
@@ -188,6 +192,7 @@ router.post("/Forget-Password", async (req, res) => {
 
 router.post("/Change-Password", async (req, res) => {
   try {
+    connectToDB();
     const Credentials = req.body;
 
     const Check = await CheckAllRequiredFieldsAvailaible(
@@ -235,6 +240,7 @@ router.post("/Change-Password", async (req, res) => {
 
 router.post("/Update-User", async (req, res) => {
   try {
+    connectToDB();
     const { id, message } = await getUserId(req);
     if (id) {
       const Credentials = req.body;
@@ -267,6 +273,7 @@ router.post("/Update-User", async (req, res) => {
 
 router.post("/Login", async (req, res) => {
   try {
+    connectToDB();
     const Credentials = req.body;
 
     const Check = await CheckAllRequiredFieldsAvailaible(
@@ -310,6 +317,7 @@ router.post("/Login", async (req, res) => {
 
 router.get("/userInfo", async (req, res) => {
   try {
+    connectToDB();
     const { id, message } = await getUserId(req);
     if (id) {
       User.findOne({ _id: id })

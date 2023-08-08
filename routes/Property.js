@@ -5,11 +5,14 @@ const { User } = require("../models/User");
 const { default: mongoose } = require("mongoose");
 const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
+const { connectToDB } = require("../Middlewares/Db");
 
 const router = Router();
 
 router.post("/Create-Property", async (req, res) => {
   try {
+    connectToDB();
+  
     const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
@@ -53,6 +56,8 @@ router.post("/Create-Property", async (req, res) => {
 
 router.post("/Update-Property", async (req, res) => {
   try {
+    connectToDB();
+  
     const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
@@ -89,6 +94,7 @@ router.post("/Update-Property", async (req, res) => {
 
 router.get("/PropertyInfo/:id", async (req, res) => {
   try {
+    connectToDB();
     const { id, message } = await getAdminId(req);
     const { id: userId, message: userMessage } = await getUserId(req);
     if (id || userId) {
@@ -115,6 +121,7 @@ router.get("/PropertyInfo/:id", async (req, res) => {
 
 router.get("/GetAllProperty", async (req, res) => {
   try {
+    connectToDB();
     const { id, message } = await getAdminId(req);
     const { id: userId, message: userMessage } = await getUserId(req);
 
@@ -137,6 +144,7 @@ router.get("/GetAllProperty", async (req, res) => {
 
 router.post("/Property-User", async (req, res) => {
   try {
+    connectToDB();
     const { id, message } = await getAdminId(req);
     if (id) {
       const Check = await CheckAllRequiredFieldsAvailaible(
