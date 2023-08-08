@@ -9,15 +9,13 @@ async function SetArrManyRelationhip(field, checkValue, res, mes) {
     });
     Msg = "Error";
   }
-  const Arr = field?.length >= 1 ? [...field] : field?.length > 0 ? [field] : [];
+  const Arr =
+    field?.length >= 1 ? [...field] : field?.length > 0 ? [field] : [];
   if (Arr.length > 0) {
     await Arr.filter((a, i) => {
       if (a == checkValue) {
-        res.status(500).json({
-          status: 500,
-          message: mes,
-        });
-        Msg = "Error";
+        i = Arr.length;
+        return;
       } else if (a != checkValue && i == Arr.length - 1) {
         Arr.push(new mongoose.Types.ObjectId(checkValue));
       }

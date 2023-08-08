@@ -75,8 +75,7 @@ router.post("/Request-Service", async (req, res) => {
         const setArr = await SetArrManyRelationhip(
           searchServiceOffered?.Service,
           saveService?._id,
-          res,
-          "ServiceOffered already has this Service"
+          res
         );
         if (setArr.Msg == "Error") {
           return;
@@ -93,8 +92,7 @@ router.post("/Request-Service", async (req, res) => {
             const setArrProperty = await SetArrManyRelationhip(
               searchProperty?.Service,
               saveService?._id,
-              res,
-              "Property already has this Service"
+              res
             );
             if (setArrProperty.Msg == "Error") {
               return;
@@ -216,8 +214,7 @@ router.post("/Create-Service", async (req, res) => {
         const setArrProperty = await SetArrManyRelationhip(
           searchAdmin?.Service,
           saveService?._id,
-          res,
-          "Admin already has this Service"
+          res
         );
         if (setArrProperty.Msg == "Error") {
           return;
@@ -234,8 +231,7 @@ router.post("/Create-Service", async (req, res) => {
             const setArr = await SetArrManyRelationhip(
               data?.Service,
               saveService?._id,
-              res,
-              "ServiceOffered already has this Service"
+              res
             );
             if (setArr.Msg == "Error") {
               return;
@@ -252,8 +248,7 @@ router.post("/Create-Service", async (req, res) => {
                 const setArrProperty = await SetArrManyRelationhip(
                   searchProperty?.Service,
                   saveService?._id,
-                  res,
-                  "Property already has this Service"
+                  res
                 );
                 if (setArrProperty.Msg == "Error") {
                   return;
@@ -336,7 +331,6 @@ router.post("/Update-Service", async (req, res) => {
 
       // Get all fields values from user
       const FieldValues = {
-        ...currService?.FieldValues,
         ...JSON.parse(Credentials?.Value),
       };
       const Obj = {};
@@ -344,6 +338,13 @@ router.post("/Update-Service", async (req, res) => {
       // Create all empty fields
       uniqueFieldNames.map((val) => {
         Obj[val] = "";
+      });
+
+      // Set old fields values
+      Field.map((val) => {
+        if (currService?.get(`FieldValues.${val?.name}`)) {
+          Obj[val?.name] = currService?.get(`FieldValues.${val?.name}`);
+        }
       });
 
       // Set all fields values
@@ -367,8 +368,7 @@ router.post("/Update-Service", async (req, res) => {
           const setArrProperty = await SetArrManyRelationhip(
             currAdmin?.Service,
             Credentials?.id,
-            res,
-            "Admin already has this Service"
+            res
           );
           if (setArrProperty.Msg == "Error") {
             return;
@@ -398,6 +398,8 @@ router.post("/Update-Service", async (req, res) => {
       res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
+    console.log(error);
+
     if (error?.code == 11000) {
       res.status(500).json({
         status: 500,

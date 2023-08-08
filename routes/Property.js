@@ -163,7 +163,6 @@ router.post("/Property-User", async (req, res) => {
               searchProperty?.User,
               req.body?.user,
               res,
-              "User already has this property"
             );
             if (setArr.Msg == "Error") {
               return;
