@@ -17,7 +17,7 @@ router.post("/Request-Service", async (req, res) => {
     if (id) {
       const Credentials = req.body;
 
-      const Check = CheckAllRequiredFieldsAvailaible(
+      const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
         ["status", "Value", "description", "Property", "ServiceOffered"],
         res
@@ -148,7 +148,7 @@ router.post("/Create-Service", async (req, res) => {
     if (id) {
       const Credentials = req.body;
 
-      const Check = CheckAllRequiredFieldsAvailaible(
+      const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
         ["status", "Value", "description", "Property", "ServiceOffered"],
         res
@@ -312,7 +312,7 @@ router.post("/Update-Service", async (req, res) => {
     if (id) {
       const Credentials = req.body;
 
-      const Check = CheckAllRequiredFieldsAvailaible(
+      const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
         ["id", "ServiceOffered"],
         res
@@ -416,7 +416,11 @@ router.get("/ServiceInfo/:id", async (req, res) => {
     const { id: userId, message: userMessage } = await getUserId(req);
     const { id, message } = await getAdminId(req);
     if (id || userId) {
-      const Check = CheckAllRequiredFieldsAvailaible(req?.params, ["id"], res);
+      const Check = await CheckAllRequiredFieldsAvailaible(
+        req?.params,
+        ["id"],
+        res
+      );
       if (Check == "Error") {
         return;
       }

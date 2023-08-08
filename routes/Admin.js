@@ -92,7 +92,7 @@ router.post("/Login-Admin", async (req, res) => {
   try {
     const Credentials = req.body;
 
-    const Check = CheckAllRequiredFieldsAvailaible(
+    const Check = await CheckAllRequiredFieldsAvailaible(
       Credentials,
       ["email", "password"],
       res

@@ -22,7 +22,7 @@ router.post("/SignUp", async (req, res) => {
   try {
     const Credentials = req.body;
 
-    const Check = CheckAllRequiredFieldsAvailaible(
+    const Check = await CheckAllRequiredFieldsAvailaible(
       Credentials,
       ["name", "email", "phoneNumber", "TermsAndConditions", "password"],
       res
@@ -107,7 +107,7 @@ router.post("/SignUp", async (req, res) => {
 
 router.post("/Verify-OTP", async (req, res) => {
   try {
-    const Check = CheckAllRequiredFieldsAvailaible(
+    const Check = await CheckAllRequiredFieldsAvailaible(
       req.body,
       ["email", "otp"],
       res
@@ -148,7 +148,7 @@ router.post("/Verify-OTP", async (req, res) => {
 
 router.post("/Forget-Password", async (req, res) => {
   try {
-    const Check = CheckAllRequiredFieldsAvailaible(req?.body, ["email"], res);
+    const Check = await CheckAllRequiredFieldsAvailaible(req?.body, ["email"], res);
     if (Check == "Error") {
       return;
     }
@@ -190,7 +190,7 @@ router.post("/Change-Password", async (req, res) => {
   try {
     const Credentials = req.body;
 
-    const Check = CheckAllRequiredFieldsAvailaible(
+    const Check = await CheckAllRequiredFieldsAvailaible(
       Credentials,
       ["password", "email", "newPassword"],
       res
@@ -269,7 +269,7 @@ router.post("/Login", async (req, res) => {
   try {
     const Credentials = req.body;
 
-    const Check = CheckAllRequiredFieldsAvailaible(
+    const Check = await CheckAllRequiredFieldsAvailaible(
       Credentials,
       ["email", "password"],
       res

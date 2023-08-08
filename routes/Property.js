@@ -14,7 +14,7 @@ router.post("/Create-Property", async (req, res) => {
     if (id) {
       const Credentials = req.body;
 
-      const Check = CheckAllRequiredFieldsAvailaible(
+      const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
         ["noRooms", "noBathrooms"],
         res
@@ -57,7 +57,7 @@ router.post("/Update-Property", async (req, res) => {
     if (id) {
       const Credentials = req.body;
 
-      const Check = CheckAllRequiredFieldsAvailaible(Credentials, ["id"], res);
+      const Check = await CheckAllRequiredFieldsAvailaible(Credentials, ["id"], res);
       if (Check == "Error") {
         return;
       }
@@ -92,7 +92,7 @@ router.get("/PropertyInfo/:id", async (req, res) => {
     const { id, message } = await getAdminId(req);
     const { id: userId, message: userMessage } = await getUserId(req);
     if (id || userId) {
-      const Check = CheckAllRequiredFieldsAvailaible(req.params, ["id"], res);
+      const Check = await CheckAllRequiredFieldsAvailaible(req.params, ["id"], res);
       if (Check == "Error") {
         return;
       }
@@ -139,7 +139,7 @@ router.post("/Property-User", async (req, res) => {
   try {
     const { id, message } = await getAdminId(req);
     if (id) {
-      const Check = CheckAllRequiredFieldsAvailaible(
+      const Check = await CheckAllRequiredFieldsAvailaible(
         req.body,
         ["property", "user"],
         res
