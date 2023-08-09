@@ -42,7 +42,8 @@ router.post("/Create-Bill", async (req, res) => {
       if (
         searchProperty?._id &&
         searchServiceOffered?._id &&
-        searchService?._id
+        searchService?._id &&
+        (!searchService?.Bill || searchService?.Bill == "")
       ) {
         // Calculate Charges
 
@@ -194,7 +195,7 @@ router.post("/Update-Bill", async (req, res) => {
         const searchService = await Service.findOne({
           _id: Credentials?.Service,
         });
-      
+
         if (searchService?._id) {
           // Calculate Charges
 
@@ -202,7 +203,9 @@ router.post("/Update-Bill", async (req, res) => {
           const Field = searchBill?.FieldsOfServiceOffered;
 
           // Get all unique fields names
-          const FieldNames = searchBill?.FieldsOfServiceOffered.map((a) => a?.name);
+          const FieldNames = searchBill?.FieldsOfServiceOffered.map(
+            (a) => a?.name
+          );
           const uniqueFieldNames = [...new Set(FieldNames)];
 
           const Obj = {};
