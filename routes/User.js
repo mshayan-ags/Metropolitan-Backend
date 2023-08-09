@@ -6,7 +6,7 @@ const { Router } = require("express");
 const Verifier = require("email-verifier");
 const { generateOTP, SendOtp } = require("../utils/SendOtp");
 const formidable = require("formidable");
-const saveImage = require("../utils/saveImage");
+const { saveImage, upload } = require("../utils/saveImage");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 
@@ -92,6 +92,11 @@ router.post("/SignUp", async (req, res) => {
           });
         }
       });
+    } else {
+      res.status(500).json({
+        status: 500,
+        message: `There was Some Issue`,
+      });
     }
   } catch (error) {
     if (error?.code == 11000) {
@@ -152,7 +157,11 @@ router.post("/Verify-OTP", async (req, res) => {
 router.post("/Forget-Password", async (req, res) => {
   try {
     connectToDB();
-    const Check = await CheckAllRequiredFieldsAvailaible(req?.body, ["email"], res);
+    const Check = await CheckAllRequiredFieldsAvailaible(
+      req?.body,
+      ["email"],
+      res
+    );
     if (Check == "Error") {
       return;
     }
