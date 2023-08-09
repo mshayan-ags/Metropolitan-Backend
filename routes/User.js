@@ -5,18 +5,20 @@ const { APP_SECRET, getUserId, getAdminId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const Verifier = require("email-verifier");
 const { generateOTP, SendOtp } = require("../utils/SendOtp");
-const formidable = require("formidable");
-const { saveImage, upload } = require("../utils/saveImage");
+const { saveImage } = require("../utils/saveImage");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 
 const router = Router();
 
-router.post("/saveFile", async (req, res) => {
-  const form = new formidable.IncomingForm();
-  form.parse(req, function (err, fields, files) {
-    saveImage(files.image[0]);
-  });
+router.post("/upload", async (req, res) => {
+  const check = await saveImage(req.body?.image, res);
+
+  if (check?.filename) {
+    res.status(200).json({ data: "Saved" });
+  } else {
+    res.status(200).json({ data: "Error" });
+  }
 });
 
 router.post("/SignUp", async (req, res) => {

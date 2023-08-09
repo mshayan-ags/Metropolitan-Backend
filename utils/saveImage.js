@@ -1,30 +1,29 @@
-const { existsSync, mkdirSync, unlinkSync, createWriteStream } = require("fs");
+const fs = require("fs");
 const path = require("path");
+const { CheckAllRequiredFieldsAvailaible } = require("./functions");
 
-async function saveImage(image) {
-  console.log(image)
-  return await new Promise((resolve, reject) => {
-    try {
-      image
-        .then(({ createReadStream, ...rest }) => {
-          const filename = `${Math.random().toString(32).substr(7, 5)}-${
-            rest.filename
-          }`;
-          // checking whether the uploads folder is exists
-          if (!existsSync("./uploads")) mkdirSync("./uploads");
-
-          rest.filename = filename;
-
-          createReadStream()
-            .pipe(createWriteStream(path.join("./uploads", filename)))
-            .on("error", (error) => reject(new Error(error.message)))
-            .on("finish", () => resolve(rest));
-        })
-        .catch((error) => console.error(error));
-    } catch (error) {
-      console.error("catch error", error);
+async function saveImage(image, res) {
+  try {
+    const imageData = JSON.parse(image);
+    const Check = await CheckAllRequiredFieldsAvailaible(
+      imageData,
+      ["name", "data", "type"],
+      res
+    );
+    if (Check == "Error") {
+      return { Error: "There Was Some Issue" };
     }
-  });
+    const filename = `${Math.random().toString(32).substr(7, 5)}-${
+      imageData?.name
+    }.${imageData?.type}`;
+    const imagePath = path.join(__dirname, "../uploads", filename);
+
+    fs.writeFileSync(imagePath, imageData?.data, "base64");
+    return { filename: filename, mimetype: imageData?.type };
+  } catch (error) {
+    console.error("Error uploading image:", error);
+    return { Error: "There Was Some Issue" };
+  }
 }
 
-module.exports = saveImage;
+module.exports = { saveImage };

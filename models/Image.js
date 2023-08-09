@@ -11,11 +11,6 @@ const ImageSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    encoding: {
-      type: String,
-      required: true,
-      trim: true,
-    },
     Utility: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Utility",
