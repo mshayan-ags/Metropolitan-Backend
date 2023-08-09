@@ -9,8 +9,37 @@ const BillSchema = new mongoose.Schema(
     },
     Total: {
       type: Number,
-      required: true,
-      unique: true,
+      default: 0,
+    },
+    FieldsOfServiceOffered: {
+      type: [
+        new mongoose.Schema({
+          name: String,
+          type: String,
+          pricePerUnit: { type: Number, default: 0 },
+          forUser: { type: Boolean, default: false },
+        }),
+      ],
+    },
+    reasonForDiscount: {
+      type: String,
+      trim: true,
+    },
+    Discount: {
+      type: Number,
+      default: 0,
+    },
+    TotalAfterDiscount: {
+      type: Number,
+      default: 0,
+    },
+    Details: {
+      type: Map,
+      of: Number,
+    },
+    AdditionalCharges: {
+      type: Map,
+      of: Number,
     },
     Property: {
       type: mongoose.Schema.Types.ObjectId,
@@ -19,10 +48,6 @@ const BillSchema = new mongoose.Schema(
     Service: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Service",
-    },
-    ServiceOffered: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "ServiceOffered",
     },
   },
   {

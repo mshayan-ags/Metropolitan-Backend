@@ -8,6 +8,7 @@ const Property = require("./routes/Property");
 const ServiceOffered = require("./routes/ServiceOffered");
 const Service = require("./routes/Service");
 const { connectToDB } = require("./Middlewares/Db");
+const Bill = require("./routes/Bill");
 
 const app = Express();
 
@@ -26,6 +27,7 @@ app.use(Admin);
 app.use(Property);
 app.use(ServiceOffered);
 app.use(Service);
+app.use(Bill);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);

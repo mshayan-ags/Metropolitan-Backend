@@ -14,6 +14,7 @@ const ServiceOfferedSchema = new mongoose.Schema(
         new mongoose.Schema({
           name: String,
           type: String,
+          pricePerUnit: { type: Number, default: 0 },
           forUser: { type: Boolean, default: false },
         }),
       ],
