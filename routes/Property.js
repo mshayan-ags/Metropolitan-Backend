@@ -12,14 +12,14 @@ const router = Router();
 router.post("/Create-Property", async (req, res) => {
   try {
     connectToDB();
-  
+
     const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["noRooms", "noBathrooms"],
+        ["noRooms", "noBathrooms", "description"],
         res
       );
       if (Check == "Error") {
@@ -29,6 +29,7 @@ router.post("/Create-Property", async (req, res) => {
       const newProperty = new Property({
         noRooms: Credentials?.noRooms,
         noBathrooms: Credentials?.noBathrooms,
+        description: Credentials?.description,
       });
 
       await newProperty.save();
@@ -57,12 +58,16 @@ router.post("/Create-Property", async (req, res) => {
 router.post("/Update-Property", async (req, res) => {
   try {
     connectToDB();
-  
+
     const { id, message } = await getAdminId(req);
     if (id) {
       const Credentials = req.body;
 
-      const Check = await CheckAllRequiredFieldsAvailaible(Credentials, ["id"], res);
+      const Check = await CheckAllRequiredFieldsAvailaible(
+        Credentials,
+        ["id"],
+        res
+      );
       if (Check == "Error") {
         return;
       }
@@ -98,7 +103,11 @@ router.get("/PropertyInfo/:id", async (req, res) => {
     const { id, message } = await getAdminId(req);
     const { id: userId, message: userMessage } = await getUserId(req);
     if (id || userId) {
-      const Check = await CheckAllRequiredFieldsAvailaible(req.params, ["id"], res);
+      const Check = await CheckAllRequiredFieldsAvailaible(
+        req.params,
+        ["id"],
+        res
+      );
       if (Check == "Error") {
         return;
       }
@@ -170,7 +179,7 @@ router.post("/Property-User", async (req, res) => {
             const setArr = await SetArrManyRelationhip(
               searchProperty?.User,
               req.body?.user,
-              res,
+              res
             );
             if (setArr.Msg == "Error") {
               return;

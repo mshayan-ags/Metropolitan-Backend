@@ -20,7 +20,14 @@ router.post("/SignUp", async (req, res) => {
 
     const Check = await CheckAllRequiredFieldsAvailaible(
       Credentials,
-      ["name", "email", "phoneNumber", "TermsAndConditions", "password"],
+      [
+        "name",
+        "email",
+        "phoneNumber",
+        "TermsAndConditions",
+        "password",
+        "flatNo",
+      ],
       res
     );
     if (Check == "Error") {
@@ -37,6 +44,7 @@ router.post("/SignUp", async (req, res) => {
       notifications: true,
       TermsAndConditions: Credentials?.TermsAndConditions,
       verifiedByAdmin: false,
+      flatNo: Credentials?.flatNo,
     });
 
     if (newUser) {

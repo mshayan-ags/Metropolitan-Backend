@@ -25,6 +25,11 @@ const UserSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    flatNo: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     otp: {
       type: Number,
       required: true,

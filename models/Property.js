@@ -12,6 +12,10 @@ const PropertySchema = new mongoose.Schema(
       required: true,
       default: 0,
     },
+    description: {
+      type: String,
+      required: true,
+    },
     User: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "User",
