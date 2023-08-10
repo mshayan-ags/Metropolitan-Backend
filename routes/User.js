@@ -8,18 +8,10 @@ const { generateOTP, SendOtp } = require("../utils/SendOtp");
 const { saveImage } = require("../utils/saveImage");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
+const { SaveImageDB } = require("./Image");
+const { default: mongoose } = require("mongoose");
 
 const router = Router();
-
-router.post("/upload", async (req, res) => {
-  const check = await saveImage(req.body?.image, res);
-
-  if (check?.filename) {
-    res.status(200).json({ data: "Saved" });
-  } else {
-    res.status(200).json({ data: "Error" });
-  }
-});
 
 router.post("/SignUp", async (req, res) => {
   try {
@@ -62,30 +54,44 @@ router.post("/SignUp", async (req, res) => {
 
           SendOtp(newUser?.email, otp);
 
-          const saveUser = await newUser.save().catch((error) => {
-            if (error?.code == 11000) {
-              res.status(500).json({
-                status: 500,
-                message: `Please Change your ${
-                  Object.keys(error?.keyValue)[0]
-                } as it's not unique`,
+          const image = await SaveImageDB(
+            Credentials?.profilePicture,
+            { User: new mongoose.Types.ObjectId(newUser?._id) },
+            res
+          );
+
+          if (image?.file?._id) {
+            newUser.profilePicture = new mongoose.Types.ObjectId(
+              image?.file?._id
+            );
+
+            const saveUser = await newUser.save().catch((error) => {
+              if (error?.code == 11000) {
+                res.status(500).json({
+                  status: 500,
+                  message: `Please Change your ${
+                    Object.keys(error?.keyValue)[0]
+                  } as it's not unique`,
+                });
+                return;
+              } else {
+                res.status(500).json({ status: 500, message: error });
+                return;
+              }
+            });
+            if (saveUser?._id) {
+              const token = jwt.sign({ id: newUser?._id }, APP_SECRET);
+
+              res.status(200).json({
+                token,
+                status: 200,
+                message: "User Created in Succesfully",
               });
-              return;
             } else {
-              res.status(500).json({ status: 500, message: error });
               return;
             }
-          });
-          if (saveUser?._id) {
-            const token = jwt.sign({ id: newUser?._id }, APP_SECRET);
-
-            res.status(200).json({
-              token,
-              status: 200,
-              message: "User Created in Succesfully",
-            });
           } else {
-            return;
+            res.status(500).json({ status: 500, message: image?.Error });
           }
         } else {
           res.status(500).json({
@@ -259,6 +265,20 @@ router.post("/Update-User", async (req, res) => {
       const searchUser = await User.findOne({ _id: id });
 
       if (searchUser?._id) {
+        if (JSON.parse(Credentials?.profilePicture)?.name) {
+          const image = await SaveImageDB(
+            Credentials?.profilePicture,
+            { User: new mongoose.Types.ObjectId(searchUser?._id) },
+            res
+          );
+          if (image?.file?._id) {
+            Credentials.profilePicture = new mongoose.Types.ObjectId(
+              image?.file?._id
+            );
+          } else {
+            res.status(500).json({ status: 500, message: image?.Error });
+          }
+        }
         await User.updateOne({ _id: searchUser?._id }, Credentials, {
           new: false,
         })

@@ -89,7 +89,7 @@ router.post("/Update-Admin", async (req, res) => {
             res
           );
           if (image?.file?._id) {
-            newAdmin.profilePicture = new mongoose.Types.ObjectId(
+            Credentials.profilePicture = new mongoose.Types.ObjectId(
               image?.file?._id
             );
           } else {
