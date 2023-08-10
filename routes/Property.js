@@ -6,6 +6,7 @@ const { default: mongoose } = require("mongoose");
 const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
+const { SaveImageDB } = require("./Image");
 
 const router = Router();
 
@@ -19,7 +20,7 @@ router.post("/Create-Property", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["noRooms", "noBathrooms", "description"],
+        ["noRooms", "noBathrooms", "description", "images"],
         res
       );
       if (Check == "Error") {
@@ -32,12 +33,39 @@ router.post("/Create-Property", async (req, res) => {
         description: Credentials?.description,
       });
 
-      await newProperty.save();
+      const ImgArr = JSON.parse(Credentials?.images);
 
-      res.status(200).json({
-        status: 200,
-        message: "Property Created in Succesfully",
-      });
+      if (ImgArr?.length > 0) {
+        const ImgIDArr = [];
+        await ImgArr.map(async (a) => {
+          const image = await SaveImageDB(
+            a,
+            { Property: new mongoose.Types.ObjectId(newProperty?._id) },
+            res
+          );
+          if (image?.file?._id) {
+            ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
+          } else {
+            res.status(500).json({ status: 500, message: image?.Error });
+          }
+        });
+
+        const uniqueImage = [...new Set(ImgIDArr)];
+
+        newProperty.Image = uniqueImage;
+
+        await newProperty.save();
+
+        res.status(200).json({
+          status: 200,
+          message: "Property Created in Succesfully",
+        });
+      } else {
+        res.status(500).json({
+          status: 500,
+          message: "Images are Corrupted or not in proper format",
+        });
+      }
     } else {
       res.status(401).json({ status: 401, message: message });
     }
@@ -74,6 +102,27 @@ router.post("/Update-Property", async (req, res) => {
 
       const searchProperty = await Property.findOne({ _id: Credentials.id });
       if (searchProperty?._id) {
+        const ImgArr = JSON.parse(Credentials?.images);
+
+        if (ImgArr?.length > 0) {
+          const ImgIDArr = [];
+          await ImgArr.map(async (a) => {
+            const image = await SaveImageDB(
+              a,
+              { Property: new mongoose.Types.ObjectId(searchProperty?._id) },
+              res
+            );
+            if (image?.file?._id) {
+              ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
+            } else {
+              res.status(500).json({ status: 500, message: image?.Error });
+            }
+          });
+
+          const uniqueImage = [...new Set(ImgIDArr)];
+
+          Credentials.Image = uniqueImage;
+        }
         await Property.updateOne({ _id: data?._id }, Credentials, {
           new: false,
         })
