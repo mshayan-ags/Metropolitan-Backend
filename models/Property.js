@@ -44,6 +44,10 @@ const PropertySchema = new mongoose.Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Notification",
     },
+    Payment: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Payment",
+    },
   },
   {
     timestamps: {

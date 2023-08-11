@@ -49,6 +49,10 @@ const BillSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Service",
     },
+    Payment: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Payment",
+    },
   },
   {
     timestamps: {

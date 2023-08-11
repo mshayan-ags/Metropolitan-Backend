@@ -40,6 +40,10 @@ const ServiceSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Admin",
     },
+    Payment: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Payment",
+    },
   },
   {
     timestamps: {
