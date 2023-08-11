@@ -6,6 +6,8 @@ const {
   CheckAllRequiredFieldsAvailaible,
 } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
+const { default: mongoose } = require("mongoose");
+const { SaveImageDB } = require("./Image");
 
 const router = Router();
 
@@ -18,7 +20,7 @@ router.post("/Create-ServiceOffered", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["Fields", "title"],
+        ["Fields", "title", "Icon"],
         res
       );
       if (Check == "Error") {
@@ -35,6 +37,18 @@ router.post("/Create-ServiceOffered", async (req, res) => {
         title: Credentials?.title,
         Fields: newFieldsArr,
       });
+
+      const image = await SaveImageDB(
+        Credentials?.Icon,
+        { ServiceOffered: new mongoose.Types.ObjectId(newServiceOffered?._id) },
+        res
+      );
+
+      if (image?.file?._id) {
+        newServiceOffered.Icon = new mongoose.Types.ObjectId(image?.file?._id);
+      } else {
+        res.status(500).json({ status: 500, message: image?.Error });
+      }
 
       await newServiceOffered.save();
 
@@ -66,7 +80,11 @@ router.post("/Update-ServiceOffered", async (req, res) => {
     if (id) {
       const Credentials = req.body;
 
-      const Check = await CheckAllRequiredFieldsAvailaible(Credentials, ["id"], res);
+      const Check = await CheckAllRequiredFieldsAvailaible(
+        Credentials,
+        ["id"],
+        res
+      );
       if (Check == "Error") {
         return;
       }
@@ -85,6 +103,23 @@ router.post("/Update-ServiceOffered", async (req, res) => {
           "name"
         );
 
+        if (JSON.parse(Credentials?.Icon)?.name) {
+          const image = await SaveImageDB(
+            Credentials?.Icon,
+            {
+              ServiceOffered: new mongoose.Types.ObjectId(
+                searchServiceOffered?._id
+              ),
+            },
+            res
+          );
+          if (image?.file?._id) {
+            Credentials.Icon = new mongoose.Types.ObjectId(image?.file?._id);
+          } else {
+            res.status(500).json({ status: 500, message: image?.Error });
+          }
+        }
+
         await ServiceOffered.updateOne(
           { _id: searchServiceOffered?._id },
           {
@@ -92,6 +127,9 @@ router.post("/Update-ServiceOffered", async (req, res) => {
               ? Credentials?.title
               : searchServiceOffered?.title,
             Fields: newFieldsArr,
+            Icon: Credentials?.Icon
+              ? Credentials?.Icon
+              : searchServiceOffered?.Icon,
           },
           {
             new: false,
@@ -121,7 +159,11 @@ router.post("/Update-ServiceOffered", async (req, res) => {
 router.get("/ServiceOfferedInfo/:id", async (req, res) => {
   try {
     connectToDB();
-    const Check = await CheckAllRequiredFieldsAvailaible(req?.params, ["id"], res);
+    const Check = await CheckAllRequiredFieldsAvailaible(
+      req?.params,
+      ["id"],
+      res
+    );
     if (Check == "Error") {
       return;
     }
