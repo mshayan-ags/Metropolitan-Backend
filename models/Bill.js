@@ -6,6 +6,7 @@ const BillSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      lowercase: true,
     },
     Total: {
       type: Number,
