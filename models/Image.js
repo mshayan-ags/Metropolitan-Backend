@@ -31,6 +31,10 @@ const ImageSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    Event: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Event",
+    },
   },
   {
     timestamps: {

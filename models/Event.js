@@ -21,29 +21,33 @@ const EventSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    noSeatsAvailaible: {
+    TotalSeats: {
       type: Number,
       required: true,
       default: 0,
       unique: true,
     },
-    noSeatsLeft: {
+    noSeatsReserved: {
       type: Number,
       required: true,
       default: 0,
       unique: true,
     },
     User: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "User",
     },
     Notification: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Notification",
     },
     Admin: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Admin",
+    },
+    CoverPhoto: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Image",
     },
   },
   {
@@ -56,4 +60,4 @@ const EventSchema = new mongoose.Schema(
 
 const Event = mongoose.model("Event", EventSchema);
 
-module.exports = {Event};
+module.exports = { Event };
