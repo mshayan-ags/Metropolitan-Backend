@@ -252,7 +252,13 @@ router.post("/Reserve-Event-Seats", async (req, res) => {
 
         await Event.updateOne(
           { _id: searchEvent?._id },
-          { User: User_Event },
+          {
+            User: User_Event,
+            noSeatsReserved: parseInt(
+              parseInt(searchEvent?.noSeatsReserved) +
+                parseInt(Credentials?.noSeatsReserved)
+            ),
+          },
           {
             new: false,
           }
