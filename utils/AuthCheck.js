@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models/User");
 const { Admin } = require("../models/Admin");
 
-const APP_SECRET = "Metropolitan";
+const APP_SECRET = "OmalSons";
 
 function getTokenPayload(token) {
   return jwt.verify(token, APP_SECRET);
@@ -10,39 +10,20 @@ function getTokenPayload(token) {
 
 async function getUserId(req) {
   if (req) {
-    const authHeader = req?.headers?.authorization;
-    if (authHeader) {
-      const token = authHeader.replace("Bearer ", "");
-      if (!token) {
-        return { message: "No token found" };
-      }
-      const { id } = getTokenPayload(token);
+    // const authHeader = req?.headers?.authorization;
+    // if (authHeader) {
+    //   const token = authHeader.replace("Bearer ", "");
+    //   if (!token) {
+    //     return { message: "No token found" };
+    //   }
+    //   const { id } = getTokenPayload(token);
 
-      const isUser = await User.findOne({ _id: id });
+    //   const isUser = await User.findOne({ _id: id });
 
-      if (isUser?._id) return { id };
-      else return { message: "Not authenticated" };
-    }
-  } else {
-    return { message: "Not authenticated" };
-  }
-}
-
-async function getAdminId(req) {
-  if (req) {
-    const authHeader = req?.headers?.authorization;
-    if (authHeader) {
-      const token = authHeader.replace("Bearer ", "");
-      if (!token) {
-        return { message: "No token found" };
-      }
-      const { id, Role } = getTokenPayload(token);
-
-      const isAdmin = await Admin.findOne({ _id: id });
-
-      if (isAdmin?._id && isAdmin?.Role == Role) return { id, Role };
-      else return { message: "Not authenticated" };
-    }
+    //   if (isUser?._id) return { id };
+    //   else return { message: "Not authenticated" };
+    // }
+    return { id: "Test Id For Now" };
   } else {
     return { message: "Not authenticated" };
   }
@@ -51,5 +32,4 @@ async function getAdminId(req) {
 module.exports = {
   APP_SECRET,
   getUserId,
-  getAdminId,
 };
