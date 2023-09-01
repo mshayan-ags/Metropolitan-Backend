@@ -1,8 +1,8 @@
-const { Importer } = require("../models/importer");
-const { getUserId, getUserId } = require("../utils/AuthCheck");
+const { getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
+const Importer = require("../models/importer");
 const router = Router();
 
 router.post("/Create-Importer", async (req, res) => {
@@ -136,6 +136,7 @@ router.get("/GetAllImporter", async (req, res) => {
       res.status(401).json({ status: 401, message: message || userMessage });
     }
   } catch (error) {
+    console.log(error)
     res.status(500).json({ status: 500, message: error });
   }
 });

@@ -1,10 +1,10 @@
-const { DataEntry } = require("../models/DataEntry");
-const { getUserId, getUserId } = require("../utils/AuthCheck");
+const { getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const Importer = require("../models/importer");
 const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
+const DataEntry = require("../models/DataEntry");
 const router = Router();
 
 router.post("/Create-DataEntry", async (req, res) => {
@@ -193,6 +193,7 @@ router.get("/GetAllDataEntry", async (req, res) => {
       res.status(401).json({ status: 401, message: message || userMessage });
     }
   } catch (error) {
+    console.log(error)
     res.status(500).json({ status: 500, message: error });
   }
 });

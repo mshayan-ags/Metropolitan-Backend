@@ -2,13 +2,10 @@ const Express = require("express");
 const http = require("http");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const User = require("./routes/User");
-const Admin = require("./routes/Admin");
-const Property = require("./routes/Property");
-const ServiceOffered = require("./routes/ServiceOffered");
-const Service = require("./routes/Service");
 const { connectToDB } = require("./Middlewares/Db");
-const Bill = require("./routes/Bill");
+const Importer = require("./routes/Importer");
+const DataEntry = require("./routes/DataEntry");
+const DailyReport = require("./routes/DailyReport");
 
 const app = Express();
 
@@ -24,12 +21,9 @@ const port = process.env.PORT || 5000;
 
 connectToDB();
 
-app.use(User);
-app.use(Admin);
-app.use(Property);
-app.use(ServiceOffered);
-app.use(Service);
-app.use(Bill);
+app.use(Importer);
+app.use(DataEntry);
+app.use(DailyReport);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);

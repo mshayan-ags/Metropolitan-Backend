@@ -1,6 +1,4 @@
 const jwt = require("jsonwebtoken");
-const { User } = require("../models/User");
-const { Admin } = require("../models/Admin");
 
 const APP_SECRET = "OmalSons";
 

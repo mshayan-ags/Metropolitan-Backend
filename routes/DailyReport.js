@@ -1,5 +1,5 @@
 const { DailyReport } = require("../models/DailyReport");
-const { getUserId, getUserId } = require("../utils/AuthCheck");
+const { getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
