@@ -80,6 +80,10 @@ const DataEntrySchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    Importer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Importer",
+    },
   },
   {
     timestamps: {

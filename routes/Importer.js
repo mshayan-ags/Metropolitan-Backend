@@ -1,13 +1,11 @@
-const { DataEntry } = require("../models/DataEntry");
+const { Importer } = require("../models/importer");
 const { getUserId, getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
-const Importer = require("../models/importer");
-const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
 const router = Router();
 
-router.post("/Create-DataEntry", async (req, res) => {
+router.post("/Create-Importer", async (req, res) => {
   try {
     connectToDB();
 
@@ -17,74 +15,21 @@ router.post("/Create-DataEntry", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        [
-          "IC",
-          "SAP",
-          "INB",
-          "BL",
-          "Weight",
-          "Package",
-          "Supplier",
-          "Description",
-          "Inv",
-          "ShippingPort",
-          "ShippingLine",
-          "BLDate",
-          "Terminal",
-          "DocreeDate",
-          "ShipBy",
-          "TypeOfDocument",
-          "Importer",
-        ],
+        ["name", "shortName", "ntnNumber", "str_gd", "ist", "address"],
         res
       );
       if (Check == "Error") {
         return;
       }
 
-      const searchImporter = await Importer.findOne({
-        _id: Credentials?.Importer,
+      const newImporter = new Importer(Credentials);
+
+      await newImporter.save();
+
+      res.status(200).json({
+        status: 200,
+        message: "Importer Created in Succesfully",
       });
-      if (searchImporter?._id) {
-        const newDataEntry = new DataEntry({
-          ...Credentials,
-          Importer: new mongoose.Types.ObjectId(Credentials?.Importer),
-        });
-
-        if (newDataEntry?._id) {
-          // Add Bill to Importer
-          const setArrImporter = await SetArrManyRelationhip(
-            searchImporter?.DataEntry,
-            newDataEntry?._id,
-            res
-          );
-          if (setArrImporter.Msg == "Error") {
-            return;
-          }
-          const DataEntry_Importer = setArrImporter.Arr;
-
-          Importer.updateOne(
-            { _id: Credentials?.Importer },
-            {
-              DataEntry: DataEntry_Importer,
-            }
-          )
-            .then(async (data) => {
-              await newDataEntry.save();
-
-              res.status(200).json({
-                status: 200,
-                message: "DataEntry Created in Succesfully",
-              });
-            })
-            .catch((err) => {
-              console.log(err);
-              res.status(500).json({ status: 500, message: err });
-            });
-        }
-      } else {
-        res.status(401).json({ status: 401, message: "Importer Not Found" });
-      }
     } else {
       res.status(401).json({ status: 401, message: message });
     }
@@ -102,7 +47,7 @@ router.post("/Create-DataEntry", async (req, res) => {
   }
 });
 
-router.post("/Update-DataEntry", async (req, res) => {
+router.post("/Update-Importer", async (req, res) => {
   try {
     connectToDB();
 
@@ -119,22 +64,22 @@ router.post("/Update-DataEntry", async (req, res) => {
         return;
       }
 
-      const searchDataEntry = await DataEntry.findOne({ _id: Credentials.id });
-      if (searchDataEntry?._id) {
-        await DataEntry.updateOne({ _id: data?._id }, Credentials, {
+      const searchImporter = await Importer.findOne({ _id: Credentials.id });
+      if (searchImporter?._id) {
+        await Importer.updateOne({ _id: data?._id }, Credentials, {
           new: false,
         })
           .then((docs) => {
             res.status(200).json({
               status: 200,
-              message: "Your DataEntry has been Updated",
+              message: "Your Importer has been Updated",
             });
           })
           .catch((error) => {
             res.status(500).json({ status: 500, message: error });
           });
       } else {
-        res.status(500).json({ status: 500, message: "DataEntry not Found" });
+        res.status(500).json({ status: 500, message: "Importer not Found" });
       }
     } else {
       res.status(401).json({ status: 401, message: message });
@@ -144,7 +89,7 @@ router.post("/Update-DataEntry", async (req, res) => {
   }
 });
 
-router.get("/DataEntryInfo/:id", async (req, res) => {
+router.get("/ImporterInfo/:id", async (req, res) => {
   try {
     connectToDB();
     const { id, message } = await getUserId(req);
@@ -158,8 +103,7 @@ router.get("/DataEntryInfo/:id", async (req, res) => {
         return;
       }
 
-      DataEntry.findOne({ _id: req.params.id })
-        .populate("Importer")
+      Importer.findOne({ _id: req.params.id })
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
@@ -174,15 +118,14 @@ router.get("/DataEntryInfo/:id", async (req, res) => {
   }
 });
 
-router.get("/GetAllDataEntry", async (req, res) => {
+router.get("/GetAllImporter", async (req, res) => {
   try {
     connectToDB();
     const { id, message } = await getUserId(req);
     const { id: userId, message: userMessage } = await getUserId(req);
 
     if (id || userId) {
-      DataEntry.find()
-        .populate("Importer")
+      Importer.find()
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
