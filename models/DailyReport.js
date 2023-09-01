@@ -140,7 +140,10 @@ const DailyReportSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    
+    DataEntry: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "DataEntry",
+    },
   },
   {
     timestamps: {

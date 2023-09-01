@@ -84,6 +84,10 @@ const DataEntrySchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Importer",
     },
+    DailyReport: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "DailyReport",
+    },
   },
   {
     timestamps: {

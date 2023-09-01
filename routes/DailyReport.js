@@ -3,6 +3,7 @@ const { getUserId, getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
+const DataEntry = require("../models/DataEntry");
 const router = Router();
 
 router.post("/Create-DailyReport", async (req, res) => {
@@ -44,21 +45,45 @@ router.post("/Create-DailyReport", async (req, res) => {
           "SaleTax",
           "IncomeTax",
           "TotalDuty",
+          "DataEntry",
         ],
         res
       );
       if (Check == "Error") {
         return;
       }
-
-      const newDailyReport = new DailyReport(Credentials);
-
-      await newDailyReport.save();
-
-      res.status(200).json({
-        status: 200,
-        message: "DailyReport Created in Succesfully",
+      const searchDataEntry = await DataEntry.findOne({
+        _id: Credentials?.DataEntry,
       });
+      if (searchDataEntry?._id) {
+        const newDailyReport = new DailyReport({
+          ...Credentials,
+          DataEntry: new mongoose.Types.ObjectId(Credentials?.DataEntry),
+        });
+
+        if (newDailyReport?._id) {
+          DataEntry.updateOne(
+            { _id: Credentials?.DataEntry },
+            {
+              DailyReport: newDailyReport?._id,
+            }
+          )
+            .then(async (data) => {
+              await newDailyReport.save();
+
+              res.status(200).json({
+                status: 200,
+                message: "DailyReport Created in Succesfully",
+              });
+            })
+            .catch((err) => {
+              console.log(err);
+              res.status(500).json({ status: 500, message: err });
+            });
+        }
+      } else {
+        res.status(401).json({ status: 401, message: "DataEntry Not Found" });
+      }
     } else {
       res.status(401).json({ status: 401, message: message });
     }
@@ -93,7 +118,9 @@ router.post("/Update-DailyReport", async (req, res) => {
         return;
       }
 
-      const searchDailyReport = await DailyReport.findOne({ _id: Credentials.id });
+      const searchDailyReport = await DailyReport.findOne({
+        _id: Credentials.id,
+      });
       if (searchDailyReport?._id) {
         await DailyReport.updateOne({ _id: data?._id }, Credentials, {
           new: false,
