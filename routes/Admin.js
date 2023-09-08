@@ -137,10 +137,11 @@ router.post("/Login-Admin", async (req, res) => {
     const searchAdmin = await Admin.findOne({ email: Credentials?.email });
 
     if (searchAdmin?.password && searchAdmin?._id) {
-      const valid = bcrypt.compare(
+      const valid = await bcrypt.compare(
         Credentials?.password,
-        searchAdmin?.password
+        searchAdmin?.password,
       );
+
       if (valid) {
         const token = jwt.sign(
           { id: searchAdmin?._id, Role: searchAdmin?.Role },

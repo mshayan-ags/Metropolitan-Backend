@@ -35,13 +35,14 @@ async function getAdminId(req) {
       const token = authHeader.replace("Bearer ", "");
       if (!token) {
         return { message: "No token found" };
+      } else {
+        const { id, Role } = getTokenPayload(token);
+
+        const isAdmin = await Admin.findOne({ _id: id });
+
+        if (isAdmin?._id && isAdmin?.Role == Role) return { id, Role };
+        else return { message: "Not authenticated" };
       }
-      const { id, Role } = getTokenPayload(token);
-
-      const isAdmin = await Admin.findOne({ _id: id });
-
-      if (isAdmin?._id && isAdmin?.Role == Role) return { id, Role };
-      else return { message: "Not authenticated" };
     }
   } else {
     return { message: "Not authenticated" };

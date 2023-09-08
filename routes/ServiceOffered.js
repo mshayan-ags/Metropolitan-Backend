@@ -93,7 +93,7 @@ router.post("/Update-ServiceOffered", async (req, res) => {
         _id: Credentials.id,
       });
 
-      if (searchServiceOffered?._id) {
+      if (searchServiceOffered?._id && Credentials?.Fields) {
         const FieldsArr = [
           ...JSON.parse(Credentials?.Fields),
           ...searchServiceOffered?.Fields,
@@ -103,20 +103,22 @@ router.post("/Update-ServiceOffered", async (req, res) => {
           "name"
         );
 
-        if (JSON.parse(Credentials?.Icon)?.name) {
-          const image = await SaveImageDB(
-            Credentials?.Icon,
-            {
-              ServiceOffered: new mongoose.Types.ObjectId(
-                searchServiceOffered?._id
-              ),
-            },
-            res
-          );
-          if (image?.file?._id) {
-            Credentials.Icon = new mongoose.Types.ObjectId(image?.file?._id);
-          } else {
-            res.status(500).json({ status: 500, message: image?.Error });
+        if (Credentials?.Icon) {
+          if (JSON.parse(Credentials?.Icon)?.name) {
+            const image = await SaveImageDB(
+              Credentials?.Icon,
+              {
+                ServiceOffered: new mongoose.Types.ObjectId(
+                  searchServiceOffered?._id
+                ),
+              },
+              res
+            );
+            if (image?.file?._id) {
+              Credentials.Icon = new mongoose.Types.ObjectId(image?.file?._id);
+            } else {
+              res.status(500).json({ status: 500, message: image?.Error });
+            }
           }
         }
 
@@ -146,12 +148,13 @@ router.post("/Update-ServiceOffered", async (req, res) => {
             res.status(500).json({ status: 500, message: error });
           });
       } else {
-        res.status(500).json({ status: 500, message: error });
+        res.status(500).json({ status: 500, message: "Service Not Found Please Check your Data" });
       }
     } else {
       res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ status: 500, message: error });
   }
 });

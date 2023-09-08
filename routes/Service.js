@@ -433,7 +433,14 @@ router.get("/ServiceInfo/:id", async (req, res) => {
       }
 
       Service.findOne({ _id: req.params.id })
-        .populate("ServiceOffered", "Bill", "Review", "Property", "Admin")
+        .populate([
+          "ServiceOffered",
+          "Review",
+          "Bill",
+          "Property",
+          "Admin",
+          "Payment",
+        ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
@@ -455,7 +462,14 @@ router.get("/GetAllService", async (req, res) => {
     const { id, message } = await getAdminId(req);
     if (id || userId) {
       Service.find()
-        // .populate("ServiceOffered", "Bill", "Review", "Property", "Admin")
+        .populate([
+          "ServiceOffered",
+          "Review",
+          "Bill",
+          "Property",
+          "Admin",
+          "Payment",
+        ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })

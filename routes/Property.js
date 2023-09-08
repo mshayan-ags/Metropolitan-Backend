@@ -102,28 +102,29 @@ router.post("/Update-Property", async (req, res) => {
 
       const searchProperty = await Property.findOne({ _id: Credentials.id });
       if (searchProperty?._id) {
-        const ImgArr = JSON.parse(Credentials?.images);
+        if (Credentials?.images) {
+          const ImgArr = Credentials?.images && JSON.parse(Credentials?.images);
+          if (ImgArr?.length > 0) {
+            const ImgIDArr = [];
+            await ImgArr.map(async (a) => {
+              const image = await SaveImageDB(
+                a,
+                { Property: new mongoose.Types.ObjectId(searchProperty?._id) },
+                res
+              );
+              if (image?.file?._id) {
+                ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
+              } else {
+                res.status(500).json({ status: 500, message: image?.Error });
+              }
+            });
 
-        if (ImgArr?.length > 0) {
-          const ImgIDArr = [];
-          await ImgArr.map(async (a) => {
-            const image = await SaveImageDB(
-              a,
-              { Property: new mongoose.Types.ObjectId(searchProperty?._id) },
-              res
-            );
-            if (image?.file?._id) {
-              ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
-            } else {
-              res.status(500).json({ status: 500, message: image?.Error });
-            }
-          });
+            const uniqueImage = [...new Set(ImgIDArr)];
 
-          const uniqueImage = [...new Set(ImgIDArr)];
-
-          Credentials.Image = uniqueImage;
+            Credentials.Image = uniqueImage;
+          }
         }
-        await Property.updateOne({ _id: data?._id }, Credentials, {
+        await Property.updateOne({ _id: searchProperty?._id }, Credentials, {
           new: false,
         })
           .then((docs) => {
@@ -133,15 +134,18 @@ router.post("/Update-Property", async (req, res) => {
             });
           })
           .catch((error) => {
+            console.log(error);
             res.status(500).json({ status: 500, message: error });
           });
       } else {
+        console.log("Property not Found");
         res.status(500).json({ status: 500, message: "Property not Found" });
       }
     } else {
       res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
+    console.log(error);
     res.status(500).json({ status: 500, message: error });
   }
 });
@@ -162,17 +166,28 @@ router.get("/PropertyInfo/:id", async (req, res) => {
       }
 
       Property.findOne({ _id: req.params.id })
-        .populate("User")
+        .populate([
+          "User",
+          "Service",
+          // "Utility",
+          "Image",
+          "Bill",
+          // "Notification",
+          // "Payment",
+        ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
         .catch((err) => {
+          console.log(err);
           res.status(500).json({ status: 500, message: err });
         });
     } else {
       res.status(401).json({ status: 401, message: message || userMessage });
     }
   } catch (error) {
+    console.log(error);
+
     res.status(500).json({ status: 500, message: error });
   }
 });
