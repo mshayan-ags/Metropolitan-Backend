@@ -23,10 +23,9 @@ router.post("/Create-ServiceOffered", async (req, res) => {
         ["Fields", "title", "Icon"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
-
       const FieldsArr = JSON.parse(Credentials?.Fields);
       const newFieldsArr = filterArrayOfObjectAndRemoveRepetitions(
         FieldsArr,
@@ -40,7 +39,9 @@ router.post("/Create-ServiceOffered", async (req, res) => {
 
       const image = await SaveImageDB(
         Credentials?.Icon,
-        { ServiceOffered: new mongoose.Types.ObjectId(newServiceOffered?._id) },
+        {
+          ServiceOffered: new mongoose.Types.ObjectId(newServiceOffered?._id),
+        },
         res
       );
 
@@ -54,6 +55,7 @@ router.post("/Create-ServiceOffered", async (req, res) => {
 
       res.status(200).json({
         status: 200,
+        id: newServiceOffered?._id,
         message: "ServiceOffered Created in Succesfully",
       });
     } else {
@@ -95,7 +97,7 @@ router.post("/Update-ServiceOffered", async (req, res) => {
 
       if (searchServiceOffered?._id && Credentials?.Fields) {
         const FieldsArr = [
-          ...JSON.parse(Credentials?.Fields),
+          ...Credentials?.Fields,
           ...searchServiceOffered?.Fields,
         ];
         const newFieldsArr = filterArrayOfObjectAndRemoveRepetitions(
@@ -148,7 +150,10 @@ router.post("/Update-ServiceOffered", async (req, res) => {
             res.status(500).json({ status: 500, message: error });
           });
       } else {
-        res.status(500).json({ status: 500, message: "Service Not Found Please Check your Data" });
+        res.status(500).json({
+          status: 500,
+          message: "Service Not Found Please Check your Data",
+        });
       }
     } else {
       res.status(401).json({ status: 401, message: message });
