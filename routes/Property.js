@@ -3,7 +3,10 @@ const { getAdminId, getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { User } = require("../models/User");
 const { default: mongoose } = require("mongoose");
-const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
+const {
+  SetArrManyRelationhip,
+  RemoveArrManyRelationhip,
+} = require("../utils/SetArrManyRelationhip");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const { SaveImageDB } = require("./Image");
@@ -259,6 +262,71 @@ router.post("/Property-User", async (req, res) => {
                 res
                   .status(200)
                   .json({ status: 200, data: "Property was added to user" });
+              })
+              .catch((err) => {
+                res.status(500).json({ status: 500, message: err });
+              });
+          })
+          .catch((err) => {
+            res.status(500).json({ status: 500, message: err });
+          });
+      } else {
+        res
+          .status(500)
+          .json({ status: 500, message: "Propery or User not Found" });
+      }
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.post("/Remove-Property-User", async (req, res) => {
+  try {
+    connectToDB();
+    const { id, message } = await getAdminId(req);
+    if (id) {
+      const Check = await CheckAllRequiredFieldsAvailaible(
+        req.body,
+        ["property", "user"],
+        res
+      );
+      if (Check == "Error") {
+        return;
+      }
+      const searchProperty = await Property.findOne({ _id: req.body.property });
+      const searchUser = await User.findOne({ _id: req.body.user });
+
+      if (searchProperty?._id && searchUser?._id) {
+        User.updateOne(
+          { _id: req.body.user },
+          {
+            Property: null,
+            verifiedByAdmin: false,
+          }
+        )
+          .then(async (data) => {
+            const setArr = await RemoveArrManyRelationhip(
+              searchProperty?.User,
+              req.body?.user,
+              res
+            );
+            if (setArr.Msg == "Error") {
+              return;
+            }
+            const Users = setArr.Arr;
+            Property.updateOne(
+              { _id: req.body.property },
+              {
+                User: Users,
+              }
+            )
+              .then((data) => {
+                res
+                  .status(200)
+                  .json({ status: 200, data: "Property was removed to user" });
               })
               .catch((err) => {
                 res.status(500).json({ status: 500, message: err });
