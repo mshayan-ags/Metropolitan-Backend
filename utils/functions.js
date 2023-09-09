@@ -12,7 +12,7 @@ function filterArrayOfObjectAndRemoveRepetitions(arr, property) {
 
 async function CheckAllRequiredFieldsAvailaible(req, fields, res) {
   let Msg;
-  await fields.map((a) => {
+  return await fields.some((a, i) => {
     if (
       req?.[a] == null ||
       req?.[a] == undefined ||
@@ -24,10 +24,10 @@ async function CheckAllRequiredFieldsAvailaible(req, fields, res) {
         .json({ status: 500, message: `Please Fill the Required Field ${a}` });
 
       Msg = "Error";
+      i = fields.length;
+      return true;
     }
   });
-
-  return Msg;
 }
 
 module.exports = {
