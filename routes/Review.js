@@ -24,7 +24,7 @@ router.post("/Create-Review", async (req, res) => {
         ["description", "Rating", "Service", "User", "Property"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -145,7 +145,7 @@ router.get("/ReviewInfo/:id", async (req, res) => {
         ["id"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 

@@ -10,7 +10,7 @@ async function saveImage(image, res) {
       ["name", "data", "type"],
       res
     );
-    if (Check == "Error") {
+    if (Check) {
       return { Error: "There Was Some Issue" };
     }
     const filename = `${Math.random().toString(32).substr(7, 5)}-${

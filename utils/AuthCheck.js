@@ -9,7 +9,7 @@ function getTokenPayload(token) {
 }
 
 async function getUserId(req) {
-  if (req) {
+  if (req?.headers) {
     const authHeader = req?.headers?.authorization;
     if (authHeader) {
       const token = authHeader.replace("Bearer ", "");
@@ -29,7 +29,7 @@ async function getUserId(req) {
 }
 
 async function getAdminId(req) {
-  if (req) {
+  if (req?.headers) {
     const authHeader = req?.headers?.authorization;
     if (authHeader) {
       const token = authHeader.replace("Bearer ", "");

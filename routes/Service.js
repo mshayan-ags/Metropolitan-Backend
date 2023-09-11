@@ -21,10 +21,10 @@ router.post("/Request-Service", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["status", "Value", "description", "Property", "ServiceOffered"],
+        ["status", "FieldValues", "description", "Property", "ServiceOffered"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -45,7 +45,7 @@ router.post("/Request-Service", async (req, res) => {
         const uniqueFieldNames = [...new Set(FieldNames)];
 
         // Get all fields values from user
-        const FieldValues = JSON.parse(Credentials?.Value);
+        const FieldValues = JSON.parse(Credentials?.FieldValues);
         const Obj = {};
 
         // Create all empty fields
@@ -151,10 +151,10 @@ router.post("/Create-Service", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["status", "Value", "description", "Property", "ServiceOffered"],
+        ["status", "FieldValues", "description", "Property", "ServiceOffered"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -183,7 +183,7 @@ router.post("/Create-Service", async (req, res) => {
         const uniqueFieldNames = [...new Set(FieldNames)];
 
         // Get all fields values from user
-        const FieldValues = JSON.parse(Credentials?.Value);
+        const FieldValues = Credentials?.FieldValues;
         const Obj = {};
 
         // Create all empty fields
@@ -316,7 +316,7 @@ router.post("/Update-Service", async (req, res) => {
         ["id", "ServiceOffered"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -335,7 +335,7 @@ router.post("/Update-Service", async (req, res) => {
 
       // Get all fields values from user
       const FieldValues = {
-        ...JSON.parse(Credentials?.Value),
+        ...Credentials?.FieldValues,
       };
       const Obj = {};
 
@@ -351,12 +351,15 @@ router.post("/Update-Service", async (req, res) => {
         }
       });
 
-      // Set all fields values
+      console.log(Obj);
+      // // Set all fields values
       Field.map((val) => {
         if (FieldValues?.[val?.name]) {
           Obj[val?.name] = FieldValues?.[val?.name];
         }
       });
+
+      console.log(Obj);
 
       // Update Service
       const updateService = {
@@ -428,7 +431,7 @@ router.get("/ServiceInfo/:id", async (req, res) => {
         ["id"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 

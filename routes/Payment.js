@@ -27,7 +27,7 @@ router.post("/Create-Payment", async (req, res) => {
         ["Amount", "Type", "description", "Property", "Service", "Bill"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -106,7 +106,7 @@ router.get("/PaymentInfo/:id", async (req, res) => {
         ["id"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 

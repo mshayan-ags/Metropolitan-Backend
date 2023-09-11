@@ -24,7 +24,7 @@ router.post("/Create-Bill", async (req, res) => {
         ["status", "Property", "Service", "AdditionalCharges", "Discount"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -181,7 +181,7 @@ router.post("/Update-Bill", async (req, res) => {
         ["id"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -305,7 +305,7 @@ router.get("/BillInfo/:id", async (req, res) => {
         ["id"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 

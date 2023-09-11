@@ -30,7 +30,7 @@ router.post("/SignUp", async (req, res) => {
       ],
       res
     );
-    if (Check == "Error") {
+    if (Check) {
       return;
     }
 
@@ -136,7 +136,7 @@ router.post("/Verify-OTP", async (req, res) => {
       ["email", "otp"],
       res
     );
-    if (Check == "Error") {
+    if (Check) {
       return;
     }
 
@@ -178,7 +178,7 @@ router.post("/Forget-Password", async (req, res) => {
       ["email"],
       res
     );
-    if (Check == "Error") {
+    if (Check) {
       return;
     }
 
@@ -225,7 +225,7 @@ router.post("/Change-Password", async (req, res) => {
       ["password", "email", "newPassword"],
       res
     );
-    if (Check == "Error") {
+    if (Check) {
       return;
     }
 
@@ -320,7 +320,7 @@ router.post("/Login", async (req, res) => {
       ["email", "password"],
       res
     );
-    if (Check == "Error") {
+    if (Check) {
       return;
     }
 

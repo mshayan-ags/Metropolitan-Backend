@@ -24,7 +24,7 @@ router.post("/Create-Utility", async (req, res) => {
         ["title", "description", "status", "Total", "Property", "images"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -126,7 +126,7 @@ router.get("/UtilityInfo/:id", async (req, res) => {
         ["id"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 

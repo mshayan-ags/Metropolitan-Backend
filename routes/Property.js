@@ -23,10 +23,10 @@ router.post("/Create-Property", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["noRooms", "noBathrooms", "description", "images"],
+        ["noRooms", "noBathrooms", "description"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -36,39 +36,40 @@ router.post("/Create-Property", async (req, res) => {
         description: Credentials?.description,
       });
 
-      const ImgArr = JSON.parse(Credentials?.images);
+      if (Credentials?.images) {
+        const ImgArr = JSON.parse(Credentials?.images);
 
-      if (ImgArr?.length > 0) {
-        const ImgIDArr = [];
-        await ImgArr.map(async (a) => {
-          const image = await SaveImageDB(
-            a,
-            { Property: new mongoose.Types.ObjectId(newProperty?._id) },
-            res
-          );
-          if (image?.file?._id) {
-            ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
-          } else {
-            res.status(500).json({ status: 500, message: image?.Error });
-          }
-        });
+        if (ImgArr?.length > 0) {
+          const ImgIDArr = [];
+          await ImgArr.map(async (a) => {
+            const image = await SaveImageDB(
+              a,
+              { Property: new mongoose.Types.ObjectId(newProperty?._id) },
+              res
+            );
+            if (image?.file?._id) {
+              ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
+            } else {
+              res.status(500).json({ status: 500, message: image?.Error });
+            }
+          });
 
-        const uniqueImage = [...new Set(ImgIDArr)];
+          const uniqueImage = [...new Set(ImgIDArr)];
 
-        newProperty.Image = uniqueImage;
-
-        await newProperty.save();
-
-        res.status(200).json({
-          status: 200,
-          message: "Property Created in Succesfully",
-        });
-      } else {
-        res.status(500).json({
-          status: 500,
-          message: "Images are Corrupted or not in proper format",
-        });
+          newProperty.Image = uniqueImage;
+        } else {
+          res.status(500).json({
+            status: 500,
+            message: "Images are Corrupted or not in proper format",
+          });
+        }
       }
+      await newProperty.save();
+
+      res.status(200).json({
+        status: 200,
+        message: "Property Created in Succesfully",
+      });
     } else {
       res.status(401).json({ status: 401, message: message });
     }
@@ -99,7 +100,7 @@ router.post("/Update-Property", async (req, res) => {
         ["id"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -164,7 +165,7 @@ router.get("/PropertyInfo/:id", async (req, res) => {
         ["id"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -228,7 +229,7 @@ router.post("/Property-User", async (req, res) => {
         ["property", "user"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
       const searchProperty = await Property.findOne({ _id: req.body.property });
@@ -293,7 +294,7 @@ router.post("/Remove-Property-User", async (req, res) => {
         ["property", "user"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
       const searchProperty = await Property.findOne({ _id: req.body.property });

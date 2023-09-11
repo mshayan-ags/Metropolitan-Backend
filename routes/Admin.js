@@ -21,7 +21,7 @@ router.post("/Create-Admin", async (req, res) => {
       ["name", "email", "phoneNumber", "Role", "password", "profilePicture"],
       res
     );
-    if (Check == "Error") {
+    if (Check) {
       return;
     }
 
@@ -130,7 +130,7 @@ router.post("/Login-Admin", async (req, res) => {
       ["email", "password"],
       res
     );
-    if (Check == "Error") {
+    if (Check) {
       return;
     }
 

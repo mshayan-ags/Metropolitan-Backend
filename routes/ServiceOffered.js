@@ -20,13 +20,13 @@ router.post("/Create-ServiceOffered", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["Fields", "title", "Icon"],
+        ["Fields", "title"],
         res
       );
       if (Check) {
         return;
       }
-      const FieldsArr = JSON.parse(Credentials?.Fields);
+      const FieldsArr = Credentials?.Fields;
       const newFieldsArr = filterArrayOfObjectAndRemoveRepetitions(
         FieldsArr,
         "name"
@@ -36,19 +36,22 @@ router.post("/Create-ServiceOffered", async (req, res) => {
         title: Credentials?.title,
         Fields: newFieldsArr,
       });
+      if (Credentials?.Icon) {
+        const image = await SaveImageDB(
+          Credentials?.Icon,
+          {
+            ServiceOffered: new mongoose.Types.ObjectId(newServiceOffered?._id),
+          },
+          res
+        );
 
-      const image = await SaveImageDB(
-        Credentials?.Icon,
-        {
-          ServiceOffered: new mongoose.Types.ObjectId(newServiceOffered?._id),
-        },
-        res
-      );
-
-      if (image?.file?._id) {
-        newServiceOffered.Icon = new mongoose.Types.ObjectId(image?.file?._id);
-      } else {
-        res.status(500).json({ status: 500, message: image?.Error });
+        if (image?.file?._id) {
+          newServiceOffered.Icon = new mongoose.Types.ObjectId(
+            image?.file?._id
+          );
+        } else {
+          res.status(500).json({ status: 500, message: image?.Error });
+        }
       }
 
       await newServiceOffered.save();
@@ -87,7 +90,7 @@ router.post("/Update-ServiceOffered", async (req, res) => {
         ["id"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -172,7 +175,7 @@ router.get("/ServiceOfferedInfo/:id", async (req, res) => {
       ["id"],
       res
     );
-    if (Check == "Error") {
+    if (Check) {
       return;
     }
     ServiceOffered.findOne({ _id: req.params.id })

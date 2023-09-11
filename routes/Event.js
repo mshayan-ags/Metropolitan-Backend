@@ -25,7 +25,7 @@ router.post("/Create-Event", async (req, res) => {
         ["title", "venue", "description", "Time", "TotalSeats", "CoverPhoto"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -85,7 +85,7 @@ router.post("/Update-Event", async (req, res) => {
         ["id"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
@@ -168,7 +168,7 @@ router.get("/EventInfo/:id", async (req, res) => {
       ["id"],
       res
     );
-    if (Check == "Error") {
+    if (Check) {
       return;
     }
     Event.findOne({ _id: req.params.id })
@@ -212,7 +212,7 @@ router.post("/Reserve-Event-Seats", async (req, res) => {
         ["id", "noSeatsReserved"],
         res
       );
-      if (Check == "Error") {
+      if (Check) {
         return;
       }
 
