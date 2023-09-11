@@ -45,7 +45,7 @@ router.post("/Request-Service", async (req, res) => {
         const uniqueFieldNames = [...new Set(FieldNames)];
 
         // Get all fields values from user
-        const FieldValues = (Credentials?.FieldValues);
+        const FieldValues = Credentials?.FieldValues;
         const Obj = {};
 
         // Create all empty fields
@@ -270,7 +270,6 @@ router.post("/Create-Service", async (req, res) => {
                     });
                   })
                   .catch((err) => {
-                    console.log(err);
                     res.status(500).json({ status: 500, message: err });
                   });
               })
@@ -290,7 +289,6 @@ router.post("/Create-Service", async (req, res) => {
       res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
-    console.log(error);
     if (error?.code == 11000) {
       res.status(500).json({
         status: 500,
@@ -351,15 +349,12 @@ router.post("/Update-Service", async (req, res) => {
         }
       });
 
-      console.log(Obj);
       // // Set all fields values
       Field.map((val) => {
         if (FieldValues?.[val?.name]) {
           Obj[val?.name] = FieldValues?.[val?.name];
         }
       });
-
-      console.log(Obj);
 
       // Update Service
       const updateService = {
@@ -394,7 +389,6 @@ router.post("/Update-Service", async (req, res) => {
               });
             })
             .catch((err) => {
-              console.log(err);
               res.status(500).json({ status: 500, message: err });
             });
         })
@@ -405,8 +399,6 @@ router.post("/Update-Service", async (req, res) => {
       res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
-    console.log(error);
-
     if (error?.code == 11000) {
       res.status(500).json({
         status: 500,
@@ -477,14 +469,12 @@ router.get("/GetAllService", async (req, res) => {
           res.status(200).json({ status: 200, data: data });
         })
         .catch((err) => {
-          console.log(err);
           res.status(500).json({ status: 500, message: err });
         });
     } else {
       res.status(401).json({ status: 401, message: message || userMessage });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ status: 500, message: error });
   }
 });
