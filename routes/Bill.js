@@ -115,7 +115,7 @@ router.post("/Create-Bill", async (req, res) => {
               Property.updateOne(
                 { _id: Credentials?.Property },
                 {
-                  Service: Bill_Property,
+                  Bill: Bill_Property,
                 }
               )
                 .then((data) => {
