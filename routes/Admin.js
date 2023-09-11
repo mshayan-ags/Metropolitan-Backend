@@ -82,7 +82,7 @@ router.post("/Update-Admin", async (req, res) => {
       const searchAdmin = await Admin.findOne({ _id: id });
 
       if (searchAdmin?._id) {
-        if (JSON.parse(Credentials?.profilePicture)?.name) {
+        if ((Credentials?.profilePicture)?.name) {
           const image = await SaveImageDB(
             Credentials?.profilePicture,
             { Admin: new mongoose.Types.ObjectId(searchAdmin?._id) },

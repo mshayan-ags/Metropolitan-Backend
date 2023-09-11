@@ -45,7 +45,7 @@ router.post("/Request-Service", async (req, res) => {
         const uniqueFieldNames = [...new Set(FieldNames)];
 
         // Get all fields values from user
-        const FieldValues = JSON.parse(Credentials?.FieldValues);
+        const FieldValues = (Credentials?.FieldValues);
         const Obj = {};
 
         // Create all empty fields

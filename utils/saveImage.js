@@ -4,7 +4,7 @@ const { CheckAllRequiredFieldsAvailaible } = require("./functions");
 
 async function saveImage(image, res) {
   try {
-    const imageData = JSON.parse(image);
+    const imageData = (image);
     const Check = await CheckAllRequiredFieldsAvailaible(
       imageData,
       ["name", "data", "type"],

@@ -21,7 +21,7 @@ router.post("/Create-Bill", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["status", "Property", "Service", "AdditionalCharges", "Discount"],
+        ["status", "Property", "Service", "AdditionalCharges"],
         res
       );
       if (Check) {
@@ -73,7 +73,7 @@ router.post("/Create-Bill", async (req, res) => {
           }
         });
 
-        const AdditionalCharges = JSON.parse(Credentials?.AdditionalCharges);
+        const AdditionalCharges = Credentials?.AdditionalCharges;
 
         const AdditionalChargesKeys = Object.keys(AdditionalCharges);
         // Add Additional Prices
@@ -229,7 +229,7 @@ router.post("/Update-Bill", async (req, res) => {
 
           const AdditionalCharges = {
             ...searchBill?.AdditionalCharges.toJSON(),
-            ...JSON.parse(Credentials?.AdditionalCharges),
+            ...Credentials?.AdditionalCharges,
           };
 
           const AdditionalChargesKeys = Object.keys(AdditionalCharges);

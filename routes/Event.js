@@ -101,7 +101,7 @@ router.post("/Update-Event", async (req, res) => {
               "You can not Decrease seats Availiable as all seats are Booked",
           });
         }
-        if (JSON.parse(Credentials?.CoverPhoto)?.name) {
+        if ((Credentials?.CoverPhoto)?.name) {
           const image = await SaveImageDB(
             Credentials?.CoverPhoto,
             {

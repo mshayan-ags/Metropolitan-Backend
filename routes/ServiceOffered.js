@@ -109,7 +109,7 @@ router.post("/Update-ServiceOffered", async (req, res) => {
         );
 
         if (Credentials?.Icon) {
-          if (JSON.parse(Credentials?.Icon)?.name) {
+          if ((Credentials?.Icon)?.name) {
             const image = await SaveImageDB(
               Credentials?.Icon,
               {

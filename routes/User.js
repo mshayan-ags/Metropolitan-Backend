@@ -273,7 +273,7 @@ router.post("/Update-User", async (req, res) => {
       const searchUser = await User.findOne({ _id: id });
 
       if (searchUser?._id) {
-        if (JSON.parse(Credentials?.profilePicture)?.name) {
+        if ((Credentials?.profilePicture)?.name) {
           const image = await SaveImageDB(
             Credentials?.profilePicture,
             { User: new mongoose.Types.ObjectId(searchUser?._id) },

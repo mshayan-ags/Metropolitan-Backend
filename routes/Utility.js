@@ -39,7 +39,7 @@ router.post("/Create-Utility", async (req, res) => {
         Property: new mongoose.Types.ObjectId(Credentials?.Property),
       });
 
-      const ImgArr = JSON.parse(Credentials?.images);
+      const ImgArr = (Credentials?.images);
 
       if (ImgArr?.length > 0 && searchProperty?._id) {
         const ImgIDArr = [];
