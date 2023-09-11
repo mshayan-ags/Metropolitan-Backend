@@ -37,7 +37,7 @@ router.post("/Create-Property", async (req, res) => {
       });
 
       if (Credentials?.images) {
-        const ImgArr = (Credentials?.images);
+        const ImgArr = Credentials?.images;
 
         if (ImgArr?.length > 0) {
           const ImgIDArr = [];
@@ -107,7 +107,7 @@ router.post("/Update-Property", async (req, res) => {
       const searchProperty = await Property.findOne({ _id: Credentials.id });
       if (searchProperty?._id) {
         if (Credentials?.images) {
-          const ImgArr = Credentials?.images && (Credentials?.images);
+          const ImgArr = Credentials?.images && Credentials?.images;
           if (ImgArr?.length > 0) {
             const ImgIDArr = [];
             await ImgArr.map(async (a) => {
@@ -204,7 +204,7 @@ router.get("/GetAllProperty", async (req, res) => {
 
     if (id || userId) {
       Property.find()
-        .populate("User")
+        .populate(["User", "Service"])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
