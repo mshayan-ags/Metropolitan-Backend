@@ -3,7 +3,6 @@ const { getAdminId, getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { User } = require("../models/User");
 const { default: mongoose } = require("mongoose");
-const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const { SaveImageDB } = require("./Image");

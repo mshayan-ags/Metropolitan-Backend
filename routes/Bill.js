@@ -2,7 +2,6 @@ const { Bill } = require("../models/Bill");
 const { getAdminId, getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { default: mongoose } = require("mongoose");
-const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const { Property } = require("../models/Property");
@@ -109,15 +108,9 @@ router.post("/Create-Bill", async (req, res) => {
           )
             .then(async (data) => {
               // Add Bill to Property
-              const setArrProperty = await SetArrManyRelationhip(
-                searchProperty?.Bill,
-                saveBill?._id,
-                res
-              );
-              if (setArrProperty.Msg == "Error") {
-                return;
-              }
-              const Bill_Property = setArrProperty.Arr;
+              const Bill_Property = await Bill.find({
+                Property: Credentials.Property,
+              }).select("_id");
 
               Property.updateOne(
                 { _id: Credentials?.Property },

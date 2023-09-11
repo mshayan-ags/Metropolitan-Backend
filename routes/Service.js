@@ -3,7 +3,6 @@ const { getUserId, getAdminId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { User } = require("../models/User");
 const { default: mongoose } = require("mongoose");
-const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
 const { ServiceOffered } = require("../models/ServiceOffered");
 const { Property } = require("../models/Property");
 const { Admin } = require("../models/Admin");
@@ -74,15 +73,10 @@ router.post("/Request-Service", async (req, res) => {
         const saveService = await newService.save();
 
         // Add Service to ServiceOffered
-        const setArr = await SetArrManyRelationhip(
-          searchServiceOffered?.Service,
-          saveService?._id,
-          res
-        );
-        if (setArr.Msg == "Error") {
-          return;
-        }
-        const Service_ServiceOffered = setArr.Arr;
+        const Service_ServiceOffered = await Service.find({
+          ServiceOffered: Credentials?.ServiceOffered,
+        }).select("_id");
+
         ServiceOffered.updateOne(
           { _id: Credentials.ServiceOffered },
           {
@@ -91,15 +85,10 @@ router.post("/Request-Service", async (req, res) => {
         )
           .then(async (data) => {
             // Add Service to Property
-            const setArrProperty = await SetArrManyRelationhip(
-              searchProperty?.Service,
-              saveService?._id,
-              res
-            );
-            if (setArrProperty.Msg == "Error") {
-              return;
-            }
-            const Service_Property = setArrProperty.Arr;
+            const Service_Property = await Service.find({
+              Property: Credentials?.Property,
+            }).select("_id");
+
             Property.updateOne(
               { _id: Credentials?.Property },
               {
@@ -213,16 +202,10 @@ router.post("/Create-Service", async (req, res) => {
 
         const saveService = await newService.save();
 
-        // Add Service to Admin
-        const setArrProperty = await SetArrManyRelationhip(
-          searchAdmin?.Service,
-          saveService?._id,
-          res
-        );
-        if (setArrProperty.Msg == "Error") {
-          return;
-        }
-        const Service_Admin = setArrProperty.Arr;
+        const Service_Admin = await Service.find({
+          Admin: id,
+        }).select("_id");
+
         Admin.updateOne(
           { _id: id },
           {
@@ -231,15 +214,9 @@ router.post("/Create-Service", async (req, res) => {
         )
           .then(async (data) => {
             // Add Service to ServiceOffered
-            const setArr = await SetArrManyRelationhip(
-              data?.Service,
-              saveService?._id,
-              res
-            );
-            if (setArr.Msg == "Error") {
-              return;
-            }
-            const Service_ServiceOffered = setArr.Arr;
+            const Service_ServiceOffered = await Service.find({
+              ServiceOffered: req.body.ServiceOffered,
+            }).select("_id");
             ServiceOffered.updateOne(
               { _id: req.body.ServiceOffered },
               {
@@ -248,15 +225,10 @@ router.post("/Create-Service", async (req, res) => {
             )
               .then(async (data) => {
                 // Add Service to Property
-                const setArrProperty = await SetArrManyRelationhip(
-                  searchProperty?.Service,
-                  saveService?._id,
-                  res
-                );
-                if (setArrProperty.Msg == "Error") {
-                  return;
-                }
-                const Service_Property = setArrProperty.Arr;
+                const Service_Property = await Service.find({
+                  Property: req.body.Property,
+                }).select("_id");
+
                 Property.updateOne(
                   { _id: req.body.Property },
                   {
@@ -367,15 +339,9 @@ router.post("/Update-Service", async (req, res) => {
       Service.updateOne({ _id: Credentials?.id }, updateService)
         .then(async (data) => {
           // Add Service to Admin
-          const setArrProperty = await SetArrManyRelationhip(
-            currAdmin?.Service,
-            Credentials?.id,
-            res
-          );
-          if (setArrProperty.Msg == "Error") {
-            return;
-          }
-          const Service_Admin = setArrProperty.Arr;
+          const Service_Admin = await Service.find({
+            Admin: id,
+          }).select("_id");
           Admin.updateOne(
             { _id: id },
             {

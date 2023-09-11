@@ -9,7 +9,6 @@ const { connectToDB } = require("../Middlewares/Db");
 const { default: mongoose } = require("mongoose");
 const { SaveImageDB } = require("./Image");
 const { User } = require("../models/User");
-const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
 
 const router = Router();
 
@@ -101,7 +100,7 @@ router.post("/Update-Event", async (req, res) => {
               "You can not Decrease seats Availiable as all seats are Booked",
           });
         }
-        if ((Credentials?.CoverPhoto)?.name) {
+        if (Credentials?.CoverPhoto?.name) {
           const image = await SaveImageDB(
             Credentials?.CoverPhoto,
             {
@@ -240,16 +239,10 @@ router.post("/Reserve-Event-Seats", async (req, res) => {
         }
 
         // Add User to Event
-        const setArrEvent = await SetArrManyRelationhip(
-          searchEvent?.User,
-          id,
-          res
-        );
-        if (setArrEvent.Msg == "Error") {
-          return;
-        }
-        const User_Event = setArrEvent.Arr;
-
+        const User_Event = await User.find({
+          Event: Credentials.id,
+        }).select("_id");
+        User_Event.push(id);
         await Event.updateOne(
           { _id: searchEvent?._id },
           {
@@ -265,15 +258,9 @@ router.post("/Reserve-Event-Seats", async (req, res) => {
         )
           .then(async (docs) => {
             // Add Event to User
-            const setArrUser = await SetArrManyRelationhip(
-              searchUser?.Event,
-              id,
-              res
-            );
-            if (setArrUser.Msg == "Error") {
-              return;
-            }
-            const Event_User = setArrUser.Arr;
+            const Event_User = await Event.find({
+              User: id,
+            }).select("_id");
 
             await User.updateOne(
               { _id: searchUser?._id },

@@ -3,7 +3,6 @@ const { getAdminId, getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { User } = require("../models/User");
 const { default: mongoose } = require("mongoose");
-const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const { Service } = require("../models/Service");
@@ -59,15 +58,9 @@ router.post("/Create-Review", async (req, res) => {
           )
             .then(async (data) => {
               // Add Review to Property
-              const setArrProperty = await SetArrManyRelationhip(
-                searchProperty?.Review,
-                saveReview?._id,
-                res
-              );
-              if (setArrProperty.Msg == "Error") {
-                return;
-              }
-              const Review_Property = setArrProperty.Arr;
+              const Review_Property = await Review.find({
+                Property: Credentials?.Property,
+              }).select("_id");
               Property.updateOne(
                 { _id: Credentials?.Property },
                 { Review: Review_Property },
@@ -75,15 +68,10 @@ router.post("/Create-Review", async (req, res) => {
               )
                 .then(async (data) => {
                   // Add Review to User
-                  const setArrUser = await SetArrManyRelationhip(
-                    searchUser?.Review,
-                    saveReview?._id,
-                    res
-                  );
-                  if (setArrUser.Msg == "Error") {
-                    return;
-                  }
-                  const Review_User = setArrUser.Arr;
+                  const Review_User = await Review.find({
+                    User: id,
+                  }).select("_id");
+
                   User.updateOne(
                     { _id: id },
                     { Review: Review_User },

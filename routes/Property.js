@@ -3,10 +3,6 @@ const { getAdminId, getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { User } = require("../models/User");
 const { default: mongoose } = require("mongoose");
-const {
-  SetArrManyRelationhip,
-  RemoveArrManyRelationhip,
-} = require("../utils/SetArrManyRelationhip");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const { SaveImageDB } = require("./Image");
@@ -244,19 +240,14 @@ router.post("/Property-User", async (req, res) => {
           }
         )
           .then(async (data) => {
-            const setArr = await SetArrManyRelationhip(
-              searchProperty?.User,
-              req.body?.user,
-              res
-            );
-            if (setArr.Msg == "Error") {
-              return;
-            }
-            const Users = setArr.Arr;
+            const User_Property = await User.find({
+              Property: req.body.property,
+            }).select("_id");
+
             Property.updateOne(
               { _id: req.body.property },
               {
-                User: Users,
+                User: User_Property,
               }
             )
               .then((data) => {
@@ -309,15 +300,9 @@ router.post("/Remove-Property-User", async (req, res) => {
           }
         )
           .then(async (data) => {
-            const setArr = await RemoveArrManyRelationhip(
-              searchProperty?.User,
-              req.body?.user,
-              res
-            );
-            if (setArr.Msg == "Error") {
-              return;
-            }
-            const Users = setArr.Arr;
+            const Users = await User.find({
+              Property: req.body.property,
+            }).select("_id");
             Property.updateOne(
               { _id: req.body.property },
               {

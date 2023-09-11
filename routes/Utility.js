@@ -3,7 +3,6 @@ const { getAdminId, getUserId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const { User } = require("../models/User");
 const { default: mongoose } = require("mongoose");
-const { SetArrManyRelationhip } = require("../utils/SetArrManyRelationhip");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const { SaveImageDB } = require("./Image");
@@ -39,7 +38,7 @@ router.post("/Create-Utility", async (req, res) => {
         Property: new mongoose.Types.ObjectId(Credentials?.Property),
       });
 
-      const ImgArr = (Credentials?.images);
+      const ImgArr = Credentials?.images;
 
       if (ImgArr?.length > 0 && searchProperty?._id) {
         const ImgIDArr = [];
@@ -61,15 +60,10 @@ router.post("/Create-Utility", async (req, res) => {
         newUtility.Image = uniqueImage;
 
         // Add Utility to Property
-        const setArrProperty = await SetArrManyRelationhip(
-          searchProperty?.Utility,
-          newUtility?._id,
-          res
-        );
-        if (setArrProperty.Msg == "Error") {
-          return;
-        }
-        const Utility_Property = setArrProperty.Arr;
+        const Utility_Property = await Utility.find({
+          Property: Credentials.Property,
+        }).select("_id");
+        
         Property.updateOne(
           { _id: Credentials.Property },
           {
