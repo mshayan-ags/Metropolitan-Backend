@@ -10,6 +10,7 @@ const Service = require("./routes/Service");
 const { connectToDB } = require("./Middlewares/Db");
 const Bill = require("./routes/Bill");
 const Payment = require("./routes/Payment");
+const Review = require("./routes/Review");
 
 const app = Express();
 
@@ -32,6 +33,7 @@ app.use(ServiceOffered);
 app.use(Service);
 app.use(Bill);
 app.use(Payment);
+app.use(Review);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);

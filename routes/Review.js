@@ -138,7 +138,7 @@ router.get("/ReviewInfo/:id", async (req, res) => {
       }
 
       Review.findOne({ _id: req.params.id })
-        .populate("User", "Service", "Property")
+        .populate(["User", "Service", "Property"])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
@@ -161,7 +161,7 @@ router.get("/GetAllReview", async (req, res) => {
 
     if (id || userId) {
       Review.find()
-        .populate("User", "Service", "Property")
+        .populate(["User", "Service", "Property"])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
