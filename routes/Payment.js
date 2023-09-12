@@ -39,6 +39,14 @@ router.post("/Create-Payment", async (req, res) => {
       const searchBill = await Bill.findOne({ _id: Credentials?.Bill });
 
       if (
+        parseInt(searchBill?.TotalAfterDiscount) !=
+        parseInt(Credentials?.Amount)
+      ) {
+        res.status(500).json({
+          status: 500,
+          message: "Sorry Amount you're Paying is less than total",
+        });
+      } else if (
         searchProperty?._id &&
         searchService?._id &&
         searchBill?._id &&
@@ -56,18 +64,48 @@ router.post("/Create-Payment", async (req, res) => {
 
         await newPayment.save();
 
-        res.status(200).json({
-          status: 200,
-          message: "Payment Created in Succesfully",
-        });
-      } else if (
-        parseInt(searchBill?.TotalAfterDiscount) !=
-        parseInt(Credentials?.Amount)
-      ) {
-        res.status(500).json({
-          status: 500,
-          message: "Sorry Amount you're Paying is less than total",
-        });
+        // Add Payment To Bill
+        const Property_Payment = await Bill.find({
+          Property: Credentials.Property,
+        }).select("_id");
+
+        Property.updateOne(
+          { _id: Credentials?.Property },
+          {
+            Payment: Property_Payment,
+          }
+        )
+          .then((data) => {
+            Bill.updateOne(
+              { _id: Credentials?.Bill },
+              {
+                Payment: new mongoose.Types.ObjectId(newPayment?._id),
+              }
+            )
+              .then((data) => {
+                Service.updateOne(
+                  { _id: Credentials?.Service },
+                  {
+                    Payment: new mongoose.Types.ObjectId(newPayment?._id),
+                  }
+                )
+                  .then((data) => {
+                    res.status(200).json({
+                      status: 200,
+                      message: "Payment Created in Succesfully",
+                    });
+                  })
+                  .catch((err) => {
+                    res.status(500).json({ status: 500, message: err });
+                  });
+              })
+              .catch((err) => {
+                res.status(500).json({ status: 500, message: err });
+              });
+          })
+          .catch((err) => {
+            res.status(500).json({ status: 500, message: err });
+          });
       } else {
         res.status(500).json({
           status: 500,
