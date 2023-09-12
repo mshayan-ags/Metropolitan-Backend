@@ -169,11 +169,11 @@ router.get("/PropertyInfo/:id", async (req, res) => {
         .populate([
           "User",
           "Service",
-          // "Utility",
+          "Utility",
           "Image",
           "Bill",
           // "Notification",
-          // "Payment",
+          "Payment",
         ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
