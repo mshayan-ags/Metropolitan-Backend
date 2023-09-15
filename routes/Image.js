@@ -1,5 +1,7 @@
 const { Image } = require("../models/Image");
 const { saveImage } = require("../utils/saveImage");
+const { Router } = require("express");
+const { existsSync } = require("fs");
 
 async function SaveImageDB(image, rest, res) {
   try {
@@ -23,4 +25,17 @@ async function SaveImageDB(image, rest, res) {
   }
 }
 
-module.exports = { SaveImageDB };
+const router = Router();
+
+router.get("/GetImage/:filename", async (req, res) => {
+  try {
+    const Image = `./uploads/${req?.params?.filename}`;
+    if (existsSync(Image)) return res.download(Image);
+    else res.status(400).json({ status: 400, message: "Image Not Found ... " });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
+module.exports = { SaveImageDB, GetImage: router };

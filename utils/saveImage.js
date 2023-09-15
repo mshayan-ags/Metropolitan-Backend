@@ -4,7 +4,7 @@ const { CheckAllRequiredFieldsAvailaible } = require("./functions");
 
 async function saveImage(image, res) {
   try {
-    const imageData = (image);
+    const imageData = image;
     const Check = await CheckAllRequiredFieldsAvailaible(
       imageData,
       ["name", "data", "type"],
@@ -15,7 +15,7 @@ async function saveImage(image, res) {
     }
     const filename = `${Math.random().toString(32).substr(7, 5)}-${
       imageData?.name
-    }.${imageData?.type}`;
+    }`;
     const imagePath = path.join(__dirname, "../uploads", filename);
 
     fs.writeFileSync(imagePath, imageData?.data, "base64");

@@ -11,6 +11,7 @@ const { connectToDB } = require("./Middlewares/Db");
 const Bill = require("./routes/Bill");
 const Payment = require("./routes/Payment");
 const Review = require("./routes/Review");
+const { GetImage } = require("./routes/Image");
 
 const app = Express();
 
@@ -34,6 +35,7 @@ app.use(Service);
 app.use(Bill);
 app.use(Payment);
 app.use(Review);
+app.use(GetImage);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);

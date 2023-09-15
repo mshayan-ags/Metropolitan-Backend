@@ -107,9 +107,8 @@ router.post("/Update-ServiceOffered", async (req, res) => {
           FieldsArr,
           "name"
         );
-
         if (Credentials?.Icon) {
-          if ((Credentials?.Icon)?.name) {
+          if (Credentials?.Icon?.name) {
             const image = await SaveImageDB(
               Credentials?.Icon,
               {
@@ -120,7 +119,9 @@ router.post("/Update-ServiceOffered", async (req, res) => {
               res
             );
             if (image?.file?._id) {
-              Credentials.Icon = new mongoose.Types.ObjectId(image?.file?._id);
+              Credentials.savedIcon = new mongoose.Types.ObjectId(
+                image?.file?._id
+              );
             } else {
               res.status(500).json({ status: 500, message: image?.Error });
             }
@@ -134,8 +135,8 @@ router.post("/Update-ServiceOffered", async (req, res) => {
               ? Credentials?.title
               : searchServiceOffered?.title,
             Fields: newFieldsArr,
-            Icon: Credentials?.Icon
-              ? Credentials?.Icon
+            Icon: Credentials?.savedIcon
+              ? Credentials?.savedIcon
               : searchServiceOffered?.Icon,
           },
           {
