@@ -22,7 +22,6 @@ const UtilitySchema = new mongoose.Schema(
     Total: {
       type: Number,
       required: true,
-      unique: true,
     },
     Property: {
       type: mongoose.Schema.Types.ObjectId,

@@ -38,4 +38,16 @@ router.get("/GetImage/:filename", async (req, res) => {
   }
 });
 
+router.get("/GetImageById/:id", async (req, res) => {
+  try {
+    const FindImage = await Image.findOne({ _id: req.params.id });
+    const Img = `./uploads/${FindImage?.filename}`;
+    if (existsSync(Img)) return res.download(Img);
+    else res.status(400).json({ status: 400, message: "Image Not Found ... " });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
 module.exports = { SaveImageDB, GetImage: router };

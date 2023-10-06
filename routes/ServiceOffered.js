@@ -20,22 +20,26 @@ router.post("/Create-ServiceOffered", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["Fields", "title"],
+        ["title"],
         res
       );
       if (Check) {
         return;
       }
-      const FieldsArr = Credentials?.Fields;
-      const newFieldsArr = filterArrayOfObjectAndRemoveRepetitions(
-        FieldsArr,
-        "name"
-      );
-
-      const newServiceOffered = new ServiceOffered({
+      const Obj = {
         title: Credentials?.title,
-        Fields: newFieldsArr,
-      });
+        Fields: {},
+      };
+      if (Credentials?.Fields) {
+        const FieldsArr = Credentials?.Fields;
+        const newFieldsArr = filterArrayOfObjectAndRemoveRepetitions(
+          FieldsArr,
+          "name"
+        );
+        Obj.Fields = newFieldsArr;
+      }
+      const newServiceOffered = new ServiceOffered(Obj);
+
       if (Credentials?.Icon) {
         const image = await SaveImageDB(
           Credentials?.Icon,

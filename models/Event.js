@@ -25,13 +25,11 @@ const EventSchema = new mongoose.Schema(
       type: Number,
       required: true,
       default: 0,
-      unique: true,
     },
     noSeatsReserved: {
       type: Number,
       required: true,
       default: 0,
-      unique: true,
     },
     User: {
       type: [mongoose.Schema.Types.ObjectId],

@@ -18,7 +18,8 @@ async function saveImage(image, res) {
     }`;
     const imagePath = path.join(__dirname, "../uploads", filename);
 
-    fs.writeFileSync(imagePath, imageData?.data, "base64");
+    const base64Data = imageData?.data.split("base64,")[1];
+    fs.writeFileSync(imagePath, base64Data, "base64");
     return { filename: filename, mimetype: imageData?.type };
   } catch (error) {
     console.error("Error uploading image:", error);

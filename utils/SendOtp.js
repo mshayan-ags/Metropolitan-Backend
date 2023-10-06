@@ -1,23 +1,21 @@
 const nodemailer = require("nodemailer");
 
-
 function generateOTP(length) {
-  const digits = '0123456789';
-  let otp = '';
+  const digits = "0123456789";
+  let otp = "";
   for (let i = 0; i < length; i++) {
     otp += digits[Math.floor(Math.random() * digits.length)];
   }
   return otp;
 }
 
-
 const transporter = nodemailer.createTransport({
-  host: "smtp.forwardemail.net",
+  host: "shared87.accountservergroup.com",
   port: 465,
   secure: true,
   auth: {
-    user: "REPLACE-WITH-YOUR-ALIAS@YOURDOSendOtp.COM",
-    pass: "REPLACE-WITH-YOUR-GENERATED-PASSWORD",
+    user: "otp@365fm.pk",
+    pass: "IL;WxW-dig6L",
   },
 });
 
@@ -31,7 +29,7 @@ async function SendOtp(email, otp) {
       html: `<b>OTP Verification</b> <br /> your otp is : - <b>${otp}</b>`, // html body
     });
 
-    console.log("Message sent: %s", info.messageId);
+    console.log("Message sent: %s", info?.accepted);
   } catch (error) {
     console.log(error);
   }
@@ -39,5 +37,5 @@ async function SendOtp(email, otp) {
 
 module.exports = {
   SendOtp,
-  generateOTP
+  generateOTP,
 };

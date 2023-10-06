@@ -7,8 +7,24 @@ const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const { SaveImageDB } = require("./Image");
 const { Property } = require("../models/Property");
-
+const { Image } = require("../models/Image");
 const router = Router();
+
+async function saveImageArr({ ImgArr, id, res }) {
+  const ImgIDArr = [];
+  await ImgArr.map(async (a, i) => {
+    const image = await SaveImageDB(
+      a,
+      { Utility: new mongoose.Types.ObjectId(id) },
+      res
+    );
+    if (image?.file?._id) {
+      ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
+    } else {
+      res.status(500).json({ status: 500, message: image?.Error });
+    }
+  });
+}
 
 router.post("/Create-Utility", async (req, res) => {
   try {
@@ -20,7 +36,7 @@ router.post("/Create-Utility", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["title", "description", "status", "Total", "Property", "images"],
+        ["title", "description", "status", "Total", "Property", "Image"],
         res
       );
       if (Check) {
@@ -38,44 +54,45 @@ router.post("/Create-Utility", async (req, res) => {
         Property: new mongoose.Types.ObjectId(Credentials?.Property),
       });
 
-      const ImgArr = Credentials?.images;
+      const ImgArr = [...Credentials?.Image];
 
-      if (ImgArr?.length > 0 && searchProperty?._id) {
-        const ImgIDArr = [];
-        await ImgArr.map(async (a) => {
-          const image = await SaveImageDB(
-            a,
-            { Utility: new mongoose.Types.ObjectId(newUtility?._id) },
-            res
-          );
-          if (image?.file?._id) {
-            ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
-          } else {
-            res.status(500).json({ status: 500, message: image?.Error });
-          }
-        });
-
-        const uniqueImage = [...new Set(ImgIDArr)];
-
-        newUtility.Image = uniqueImage;
-
+      if (searchProperty?._id) {
         // Add Utility to Property
         const Utility_Property = await Utility.find({
           Property: Credentials.Property,
         }).select("_id");
-        
-        Property.updateOne(
+        await Property.updateOne(
           { _id: Credentials.Property },
           {
             Utility: Utility_Property,
           }
         )
           .then(async (data) => {
-            await newUtility.save();
-            res.status(200).json({
-              status: 200,
-              message: "Utility Created in Succesfully",
+            await saveImageArr({
+              ImgArr,
+              id: newUtility?._id,
+              res,
             });
+
+            if (ImgArr?.length > 0) {
+              const uniqueImage = await Image.find({
+                Utility: newUtility?._id,
+              }).select("_id");
+              newUtility.Image = uniqueImage;
+              if (newUtility.Image.length) {
+                await newUtility.save();
+                res.status(200).json({
+                  status: 200,
+                  message: "Utility Created in Succesfully",
+                });
+              }
+            } else {
+              await newUtility.save();
+              res.status(200).json({
+                status: 200,
+                message: "Utility Created in Succesfully",
+              });
+            }
           })
           .catch((err) => {
             console.log(err);
