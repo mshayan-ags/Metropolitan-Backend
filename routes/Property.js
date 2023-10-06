@@ -6,8 +6,25 @@ const { default: mongoose } = require("mongoose");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const { SaveImageDB } = require("./Image");
+const { Image } = require("../models/Image");
 
 const router = Router();
+
+async function saveImageArr({ ImgArr, id, res }) {
+  const ImgIDArr = [];
+  await ImgArr.map(async (a, i) => {
+    const image = await SaveImageDB(
+      a,
+      { Property: new mongoose.Types.ObjectId(id) },
+      res
+    );
+    if (image?.file?._id) {
+      ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
+    } else {
+      res.status(500).json({ status: 500, message: image?.Error });
+    }
+  });
+}
 
 router.post("/Create-Property", async (req, res) => {
   try {
@@ -32,40 +49,31 @@ router.post("/Create-Property", async (req, res) => {
         description: Credentials?.description,
       });
 
-      if (Credentials?.images) {
-        const ImgArr = Credentials?.images;
+      const ImgArr = [...Credentials?.Image];
 
-        if (ImgArr?.length > 0) {
-          const ImgIDArr = [];
-          await ImgArr.map(async (a) => {
-            const image = await SaveImageDB(
-              a,
-              { Property: new mongoose.Types.ObjectId(newProperty?._id) },
-              res
-            );
-            if (image?.file?._id) {
-              ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
-            } else {
-              res.status(500).json({ status: 500, message: image?.Error });
-            }
-          });
+      if (ImgArr?.length > 0) {
+        await saveImageArr({
+          ImgArr,
+          id: newProperty?._id,
+          res,
+        });
+        const uniqueImage = await Image.find({
+          Property: newProperty?._id,
+        }).select("_id");
 
-          const uniqueImage = [...new Set(ImgIDArr)];
-
-          newProperty.Image = uniqueImage;
-        } else {
-          res.status(500).json({
-            status: 500,
-            message: "Images are Corrupted or not in proper format",
-          });
-        }
+        newProperty.Image = await uniqueImage;
+        await newProperty.save();
+        res.status(200).json({
+          status: 200,
+          message: "Property Created in Succesfully",
+        });
+      } else {
+        await newProperty.save();
+        res.status(200).json({
+          status: 200,
+          message: "Property Created in Succesfully",
+        });
       }
-      await newProperty.save();
-
-      res.status(200).json({
-        status: 200,
-        message: "Property Created in Succesfully",
-      });
     } else {
       res.status(401).json({ status: 401, message: message });
     }
@@ -102,24 +110,18 @@ router.post("/Update-Property", async (req, res) => {
 
       const searchProperty = await Property.findOne({ _id: Credentials.id });
       if (searchProperty?._id) {
-        if (Credentials?.images) {
-          const ImgArr = Credentials?.images && Credentials?.images;
-          if (ImgArr?.length > 0) {
-            const ImgIDArr = [];
-            await ImgArr.map(async (a) => {
-              const image = await SaveImageDB(
-                a,
-                { Property: new mongoose.Types.ObjectId(searchProperty?._id) },
-                res
-              );
-              if (image?.file?._id) {
-                ImgIDArr.push(new mongoose.Types.ObjectId(image?.file?._id));
-              } else {
-                res.status(500).json({ status: 500, message: image?.Error });
-              }
-            });
+        if (Credentials?.Image) {
+          const ImgArr = [...Credentials?.Image];
 
-            const uniqueImage = [...new Set(ImgIDArr)];
+          if (ImgArr?.length > 0) {
+            await saveImageArr({
+              ImgArr,
+              id: searchProperty?._id,
+              res,
+            });
+            const uniqueImage = await Image.find({
+              Property: searchProperty?._id,
+            }).select("_id");
 
             Credentials.Image = uniqueImage;
           }
@@ -200,7 +202,7 @@ router.get("/GetAllProperty", async (req, res) => {
 
     if (id || userId) {
       Property.find()
-        .populate(["User", "Service"])
+        .populate(["User", "Service", "Image"])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })

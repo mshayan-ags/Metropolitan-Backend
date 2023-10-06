@@ -142,6 +142,7 @@ router.get("/UtilityInfo/:id", async (req, res) => {
       }
 
       Utility.findOne({ _id: req.params.id })
+        .populate(["Property", "Image"])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
@@ -164,6 +165,7 @@ router.get("/GetAllUtility", async (req, res) => {
 
     if (id || userId) {
       Utility.find()
+        .populate(["Property", "Image"])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
