@@ -30,49 +30,51 @@ router.post("/SignUp", async (req, res) => {
       ],
       res
     );
-    if (Check) {
+    if (await Check) {
       return;
-    }
+    } else {
+      const password = await bcrypt.hash(Credentials?.password, 15);
 
-    const password = await bcrypt.hash(Credentials?.password, 15);
+      const newUser = new User({
+        name: Credentials?.name,
+        email: Credentials?.email,
+        phoneNumber: Credentials?.phoneNumber,
+        password: password,
+        notifications: true,
+        TermsAndConditions: Credentials?.TermsAndConditions,
+        verifiedByAdmin: false,
+        flatNo: Credentials?.flatNo,
+      });
 
-    const newUser = new User({
-      name: Credentials?.name,
-      email: Credentials?.email,
-      phoneNumber: Credentials?.phoneNumber,
-      password: password,
-      notifications: true,
-      TermsAndConditions: Credentials?.TermsAndConditions,
-      verifiedByAdmin: false,
-      flatNo: Credentials?.flatNo,
-    });
+      if (newUser) {
+        const verifierkey = new Verifier("at_Qc0l6wLRvlfI875zbloS9GD7YLltj");
+        return await verifierkey.verify(newUser?.email, async (err, data) => {
+          if (
+            data &&
+            data?.freeCheck &&
+            data?.dnsCheck &&
+            data?.smtpCheck &&
+            data?.formatCheck
+          ) {
+            const otp = generateOTP(6);
+            newUser.otp = otp;
 
-    if (newUser) {
-      const verifierkey = new Verifier("at_Qc0l6wLRvlfI875zbloS9GD7YLltj");
-      return await verifierkey.verify(newUser?.email, async (err, data) => {
-        if (
-          data &&
-          data?.freeCheck &&
-          data?.dnsCheck &&
-          data?.smtpCheck &&
-          data?.formatCheck
-        ) {
-          const otp = generateOTP(6);
-          newUser.otp = otp;
+            SendOtp(newUser?.email, otp);
+            if (Credentials?.profilePicture?.data) {
+              const image = await SaveImageDB(
+                Credentials?.profilePicture,
+                { User: new mongoose.Types.ObjectId(newUser?._id) },
+                res
+              );
 
-          SendOtp(newUser?.email, otp);
-
-          const image = await SaveImageDB(
-            Credentials?.profilePicture,
-            { User: new mongoose.Types.ObjectId(newUser?._id) },
-            res
-          );
-
-          if (image?.file?._id) {
-            newUser.profilePicture = new mongoose.Types.ObjectId(
-              image?.file?._id
-            );
-
+              if (image?.file?._id) {
+                newUser.profilePicture = new mongoose.Types.ObjectId(
+                  image?.file?._id
+                );
+              } else {
+                res.status(500).json({ status: 500, message: image?.Error });
+              }
+            }
             const saveUser = await newUser.save().catch((error) => {
               if (error?.code == 11000) {
                 res.status(500).json({
@@ -92,6 +94,7 @@ router.post("/SignUp", async (req, res) => {
 
               res.status(200).json({
                 token,
+                id: newUser?._id,
                 status: 200,
                 message: "User Created in Succesfully",
               });
@@ -99,20 +102,18 @@ router.post("/SignUp", async (req, res) => {
               return;
             }
           } else {
-            res.status(500).json({ status: 500, message: image?.Error });
+            res.status(500).json({
+              status: 500,
+              message: `Please Change your email as it's not valid`,
+            });
           }
-        } else {
-          res.status(500).json({
-            status: 500,
-            message: `Please Change your email as it's not valid`,
-          });
-        }
-      });
-    } else {
-      res.status(500).json({
-        status: 500,
-        message: `There was Some Issue`,
-      });
+        });
+      } else {
+        res.status(500).json({
+          status: 500,
+          message: `There was Some Issue`,
+        });
+      }
     }
   } catch (error) {
     if (error?.code == 11000) {
@@ -273,7 +274,7 @@ router.post("/Update-User", async (req, res) => {
       const searchUser = await User.findOne({ _id: id });
 
       if (searchUser?._id) {
-        if ((Credentials?.profilePicture)?.name) {
+        if (Credentials?.profilePicture?.name) {
           const image = await SaveImageDB(
             Credentials?.profilePicture,
             { User: new mongoose.Types.ObjectId(searchUser?._id) },
@@ -354,13 +355,13 @@ router.post("/Login", async (req, res) => {
   }
 });
 
-router.post("/userInfo", async (req, res) => {
+router.get("/userInfo/:id", async (req, res) => {
   try {
     connectToDB();
     const { id, message } = await getUserId(req);
     const { id: adminId, message: adminMessage } = await getAdminId(req);
     if (id || adminId) {
-      User.findOne({ _id: adminId ? req?.body?.id : id })
+      User.findOne({ _id: adminId ? req?.params?.id : id })
         .populate([
           { path: "Property", select: "description" },
           { path: "profilePicture" },
