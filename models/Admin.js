@@ -29,6 +29,10 @@ const AdminSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    Responsiblities: {
+      type: Map,
+      of: Boolean,
+    },
     profilePicture: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Image",

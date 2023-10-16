@@ -17,7 +17,7 @@ const { GetImage } = require("./routes/Image");
 const app = Express();
 
 app.use(Express.json({ limit: "50mb" }));
-app.use(Express.urlencoded({ limit: "50mb" }));
+// app.use(Express.urlencoded({ limit: "50mb" }));
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

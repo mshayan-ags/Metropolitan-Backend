@@ -18,7 +18,15 @@ router.post("/Create-Admin", async (req, res) => {
 
     const Check = await CheckAllRequiredFieldsAvailaible(
       Credentials,
-      ["name", "email", "phoneNumber", "Role", "password", "profilePicture"],
+      [
+        "name",
+        "email",
+        "phoneNumber",
+        "Role",
+        "password",
+        // "Responsiblities",
+        "profilePicture",
+      ],
       res
     );
     if (Check) {
@@ -33,6 +41,7 @@ router.post("/Create-Admin", async (req, res) => {
       phoneNumber: Credentials?.phoneNumber,
       password: password,
       Role: Credentials?.Role,
+      // Responsiblities: Credentials.Responsiblities,
     });
 
     const image = await SaveImageDB(
@@ -82,7 +91,7 @@ router.post("/Update-Admin", async (req, res) => {
       const searchAdmin = await Admin.findOne({ _id: id });
 
       if (searchAdmin?._id) {
-        if ((Credentials?.profilePicture)?.name) {
+        if (Credentials?.profilePicture?.name) {
           const image = await SaveImageDB(
             Credentials?.profilePicture,
             { Admin: new mongoose.Types.ObjectId(searchAdmin?._id) },
@@ -139,7 +148,7 @@ router.post("/Login-Admin", async (req, res) => {
     if (searchAdmin?.password && searchAdmin?._id) {
       const valid = await bcrypt.compare(
         Credentials?.password,
-        searchAdmin?.password,
+        searchAdmin?.password
       );
 
       if (valid) {
@@ -184,6 +193,50 @@ router.get("/AdminInfo", async (req, res) => {
       res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.get("/GetAdminInfo/:id", async (req, res) => {
+  try {
+    connectToDB();
+
+    const { id, message } = await getAdminId(req);
+    if (id) {
+      Admin.findOne({ _id: req?.params?.id })
+        .then((data) => {
+          res.status(200).json({ status: 200, data: data });
+        })
+        .catch((err) => {
+          res.status(500).json({ status: 500, message: err });
+        });
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.get("/GetAllAdmins", async (req, res) => {
+  try {
+    const { id, message } = await getAdminId(req);
+    if (id) {
+      Admin.find()
+        .exec()
+        .then((data) => {
+          res.status(200).json({ status: 200, data: data });
+        })
+        .catch((err) => {
+          console.log(err);
+
+          res.status(500).json({ status: 500, message: err });
+        });
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ status: 500, message: error });
   }
 });
