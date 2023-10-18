@@ -7,6 +7,7 @@ const { connectToDB } = require("../Middlewares/Db");
 const { Property } = require("../models/Property");
 const { Service } = require("../models/Service");
 const { ServiceOffered } = require("../models/ServiceOffered");
+const { User } = require("../models/User");
 
 const router = Router();
 
@@ -326,7 +327,7 @@ router.get("/GetAllBill", async (req, res) => {
 
     if (id || userId) {
       Bill.find()
-        .populate("Property", "Service")
+        .populate(["Property", "Service"])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
@@ -335,6 +336,30 @@ router.get("/GetAllBill", async (req, res) => {
         });
     } else {
       res.status(401).json({ status: 401, message: message || userMessage });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.get("/GetAllBillUser", async (req, res) => {
+  try {
+    connectToDB();
+    const { id, message } = await getUserId(req);
+
+    if (id) {
+      const CurrUser = await User.findOne({ _id: id });
+
+      Bill.find({ Property: CurrUser?.Property })
+        .populate(["Property", "Service"])
+        .then((data) => {
+          res.status(200).json({ status: 200, data: data });
+        })
+        .catch((err) => {
+          res.status(500).json({ status: 500, message: err });
+        });
+    } else {
+      res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
     res.status(500).json({ status: 500, message: error });

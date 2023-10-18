@@ -445,4 +445,33 @@ router.get("/GetAllService", async (req, res) => {
   }
 });
 
+router.get("/GetAllServiceUser", async (req, res) => {
+  try {
+    connectToDB();
+    const { id, message } = await getUserId(req);
+    if (id) {
+      const CurrUser = await User.findOne({ _id: id });
+      Service.find({ Property: CurrUser?.Property })
+        .populate([
+          "ServiceOffered",
+          "Review",
+          "Bill",
+          "Property",
+          "Admin",
+          "Payment",
+        ])
+        .then((data) => {
+          res.status(200).json({ status: 200, data: data });
+        })
+        .catch((err) => {
+          res.status(500).json({ status: 500, message: err });
+        });
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
 module.exports = router;

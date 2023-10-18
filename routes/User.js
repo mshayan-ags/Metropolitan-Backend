@@ -329,10 +329,11 @@ router.post("/Login", async (req, res) => {
     if (searchUser?.password && searchUser?._id) {
       const valid = bcrypt.compare(Credentials?.password, searchUser?.password);
       if (
-        valid &&
-        searchUser?.TermsAndConditions &&
-        searchUser?.isVerified &&
-        searchUser?.verifiedByAdmin
+        valid
+        // &&
+        // searchUser?.TermsAndConditions &&
+        // searchUser?.isVerified &&
+        // searchUser?.verifiedByAdmin
       ) {
         const token = jwt.sign({ id: searchUser?._id }, APP_SECRET);
         res.status(200).json({
@@ -358,10 +359,9 @@ router.post("/Login", async (req, res) => {
 router.get("/userInfo/:id", async (req, res) => {
   try {
     connectToDB();
-    const { id, message } = await getUserId(req);
     const { id: adminId, message: adminMessage } = await getAdminId(req);
-    if (id || adminId) {
-      User.findOne({ _id: adminId ? req?.params?.id : id })
+    if (adminId) {
+      User.findOne({ _id: req?.params?.id })
         .populate([
           { path: "Property", select: "description" },
           { path: "profilePicture" },
@@ -373,7 +373,31 @@ router.get("/userInfo/:id", async (req, res) => {
           res.status(500).json({ status: 500, message: err });
         });
     } else {
-      res.status(401).json({ status: 401, message: message || adminMessage });
+      res.status(401).json({ status: 401, message: adminMessage });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.get("/userInfo", async (req, res) => {
+  try {
+    connectToDB();
+    const { id, message } = await getUserId(req);
+    if (id) {
+      User.findOne({ _id: id })
+        .populate([
+          { path: "Property", select: "description" },
+          { path: "profilePicture" },
+        ])
+        .then((data) => {
+          res.status(200).json({ status: 200, data: data });
+        })
+        .catch((err) => {
+          res.status(500).json({ status: 500, message: err });
+        });
+    } else {
+      res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
     res.status(500).json({ status: 500, message: error });

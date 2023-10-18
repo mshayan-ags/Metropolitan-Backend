@@ -25,7 +25,7 @@ router.post("/Create-Admin", async (req, res) => {
         "Role",
         "password",
         // "Responsiblities",
-        "profilePicture",
+        // "profilePicture",
       ],
       res
     );
@@ -44,28 +44,30 @@ router.post("/Create-Admin", async (req, res) => {
       // Responsiblities: Credentials.Responsiblities,
     });
 
-    const image = await SaveImageDB(
-      Credentials?.profilePicture,
-      { Admin: new mongoose.Types.ObjectId(newAdmin?._id) },
-      res
-    );
-
-    if (image?.file?._id) {
-      newAdmin.profilePicture = new mongoose.Types.ObjectId(image?.file?._id);
-      await newAdmin.save();
-      const token = jwt.sign(
-        { id: newAdmin?._id, Role: newAdmin?.Role },
-        APP_SECRET
+    if (Credentials?.profilePicture) {
+      const image = await SaveImageDB(
+        Credentials?.profilePicture,
+        { Admin: new mongoose.Types.ObjectId(newAdmin?._id) },
+        res
       );
 
-      res.status(200).json({
-        token,
-        status: 200,
-        message: "Admin Created in Succesfully",
-      });
-    } else {
-      res.status(500).json({ status: 500, message: image?.Error });
+      if (image?.file?._id) {
+        newAdmin.profilePicture = new mongoose.Types.ObjectId(image?.file?._id);
+      } else {
+        res.status(500).json({ status: 500, message: image?.Error });
+      }
     }
+    await newAdmin.save();
+    const token = jwt.sign(
+      { id: newAdmin?._id, Role: newAdmin?.Role },
+      APP_SECRET
+    );
+
+    res.status(200).json({
+      token,
+      status: 200,
+      message: "Admin Created in Succesfully",
+    });
   } catch (error) {
     if (error?.code == 11000) {
       res.status(500).json({
