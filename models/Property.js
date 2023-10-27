@@ -14,6 +14,11 @@ const PropertySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    Tower_FlatNo: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     Category: {
       type: String,
       required: true,

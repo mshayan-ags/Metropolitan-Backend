@@ -47,6 +47,7 @@ router.post("/Create-Property", async (req, res) => {
         FlatNo: Credentials?.FlatNo,
         Floor: Credentials?.Floor,
         Tower: Credentials?.Tower,
+        Tower_FlatNo: `${Credentials?.Tower}_${Credentials?.FlatNo}`,
         Category: Credentials?.Category,
         description: Credentials?.description,
       });
@@ -128,9 +129,20 @@ router.post("/Update-Property", async (req, res) => {
             Credentials.Image = uniqueImage;
           }
         }
-        await Property.updateOne({ _id: searchProperty?._id }, Credentials, {
-          new: false,
-        })
+        await Property.updateOne(
+          { _id: searchProperty?._id },
+          {
+            ...Credentials,
+            Tower_FlatNo: `${
+              Credentials?.Tower ? Credentials?.Tower : searchProperty?.Tower
+            }_${
+              Credentials?.FlatNo ? Credentials?.FlatNo : searchProperty?.FlatNo
+            }`,
+          },
+          {
+            new: false,
+          }
+        )
           .then((docs) => {
             res.status(200).json({
               status: 200,
