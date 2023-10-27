@@ -2,15 +2,21 @@ const mongoose = require("mongoose");
 
 const PropertySchema = new mongoose.Schema(
   {
-    noRooms: {
-      type: Number,
+    FlatNo: {
+      type: String,
       required: true,
-      default: 0,
     },
-    noBathrooms: {
-      type: Number,
+    Floor: {
+      type: String,
       required: true,
-      default: 0,
+    },
+    Tower: {
+      type: String,
+      required: true,
+    },
+    Category: {
+      type: String,
+      required: true,
     },
     description: {
       type: String,

@@ -36,7 +36,7 @@ router.post("/Create-Property", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["noRooms", "noBathrooms", "description"],
+        ["FlatNo", "Floor", "Tower", "Category", "description"],
         res
       );
       if (Check) {
@@ -44,8 +44,10 @@ router.post("/Create-Property", async (req, res) => {
       }
 
       const newProperty = new Property({
-        noRooms: Credentials?.noRooms,
-        noBathrooms: Credentials?.noBathrooms,
+        FlatNo: Credentials?.FlatNo,
+        Floor: Credentials?.Floor,
+        Tower: Credentials?.Tower,
+        Category: Credentials?.Category,
         description: Credentials?.description,
       });
 
