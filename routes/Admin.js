@@ -18,15 +18,7 @@ router.post("/Create-Admin", async (req, res) => {
 
     const Check = await CheckAllRequiredFieldsAvailaible(
       Credentials,
-      [
-        "name",
-        "email",
-        "phoneNumber",
-        "Role",
-        "password",
-        // "Responsiblities",
-        // "profilePicture",
-      ],
+      ["name", "email", "phoneNumber", "Role", "password"],
       res
     );
     if (Check) {
@@ -206,6 +198,7 @@ router.get("/GetAdminInfo/:id", async (req, res) => {
     const { id, message } = await getAdminId(req);
     if (id) {
       Admin.findOne({ _id: req?.params?.id })
+        .populate(["profilePicture"])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
@@ -225,6 +218,7 @@ router.get("/GetAllAdmins", async (req, res) => {
     const { id, message } = await getAdminId(req);
     if (id) {
       Admin.find()
+        .populate(["profilePicture"])
         .exec()
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
