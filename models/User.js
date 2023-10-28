@@ -55,6 +55,15 @@ const UserSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
+    Type: {
+      type: String,
+      required: true,
+      default: "owner",
+    },
+    UserProperty: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "UserProperty",
+    },
     Property: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Property",

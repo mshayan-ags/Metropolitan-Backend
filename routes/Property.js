@@ -7,6 +7,7 @@ const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const { SaveImageDB } = require("./Image");
 const { Image } = require("../models/Image");
+const { UserProperty } = require("../models/UserProperty");
 
 const router = Router();
 
@@ -248,11 +249,30 @@ router.post("/Property-User", async (req, res) => {
       const searchUser = await User.findOne({ _id: req.body.user });
 
       if (searchProperty?._id && searchUser?._id) {
+        const newUserProperty = new UserProperty({
+          Type: req?.body?.Type,
+          From: new Date(),
+          Property: new mongoose.Types.ObjectId(req.body.property),
+          User: new mongoose.Types.ObjectId(req.body.user),
+        });
+
+        await newUserProperty.save();
+
+        const User_Property_Details = await UserProperty.find({
+          User: req.body.user,
+        }).select("_id");
+
+        const Property_User_Details = await UserProperty.find({
+          User: req.body.user,
+        }).select("_id");
+
         User.updateOne(
           { _id: req.body.user },
           {
             Property: new mongoose.Types.ObjectId(req.body.property),
             verifiedByAdmin: true,
+            Type: req?.body?.Type,
+            UserProperty: User_Property_Details,
           }
         )
           .then(async (data) => {
@@ -264,6 +284,7 @@ router.post("/Property-User", async (req, res) => {
               { _id: req.body.property },
               {
                 User: User_Property,
+                UserProperty: Property_User_Details,
               }
             )
               .then((data) => {
@@ -306,29 +327,46 @@ router.post("/Remove-Property-User", async (req, res) => {
       }
       const searchProperty = await Property.findOne({ _id: req.body.property });
       const searchUser = await User.findOne({ _id: req.body.user });
+      const searchUserProperty = await UserProperty.findOne({
+        Property: req.body.property,
+        User: req.body.user,
+      });
 
-      if (searchProperty?._id && searchUser?._id) {
-        User.updateOne(
-          { _id: req.body.user },
+      if (searchProperty?._id && searchUser?._id && searchUserProperty?._id) {
+        UserProperty.updateOne(
+          { _id: searchUserProperty?._id },
           {
-            Property: null,
-            verifiedByAdmin: false,
+            To: new Date(),
           }
         )
           .then(async (data) => {
-            const Users = await User.find({
-              Property: req.body.property,
-            }).select("_id");
-            Property.updateOne(
-              { _id: req.body.property },
+            User.updateOne(
+              { _id: req.body.user },
               {
-                User: Users,
+                Property: null,
+                Type: "",
+                verifiedByAdmin: false,
               }
             )
-              .then((data) => {
-                res
-                  .status(200)
-                  .json({ status: 200, data: "Property was removed to user" });
+              .then(async (data) => {
+                const Users = await User.find({
+                  Property: req.body.property,
+                }).select("_id");
+                Property.updateOne(
+                  { _id: req.body.property },
+                  {
+                    User: Users,
+                  }
+                )
+                  .then((data) => {
+                    res.status(200).json({
+                      status: 200,
+                      data: "Property was removed to user",
+                    });
+                  })
+                  .catch((err) => {
+                    res.status(500).json({ status: 500, message: err });
+                  });
               })
               .catch((err) => {
                 res.status(500).json({ status: 500, message: err });

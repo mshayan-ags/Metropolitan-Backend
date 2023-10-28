@@ -412,6 +412,7 @@ router.get("/GetAllUsers", async (req, res) => {
         .populate([
           { path: "Property", select: "description" },
           { path: "profilePicture" },
+          { path: "UserProperty" },
         ])
         .exec()
         .then((data) => {

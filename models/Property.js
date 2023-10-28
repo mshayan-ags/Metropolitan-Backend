@@ -27,6 +27,10 @@ const PropertySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    UserProperty: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "UserProperty",
+    },
     User: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "User",
