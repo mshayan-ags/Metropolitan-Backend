@@ -327,14 +327,18 @@ router.post("/Remove-Property-User", async (req, res) => {
       }
       const searchProperty = await Property.findOne({ _id: req.body.property });
       const searchUser = await User.findOne({ _id: req.body.user });
-      const searchUserProperty = await UserProperty.findOne({
+      const searchUserProperty = await UserProperty.find({
         Property: req.body.property,
         User: req.body.user,
       });
 
-      if (searchProperty?._id && searchUser?._id && searchUserProperty?._id) {
+      if (
+        searchProperty?._id &&
+        searchUser?._id &&
+        searchUserProperty[searchUserProperty?.length - 1]?._id
+      ) {
         UserProperty.updateOne(
-          { _id: searchUserProperty?._id },
+          { _id: searchUserProperty[searchUserProperty?.length - 1]?._id },
           {
             To: new Date(),
           }
