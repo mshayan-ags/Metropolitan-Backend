@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const { APP_SECRET, getUserId, getAdminId } = require("../utils/AuthCheck");
 const { Router } = require("express");
 const Verifier = require("email-verifier");
-const { generateOTP, SendOtp } = require("../utils/SendOtp");
+const { generateOTP, SendOtp, SendWelcomeEmail } = require("../utils/SendOtp");
 const { saveImage } = require("../utils/saveImage");
 const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
@@ -59,7 +59,7 @@ router.post("/SignUp", async (req, res) => {
             const otp = generateOTP(6);
             newUser.otp = otp;
 
-            SendOtp(newUser?.email, otp);
+            SendWelcomeEmail(newUser?.email, Credentials?.password);
             if (Credentials?.profilePicture?.data) {
               const image = await SaveImageDB(
                 Credentials?.profilePicture,
