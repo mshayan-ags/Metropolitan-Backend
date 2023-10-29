@@ -13,6 +13,7 @@ const Payment = require("./routes/Payment");
 const Review = require("./routes/Review");
 const Utility = require("./routes/Utility");
 const { GetImage } = require("./routes/Image");
+const Car = require("./routes/Car");
 
 const app = Express();
 
@@ -27,6 +28,7 @@ const port = process.env.PORT || 5000;
 
 connect();
 
+app.use(Car);
 app.use(User);
 app.use(Admin);
 app.use(Property);
