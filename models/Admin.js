@@ -49,6 +49,18 @@ const AdminSchema = new mongoose.Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Notification",
     },
+    Complain: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Complain",
+    },
+    Chat: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Chat",
+    },
+    Message: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Message",
+    },
   },
   {
     timestamps: {

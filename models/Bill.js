@@ -54,6 +54,10 @@ const BillSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Payment",
     },
+    Complain: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Complain",
+    },
   },
   {
     timestamps: {

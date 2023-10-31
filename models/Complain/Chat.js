@@ -1,33 +1,32 @@
 const mongoose = require("mongoose");
 
-const PaymentSchema = new mongoose.Schema(
+const ChatSchema = new mongoose.Schema(
   {
-    Amount: {
-      type: Number,
-      default: 0,
-      required: true,
-    },
-    Type: {
+    status: {
       type: String,
       required: true,
+      trim: true,
       lowercase: true,
-      trim: true,
     },
-    description: {
-      type: String,
-      trim: true,
+    Admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: ["Admin"],
+    },
+    User: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    Message: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: ["Message"],
+    },
+    Media: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: ["Image"],
     },
     Property: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Property",
-    },
-    Service: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Service",
-    },
-    Bill: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Bill",
     },
     Complain: {
       type: mongoose.Schema.Types.ObjectId,
@@ -42,6 +41,6 @@ const PaymentSchema = new mongoose.Schema(
   }
 );
 
-const Payment = mongoose.model("Payment", PaymentSchema);
+const Chat = mongoose.model("Chat", ChatSchema);
 
-module.exports = { Payment };
+module.exports = { Chat };

@@ -63,6 +63,14 @@ const PropertySchema = new mongoose.Schema(
       type: [mongoose.Schema.Types.ObjectId],
       ref: "Payment",
     },
+    Complain: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Complain",
+    },
+    Chat: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Chat",
+    },
   },
   {
     timestamps: {

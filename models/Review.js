@@ -24,6 +24,10 @@ const ReviewSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Property",
     },
+    Complain: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Complain",
+    },
   },
   {
     timestamps: {

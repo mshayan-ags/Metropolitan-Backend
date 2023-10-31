@@ -1,55 +1,57 @@
 const mongoose = require("mongoose");
 
-const ImageSchema = new mongoose.Schema(
+const ComplainSchema = new mongoose.Schema(
   {
-    filename: {
-      type: String,
-      required: true,
-    },
-    mimetype: {
+    status: {
       type: String,
       required: true,
       trim: true,
+      lowercase: true,
     },
-    Utility: {
+    title: {
+      type: String,
+      trim: true,
+      lowercase: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    VoiceNote: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Utility",
+      ref: "Image",
+    },
+    ComplainCategory: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "ComplainCategory",
+    },
+    Review: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review",
+    },
+    Bill: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Bill",
     },
     Property: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Property",
     },
     Admin: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: [mongoose.Schema.Types.ObjectId],
       ref: "Admin",
-    },
-    ServiceOffered: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "ServiceOffered",
     },
     User: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    Event: {
+    Payment: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Event",
-    },
-    Complain: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Complain",
-    },
-    ComplainCateory: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "ComplainCateory",
+      ref: "Payment",
     },
     Chat: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Chat",
-    },
-    Message: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Message",
     },
   },
   {
@@ -60,6 +62,6 @@ const ImageSchema = new mongoose.Schema(
   }
 );
 
-const Image = mongoose.model("Image", ImageSchema);
+const Complain = mongoose.model("Complain", ComplainSchema);
 
-module.exports = { Image };
+module.exports = { Complain };
