@@ -14,6 +14,7 @@ const Review = require("./routes/Review");
 const Utility = require("./routes/Utility");
 const { GetImage } = require("./routes/Image");
 const Car = require("./routes/Car");
+const ComplainCategory = require("./routes/Complain/ComplainCategory");
 
 const app = Express();
 
@@ -39,6 +40,8 @@ app.use(Payment);
 app.use(Review);
 app.use(Utility);
 app.use(GetImage);
+//
+app.use(ComplainCategory);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);

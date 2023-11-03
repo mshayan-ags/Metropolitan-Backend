@@ -25,6 +25,22 @@ const ComplainSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "ComplainCategory",
     },
+    Property: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Property",
+    },
+    Admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+    },
+    User: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    Chat: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Chat",
+    },
     Review: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Review",
@@ -33,25 +49,9 @@ const ComplainSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Bill",
     },
-    Property: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Property",
-    },
-    Admin: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: "Admin",
-    },
-    User: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
     Payment: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Payment",
-    },
-    Chat: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Chat",
     },
   },
   {

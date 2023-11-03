@@ -10,19 +10,19 @@ const ChatSchema = new mongoose.Schema(
     },
     Admin: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: ["Admin"],
+      ref: "Admin",
     },
     User: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
     Message: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: ["Message"],
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Message",
     },
     Media: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: ["Image"],
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Image",
     },
     Property: {
       type: mongoose.Schema.Types.ObjectId,
