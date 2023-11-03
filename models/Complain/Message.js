@@ -2,12 +2,6 @@ const mongoose = require("mongoose");
 
 const MessageSchema = new mongoose.Schema(
   {
-    status: {
-      type: String,
-      required: true,
-      trim: true,
-      lowercase: true,
-    },
     text: {
       type: String,
       trim: true,
@@ -20,10 +14,6 @@ const MessageSchema = new mongoose.Schema(
     User: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-    },
-    Chat: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Chat",
     },
     Media: {
       type: mongoose.Schema.Types.ObjectId,
