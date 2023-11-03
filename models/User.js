@@ -58,7 +58,7 @@ const UserSchema = new mongoose.Schema(
     Type: {
       type: String,
       required: true,
-      default: "owner",
+      default: "",
     },
     UserProperty: {
       type: [mongoose.Schema.Types.ObjectId],

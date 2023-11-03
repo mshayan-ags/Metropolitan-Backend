@@ -404,11 +404,11 @@ router.get("/userInfo", async (req, res) => {
   }
 });
 
-router.get("/GetAllUsers", async (req, res) => {
+router.get("/GetAllUsers/:type", async (req, res) => {
   try {
     const { id, message } = await getAdminId(req);
     if (id) {
-      User.find()
+      User.find({ Type: req?.params?.type ? req?.params?.type : "owner" })
         .populate([
           { path: "Property", select: "description" },
           { path: "profilePicture" },
