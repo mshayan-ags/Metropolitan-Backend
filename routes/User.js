@@ -408,7 +408,12 @@ router.get("/GetAllUsers/:type", async (req, res) => {
   try {
     const { id, message } = await getAdminId(req);
     if (id) {
-      User.find({ Type: req?.params?.type ? req?.params?.type : "owner" })
+      const Filter =
+        req?.params?.type && req?.params?.type != "All"
+          ? { Type: req?.params?.type }
+          : {};
+
+      User.find(Filter)
         .populate([
           { path: "Property", select: "description" },
           { path: "profilePicture" },
