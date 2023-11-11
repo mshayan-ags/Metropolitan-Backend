@@ -31,4 +31,4 @@ const ComplainCateory = mongoose.model(
   ComplainCateorySchema
 );
 
-module.exports = { ComplainCateory };
+module.exports = ComplainCateory;

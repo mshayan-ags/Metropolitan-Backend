@@ -1,4 +1,4 @@
-const { ComplainCategory } = require("../../models/Complain/ComplainCategory");
+const ComplainCategory = require("../../models/Complain/ComplainCategory");
 const { getAdminId } = require("../../utils/AuthCheck");
 const { Router } = require("express");
 const { CheckAllRequiredFieldsAvailaible } = require("../../utils/functions");
@@ -187,9 +187,12 @@ router.get("/GetAllComplainCategory", async (req, res) => {
         res.status(200).json({ status: 200, data: data });
       })
       .catch((err) => {
+        console.log(error);
+
         res.status(500).json({ status: 500, message: err });
       });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ status: 500, message: error });
   }
 });
