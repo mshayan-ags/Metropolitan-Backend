@@ -1,11 +1,11 @@
 const { Image } = require("../models/Image");
-const { saveImage } = require("../utils/saveImage");
+const { saveImageCloud } = require("../utils/saveImage");
 const { Router } = require("express");
 const { existsSync } = require("fs");
 
 async function SaveImageDB(image, rest, res) {
   try {
-    const fleSaved = await saveImage(image, res);
+    const fleSaved = await saveImageCloud(image, res);
 
     if (fleSaved?.filename) {
       const newImage = new Image({

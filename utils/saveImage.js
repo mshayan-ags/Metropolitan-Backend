@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { CheckAllRequiredFieldsAvailaible } = require("./functions");
+const { default: axios } = require("axios");
 
 async function saveImage(image, res) {
   try {
@@ -27,4 +28,29 @@ async function saveImage(image, res) {
   }
 }
 
-module.exports = { saveImage };
+async function saveImageCloud(image, res) {
+  try {
+    const Check = await CheckAllRequiredFieldsAvailaible(
+      image,
+      ["name", "data", "type"],
+      res
+    );
+    if (Check) {
+      return { Error: "There Was Some Issue" };
+    }
+    const Request = await axios.post(
+      "http://motiwalabuilders.online/SaveImage",
+      { image: image }
+    );
+    console.log(Request?.data);
+    if (Request?.status == 200 && Request?.data?.data) {
+      return Request?.data?.data;
+    } else {
+      return { Error: Request?.data?.message };
+    }
+  } catch (error) {
+    return { Error: "There Was Some Issue" };
+  }
+}
+
+module.exports = { saveImage, saveImageCloud };
