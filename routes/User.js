@@ -43,6 +43,7 @@ router.post("/SignUp", async (req, res) => {
         notifications: true,
         TermsAndConditions: Credentials?.TermsAndConditions,
         verifiedByAdmin: false,
+        Type: Credentials?.Type,
         flatNo: Credentials?.flatNo,
       });
 
@@ -59,7 +60,7 @@ router.post("/SignUp", async (req, res) => {
             const otp = generateOTP(6);
             newUser.otp = otp;
 
-            SendWelcomeEmail(newUser?.email, Credentials?.password);
+            await SendWelcomeEmail(newUser?.email, Credentials?.password);
             if (Credentials?.profilePicture?.data) {
               const image = await SaveImageDB(
                 Credentials?.profilePicture,
@@ -75,32 +76,34 @@ router.post("/SignUp", async (req, res) => {
                 res.status(500).json({ status: 500, message: image?.Error });
               }
             }
-            const saveUser = await newUser.save().catch((error) => {
-              if (error?.code == 11000) {
-                res.status(500).json({
-                  status: 500,
-                  message: `Please Change your ${
-                    Object.keys(error?.keyValue)[0]
-                  } as it's not unique`,
-                });
-                return;
-              } else {
-                res.status(500).json({ status: 500, message: error });
-                return;
-              }
-            });
-            if (saveUser?._id) {
-              const token = jwt.sign({ id: newUser?._id }, APP_SECRET);
+            await newUser
+              .save()
+              .then((data) => {
+                if (data?._id) {
+                  const token = jwt.sign({ id: newUser?._id }, APP_SECRET);
 
-              res.status(200).json({
-                token,
-                id: newUser?._id,
-                status: 200,
-                message: "User Created in Succesfully",
+                  res.status(200).json({
+                    token,
+                    id: newUser?._id,
+                    status: 200,
+                    message: "User Created in Succesfully",
+                  });
+                }
+              })
+              .catch((error) => {
+                if (error?.code == 11000) {
+                  res.status(500).json({
+                    status: 500,
+                    message: `Please Change your ${
+                      Object.keys(error?.keyValue)[0]
+                    } as it's not unique`,
+                  });
+                  return;
+                } else {
+                  res.status(500).json({ status: 500, message: error });
+                  return;
+                }
               });
-            } else {
-              return;
-            }
           } else {
             res.status(500).json({
               status: 500,

@@ -74,6 +74,7 @@ async function SendWelcomeEmail(email, password) {
     });
 
     console.log("Message sent: %s", info?.accepted);
+    return info;
   } catch (error) {
     console.log(error);
   }
