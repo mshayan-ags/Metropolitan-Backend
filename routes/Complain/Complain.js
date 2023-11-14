@@ -326,9 +326,8 @@ router.get("/ComplainInfo/:id", async (req, res) => {
 router.get("/GetAllComplain", async (req, res) => {
   try {
     connectToDB();
-    const { id: userId, message: userMessage } = await getUserId(req);
     const { id, message } = await getAdminId(req);
-    if (id || userId) {
+    if (id) {
       Complain.find()
         .populate([
           "ComplainCategory",
@@ -342,12 +341,15 @@ router.get("/GetAllComplain", async (req, res) => {
           res.status(200).json({ status: 200, data: data });
         })
         .catch((err) => {
+          console.log(err)
           res.status(500).json({ status: 500, message: err });
         });
     } else {
-      res.status(401).json({ status: 401, message: message || userMessage });
+      res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
+    console.log(error)
+
     res.status(500).json({ status: 500, message: error });
   }
 });

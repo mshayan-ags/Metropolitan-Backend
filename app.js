@@ -15,6 +15,7 @@ const Utility = require("./routes/Utility");
 const { GetImage } = require("./routes/Image");
 const Car = require("./routes/Car");
 const ComplainCategory = require("./routes/Complain/ComplainCategory");
+const Complain = require("./routes/Complain/Complain");
 
 const app = Express();
 
@@ -42,6 +43,7 @@ app.use(Utility);
 app.use(GetImage);
 //
 app.use(ComplainCategory);
+app.use(Complain);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);
