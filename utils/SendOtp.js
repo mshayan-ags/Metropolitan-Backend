@@ -10,19 +10,19 @@ function generateOTP(length) {
 }
 
 const transporter = nodemailer.createTransport({
-  host: "shared87.accountservergroup.com",
+  host: "mail.motiwalabuilders.online",
   port: 465,
   secure: true,
   auth: {
-    user: "otp@365fm.pk",
-    pass: "IL;WxW-dig6L",
+    user: "management@motiwalabuilders.online",
+    pass: "thisispasswrod123",
   },
 });
 
 async function SendOtp(email, otp) {
   try {
     const info = await transporter.sendMail({
-      from: '"Metropolitan App" <foo@example.com>', // sender address
+      from: '"Metropolitan App" <management@motiwalabuilders.online>', // sender address
       to: email, // list of receivers
       subject: "OTP Verification", // Subject line
       text: "OTP Verification for Metropolitan App", // plain text body
@@ -38,7 +38,7 @@ async function SendOtp(email, otp) {
 async function SendWelcomeEmail(email, password) {
   try {
     const info = await transporter.sendMail({
-      from: '"Metropolitan App" <foo@example.com>', // sender address
+      from: '"Metropolitan App" <management@motiwalabuilders.online>', // sender address
       to: email, // list of receivers
       subject: "Welcome To Metropolis Building Management", // Subject line
       html: `<!DOCTYPE html>
