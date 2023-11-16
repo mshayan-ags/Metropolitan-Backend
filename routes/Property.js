@@ -56,21 +56,28 @@ router.post("/Create-Property", async (req, res) => {
       const ImgArr = [...Credentials?.Image];
 
       if (ImgArr?.length > 0) {
-        await saveImageArr({
-          ImgArr,
-          id: newProperty?._id,
-          res,
-        });
-        const uniqueImage = await Image.find({
-          Property: newProperty?._id,
-        }).select("_id");
+        async function connectImgArrDb() {
+          await saveImageArr({
+            ImgArr,
+            id: newProperty?._id,
+            res,
+          });
+          const uniqueImage = await Image.find({
+            Property: newProperty?._id,
+          }).select("_id");
 
-        newProperty.Image = await uniqueImage;
-        await newProperty.save();
-        res.status(200).json({
-          status: 200,
-          message: "Property Created in Succesfully",
-        });
+          newProperty.Image = await uniqueImage;
+          if (newProperty.Image == uniqueImage) {
+            await newProperty.save();
+            res.status(200).json({
+              status: 200,
+              message: "Property Created in Succesfully",
+            });
+          } else {
+            await connectImgArrDb();
+          }
+        }
+        await connectImgArrDb();
       } else {
         await newProperty.save();
         res.status(200).json({
