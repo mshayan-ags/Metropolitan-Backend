@@ -3,12 +3,13 @@ const { getUserId, getAdminId } = require("../../utils/AuthCheck");
 const { Router } = require("express");
 const { User } = require("../../models/User");
 const { default: mongoose } = require("mongoose");
-const { ComplainCategory } = require("../../models/Complain/ComplainCategory");
+const ComplainCategory = require("../../models/Complain/ComplainCategory");
 const { Property } = require("../../models/Property");
 const { Admin } = require("../../models/Admin");
 const { CheckAllRequiredFieldsAvailaible } = require("../../utils/functions");
 const { connectToDB } = require("../../Middlewares/Db");
 const { Chat } = require("../../models/Complain/Chat");
+const { SaveImageDB } = require("../Image");
 
 const router = Router();
 
@@ -22,15 +23,7 @@ router.post("/Request-Complain", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        [
-          "status",
-          "title",
-          "description",
-          "VoiceNote",
-          "Property",
-          "ComplainCategory",
-          "User",
-        ],
+        ["status", "title", "description", "Property", "ComplainCategory"],
         res
       );
       if (Check) {
@@ -81,6 +74,7 @@ router.post("/Request-Complain", async (req, res) => {
               image?.file?._id
             );
           } else {
+            console.log(image?.Error, 1);
             res.status(500).json({ status: 500, message: image?.Error });
           }
         }
@@ -169,25 +163,23 @@ router.post("/Request-Complain", async (req, res) => {
                           });
                         })
                         .catch((err) => {
+                          console.log(err, 2);
                           res.status(500).json({ status: 500, message: err });
                         });
                     }
-                    res.status(200).json({
-                      status: 200,
-                      message: "Complain Created in Succesfully",
-                    });
                   })
                   .catch((err) => {
-                    console.log(err);
+                    console.log(err, 3);
                     res.status(500).json({ status: 500, message: err });
                   });
               })
               .catch((err) => {
-                console.log(err);
+                console.log(err, 4);
                 res.status(500).json({ status: 500, message: err });
               });
           })
           .catch((err) => {
+            console.log(err, 5);
             res.status(500).json({ status: 500, message: err });
           });
       } else {
@@ -199,6 +191,8 @@ router.post("/Request-Complain", async (req, res) => {
       res.status(401).json({ status: 401, message: message || adminMesage });
     }
   } catch (error) {
+    console.log(error, 5);
+
     if (error?.code == 11000) {
       res.status(500).json({
         status: 500,
@@ -207,6 +201,7 @@ router.post("/Request-Complain", async (req, res) => {
         } as it's not unique`,
       });
     } else {
+      console.log(error, 5);
       res.status(500).json({ status: 500, message: error });
     }
   }
@@ -341,14 +336,14 @@ router.get("/GetAllComplain", async (req, res) => {
           res.status(200).json({ status: 200, data: data });
         })
         .catch((err) => {
-          console.log(err)
+          console.log(err);
           res.status(500).json({ status: 500, message: err });
         });
     } else {
       res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
 
     res.status(500).json({ status: 500, message: error });
   }

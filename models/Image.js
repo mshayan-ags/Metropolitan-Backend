@@ -39,9 +39,9 @@ const ImageSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Complain",
     },
-    ComplainCateory: {
+    ComplainCategory: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "ComplainCateory",
+      ref: "ComplainCategory",
     },
     Chat: {
       type: mongoose.Schema.Types.ObjectId,

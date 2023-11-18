@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ComplainCateorySchema = new mongoose.Schema(
+const ComplainCategorySchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -26,9 +26,9 @@ const ComplainCateorySchema = new mongoose.Schema(
   }
 );
 
-const ComplainCateory = mongoose.model(
-  "ComplainCateory",
-  ComplainCateorySchema
+const ComplainCategory = mongoose.model(
+  "ComplainCategory",
+  ComplainCategorySchema
 );
 
-module.exports = ComplainCateory;
+module.exports = ComplainCategory;
