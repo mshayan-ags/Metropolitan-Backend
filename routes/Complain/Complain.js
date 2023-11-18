@@ -299,6 +299,7 @@ router.get("/ComplainInfo/:id", async (req, res) => {
         .populate([
           "ComplainCategory",
           "Review",
+          "VoiceNote",
           "Bill",
           "Property",
           "Admin",
@@ -326,6 +327,7 @@ router.get("/GetAllComplain", async (req, res) => {
       Complain.find()
         .populate([
           "ComplainCategory",
+          "VoiceNote",
           "Review",
           "Bill",
           "Property",
@@ -362,6 +364,7 @@ router.get("/GetAllComplainUser", async (req, res) => {
           "Property",
           "Admin",
           "Payment",
+          "VoiceNote",
         ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
