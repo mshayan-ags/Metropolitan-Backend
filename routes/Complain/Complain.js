@@ -224,7 +224,6 @@ router.post("/Update-Complain", async (req, res) => {
       }
 
       const currComplain = await Complain.findOne({ _id: Credentials.id });
-      const currAdmin = await Admin.findOne({ _id: id });
 
       // Update Complain
       const updateComplain = {
@@ -235,30 +234,32 @@ router.post("/Update-Complain", async (req, res) => {
         description: Credentials?.description
           ? Credentials?.description
           : currComplain?.description,
-        Admin: new mongoose.Types.ObjectId(id),
       };
+
+      if (Credentials?.VoiceNote) {
+        const image = await SaveImageDB(
+          Credentials?.VoiceNote,
+          {
+            Complain: new mongoose.Types.ObjectId(Credentials.id),
+          },
+          res
+        );
+
+        if (image?.file?._id) {
+          updateComplain.VoiceNote = new mongoose.Types.ObjectId(
+            image?.file?._id
+          );
+        } else {
+          res.status(500).json({ status: 500, message: image?.Error });
+        }
+      }
 
       Complain.updateOne({ _id: Credentials?.id }, updateComplain)
         .then(async (data) => {
-          // Add Complain to Admin
-          const Complain_Admin = await Complain.find({
-            Admin: id,
-          }).select("_id");
-          Admin.updateOne(
-            { _id: id },
-            {
-              Complain: Complain_Admin,
-            }
-          )
-            .then(async (data) => {
-              res.status(200).json({
-                status: 200,
-                message: "Complain Updated in Succesfully",
-              });
-            })
-            .catch((err) => {
-              res.status(500).json({ status: 500, message: err });
-            });
+          res.status(200).json({
+            status: 200,
+            message: "Complain Updated in Succesfully",
+          });
         })
         .catch((err) => {
           res.status(500).json({ status: 500, message: err });
