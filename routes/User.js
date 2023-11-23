@@ -188,7 +188,7 @@ router.post("/Forget-Password", async (req, res) => {
 
     const otp = generateOTP(6);
 
-    SendOtp(newUser?.email, otp);
+    SendOtp(req?.body?.email, otp);
 
     const searchUser = await User.findOne({ email: req.body?.email });
     if (searchUser?._id) {
@@ -215,6 +215,7 @@ router.post("/Forget-Password", async (req, res) => {
         .json({ status: 401, message: "You Have Entered Wrong email" });
     }
   } catch (error) {
+    console.log(error)
     res.status(500).json({ status: 500, message: error });
   }
 });
