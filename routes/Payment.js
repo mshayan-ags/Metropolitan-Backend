@@ -184,4 +184,26 @@ router.get("/GetAllPayment", async (req, res) => {
   }
 });
 
+router.get("/GetAllPaymentProperty/:PropertyId", async (req, res) => {
+  try {
+    connectToDB();
+    const { id, message } = await getAdminId(req);
+    const { id: userId, message: userMessage } = await getUserId(req);
+
+    if (id || userId) {
+      Payment.find({ Property: req?.params?.PropertyId })
+        .then((data) => {
+          res.status(200).json({ status: 200, data: data });
+        })
+        .catch((err) => {
+          res.status(500).json({ status: 500, message: err });
+        });
+    } else {
+      res.status(401).json({ status: 401, message: message || userMessage });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
 module.exports = router;

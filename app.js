@@ -16,6 +16,8 @@ const { GetImage } = require("./routes/Image");
 const Car = require("./routes/Car");
 const ComplainCategory = require("./routes/Complain/ComplainCategory");
 const Complain = require("./routes/Complain/Complain");
+const Chat = require("./routes/Complain/Chat");
+const Message = require("./routes/Complain/Message");
 
 const app = Express();
 
@@ -44,6 +46,8 @@ app.use(GetImage);
 //
 app.use(ComplainCategory);
 app.use(Complain);
+app.use(Chat);
+app.use(Message);
 
 httpServer.listen(port, () => {
   console.log(`Server on http://localhost:${port}`);

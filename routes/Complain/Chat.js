@@ -1,9 +1,8 @@
-const { Chat } = require("../../models/Chat/Chat");
+const { Chat } = require("../../models/Complain/Chat");
 const { getUserId, getAdminId } = require("../../utils/AuthCheck");
 const { Router } = require("express");
 const { CheckAllRequiredFieldsAvailaible } = require("../../utils/functions");
 const { connectToDB } = require("../../Middlewares/Db");
-const { Chat } = require("../../models/Chat/Chat");
 
 const router = Router();
 
@@ -66,6 +65,27 @@ router.get("/GetAllChatUser", async (req, res) => {
     const { id, message } = await getUserId(req);
     if (id) {
       Chat.find({ User: id })
+        .populate(["Admin", "User", "Message", "Media", "Property", "Complain"])
+        .then((data) => {
+          res.status(200).json({ status: 200, data: data });
+        })
+        .catch((err) => {
+          res.status(500).json({ status: 500, message: err });
+        });
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.get("/GetAllChatAdmin", async (req, res) => {
+  try {
+    connectToDB();
+    const { id, message } = await getAdminId(req);
+    if (id) {
+      Chat.find({ Admin: id })
         .populate(["Admin", "User", "Message", "Media", "Property", "Complain"])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
