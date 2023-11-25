@@ -22,7 +22,19 @@ router.get("/ChatInfo/:id", async (req, res) => {
       }
 
       Chat.findOne({ _id: req.params.id })
-        .populate(["Admin", "User", "Message", "Media", "Property", "Complain"])
+        .populate([
+          "Admin",
+          {
+            path: "User",
+            populate: {
+              path: "profilePicture",
+            },
+          },
+          "Message",
+          "Media",
+          "Property",
+          "Complain",
+        ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
@@ -44,7 +56,20 @@ router.get("/GetAllChat", async (req, res) => {
     const { id, message } = await getAdminId(req);
     if (id || userId) {
       Chat.find()
-        .populate(["Admin", "User", "Message", "Media", "Property", "Complain"])
+        .populate([
+          "Admin",
+          {
+            path: "User",
+            populate: {
+              path: "profilePicture",
+            },
+          },
+          ,
+          "Message",
+          "Media",
+          "Property",
+          "Complain",
+        ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
@@ -65,7 +90,20 @@ router.get("/GetAllChatUser", async (req, res) => {
     const { id, message } = await getUserId(req);
     if (id) {
       Chat.find({ User: id })
-        .populate(["Admin", "User", "Message", "Media", "Property", "Complain"])
+        .populate([
+          "Admin",
+          {
+            path: "User",
+            populate: {
+              path: "profilePicture",
+            },
+          },
+          ,
+          "Message",
+          "Media",
+          "Property",
+          "Complain",
+        ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
@@ -86,7 +124,20 @@ router.get("/GetAllChatAdmin", async (req, res) => {
     const { id, message } = await getAdminId(req);
     if (id) {
       Chat.find({ Admin: id })
-        .populate(["Admin", "User", "Message", "Media", "Property", "Complain"])
+        .populate([
+          "Admin",
+          {
+            path: "User",
+            populate: {
+              path: "profilePicture",
+            },
+          },
+          ,
+          "Message",
+          "Media",
+          "Property",
+          "Complain",
+        ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
