@@ -33,8 +33,8 @@ router.post("/Create-Message", async (req, res) => {
         const Obj = {
           text: Credentials?.text,
           Chat: new mongoose.Types.ObjectId(Credentials?.Chat),
-          User: userId ? new mongoose.Types.ObjectId(userId) : "",
-          Admin: id ? new mongoose.Types.ObjectId(id) : "",
+          User: userId ? new mongoose.Types.ObjectId(userId) : null,
+          Admin: id ? new mongoose.Types.ObjectId(id) : null,
         };
         const newMessage = new Message(Obj);
 
@@ -74,11 +74,26 @@ router.post("/Create-Message", async (req, res) => {
 
         await newMessage.save();
 
-        res.status(200).json({
-          status: 200,
-          id: newMessage?._id,
-          message: "Message Created in Succesfully",
-        });
+        const AllMessages = await Message.find({
+          Chat: Credentials?.Chat,
+        }).select("_id");
+
+        Chat.updateOne(
+          { _id: Credentials?.Chat },
+          {
+            Message: AllMessages,
+          }
+        )
+          .then((data) => {
+            res.status(200).json({
+              status: 200,
+              id: newMessage?._id,
+              message: "Message Created in Succesfully",
+            });
+          })
+          .catch((err) => {
+            res.status(500).json({ status: 500, message: err });
+          });
       } else {
         res
           .status(500)
