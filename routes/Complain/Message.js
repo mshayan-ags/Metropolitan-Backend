@@ -19,13 +19,22 @@ router.post("/Create-Message", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["text", "Chat"],
+        ["Chat"],
         res
       );
       if (Check) {
         return;
       }
-
+      if (
+        (!Credentials?.text || Credentials?.text == "") &&
+        !Credentials?.VoiceNote &&
+        !Credentials?.Media
+      ) {
+        res
+          .status(500)
+          .json({ status: 500, message: "Can't Send Empty Message" });
+        return;
+      }
       const searchChat = await Chat.findOne({
         _id: Credentials?.Chat,
       });

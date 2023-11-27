@@ -30,7 +30,17 @@ router.get("/ChatInfo/:id", async (req, res) => {
               path: "profilePicture",
             },
           },
-          "Message",
+          {
+            path: "Message",
+            populate: [
+              {
+                path: "VoiceNote",
+              },
+              {
+                path: "Media",
+              },
+            ],
+          },
           "Media",
           "Property",
           "Complain",
@@ -64,8 +74,17 @@ router.get("/GetAllChat", async (req, res) => {
               path: "profilePicture",
             },
           },
-          ,
-          "Message",
+          {
+            path: "Message",
+            populate: [
+              {
+                path: "VoiceNote",
+              },
+              {
+                path: "Media",
+              },
+            ],
+          },
           "Media",
           "Property",
           "Complain",
@@ -98,8 +117,17 @@ router.get("/GetAllChatUser", async (req, res) => {
               path: "profilePicture",
             },
           },
-          ,
-          "Message",
+          {
+            path: "Message",
+            populate: [
+              {
+                path: "VoiceNote",
+              },
+              {
+                path: "Media",
+              },
+            ],
+          },
           "Media",
           "Property",
           "Complain",
@@ -132,8 +160,17 @@ router.get("/GetAllChatAdmin", async (req, res) => {
               path: "profilePicture",
             },
           },
-          ,
-          "Message",
+          {
+            path: "Message",
+            populate: [
+              {
+                path: "VoiceNote",
+              },
+              {
+                path: "Media",
+              },
+            ],
+          },
           "Media",
           "Property",
           "Complain",
