@@ -8,8 +8,250 @@ const { Property } = require("../models/Property");
 const { Service } = require("../models/Service");
 const { ServiceOffered } = require("../models/ServiceOffered");
 const { User } = require("../models/User");
+const { Complain } = require("../models/Complain/Complain");
 
 const router = Router();
+
+router.post("/Create-Bill-Complain", async (req, res) => {
+  try {
+    connectToDB();
+
+    const { id, message } = await getAdminId(req);
+    if (id) {
+      const Credentials = req.body;
+
+      const Check = await CheckAllRequiredFieldsAvailaible(
+        Credentials,
+        ["status", "Property", "Complain", "Field", "AdditionalCharges"],
+        res
+      );
+      if (Check) {
+        return;
+      }
+
+      let Total = 0;
+
+      const searchProperty = await Property.findOne({
+        _id: Credentials?.Property,
+      });
+      const searchComplain = await Complain.findOne({
+        _id: Credentials?.Complain,
+      });
+
+      if (
+        searchProperty?._id &&
+        searchComplain?._id &&
+        (!searchComplain?.Bill || searchComplain?.Bill == "")
+      ) {
+        const Field = Credentials?.Field;
+        const FieldKeys = Object.keys(Field);
+        // Add Additional Prices
+        FieldKeys.map((val) => {
+          if (parseInt(Field[val]) > 0) {
+            let TotalPrice = Field[val];
+            Total += parseInt(TotalPrice);
+          }
+        });
+
+        const AdditionalCharges = Credentials?.AdditionalCharges;
+
+        const AdditionalChargesKeys = Object.keys(AdditionalCharges);
+        // Add Additional Prices
+        AdditionalChargesKeys.map((val) => {
+          if (parseInt(AdditionalCharges[val]) > 0) {
+            let TotalPrice = AdditionalCharges[val];
+            Total += parseInt(TotalPrice);
+          }
+        });
+
+        const newBill = new Bill({
+          status: Credentials?.status,
+          Total: parseInt(Total),
+          Discount: parseInt(Credentials?.Discount),
+          TotalAfterDiscount: parseInt(
+            parseInt(Total) - parseInt(Credentials?.Discount)
+          ),
+          reasonForDiscount: Credentials?.reasonForDiscount,
+          Details: Field,
+          AdditionalCharges: AdditionalCharges,
+          Property: new mongoose.Types.ObjectId(Credentials?.Property),
+          Complain: new mongoose.Types.ObjectId(Credentials?.Complain),
+        });
+
+        const saveBill = await newBill.save();
+        if (saveBill?._id) {
+          Complain.updateOne(
+            { _id: Credentials?.Complain },
+            {
+              Bill: saveBill?._id,
+            }
+          )
+            .then(async (data) => {
+              // Add Bill to Property
+              const Bill_Property = await Bill.find({
+                Property: Credentials.Property,
+              }).select("_id");
+
+              Property.updateOne(
+                { _id: Credentials?.Property },
+                {
+                  Bill: Bill_Property,
+                }
+              )
+                .then((data) => {
+                  res.status(200).json({
+                    status: 200,
+                    message: "Bill Created in Succesfully",
+                  });
+                })
+                .catch((err) => {
+                  console.log(err);
+                  res.status(500).json({ status: 500, message: err });
+                });
+            })
+            .catch((err) => {
+              console.log(err);
+              res.status(500).json({ status: 500, message: err });
+            });
+        } else {
+          res
+            .status(401)
+            .json({ status: 401, message: "There was Some Issue Saving Bill" });
+        }
+      } else {
+        res
+          .status(401)
+          .json({ status: 401, message: "Please Check Your Data" });
+      }
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    console.log(error);
+    if (error?.code == 11000) {
+      res.status(500).json({
+        status: 500,
+        message: `Please Change your ${
+          Object.keys(error?.keyValue)[0]
+        } as it's not unique`,
+      });
+    } else {
+      res.status(500).json({ status: 500, message: error });
+    }
+  }
+});
+
+router.post("/Update-Bill-Complain", async (req, res) => {
+  try {
+    connectToDB();
+
+    const { id, message } = await getAdminId(req);
+    if (id) {
+      const Credentials = req.body;
+
+      const Check = await CheckAllRequiredFieldsAvailaible(
+        Credentials,
+        ["id"],
+        res
+      );
+      if (Check) {
+        return;
+      }
+
+      const searchBill = await Bill.findOne({
+        _id: Credentials?.id,
+      });
+
+      if (searchBill?._id) {
+        let Total = 0;
+
+        const searchComplain = await Complain.findOne({
+          _id: Credentials?.Complain,
+        });
+
+        if (searchComplain?._id) {
+          // Calculate Charges
+
+          const Field = {
+            ...searchBill?.Details.toJSON(),
+            ...Credentials?.Field,
+          };
+
+          const FieldKeys = Object.keys(Field);
+          // Add Additional Prices
+          FieldKeys.map((val) => {
+            if (parseInt(Field[val]) > 0) {
+              let TotalPrice = Field[val];
+              Total += parseInt(TotalPrice);
+            }
+          });
+
+          const AdditionalCharges = {
+            ...searchBill?.AdditionalCharges.toJSON(),
+            ...Credentials?.AdditionalCharges,
+          };
+
+          const AdditionalChargesKeys = Object.keys(AdditionalCharges);
+          // Add Additional Prices
+          AdditionalChargesKeys.map((val) => {
+            if (parseInt(AdditionalCharges[val]) > 0) {
+              let TotalPrice = AdditionalCharges[val];
+              Total += parseInt(TotalPrice);
+            }
+          });
+
+          const updateBill = {
+            status: Credentials?.status,
+            Total: parseInt(Total),
+            Discount: parseInt(Credentials?.Discount),
+            TotalAfterDiscount: parseInt(
+              parseInt(Total) - parseInt(Credentials?.Discount)
+            ),
+            reasonForDiscount: Credentials?.reasonForDiscount,
+            Details: Field,
+            AdditionalCharges: AdditionalCharges,
+          };
+
+          Bill.updateOne({ _id: Credentials?.id }, updateBill, { new: false })
+            .then((data) => {
+              res.status(200).json({
+                status: 200,
+                message: "Bill Updated in Succesfully",
+              });
+            })
+            .catch((error) => {
+              res.status(500).json({
+                status: 500,
+                message: error,
+              });
+            });
+        } else {
+          res
+            .status(401)
+            .json({ status: 401, message: "Please Check Your Data" });
+        }
+      } else {
+        res
+          .status(401)
+          .json({ status: 401, message: "Please Check Your Data" });
+      }
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    console.log(error);
+    if (error?.code == 11000) {
+      res.status(500).json({
+        status: 500,
+        message: `Please Change your ${
+          Object.keys(error?.keyValue)[0]
+        } as it's not unique`,
+      });
+    } else {
+      res.status(500).json({ status: 500, message: error });
+    }
+  }
+});
 
 router.post("/Create-Bill", async (req, res) => {
   try {
