@@ -126,10 +126,10 @@ router.post("/Create-Message", async (req, res) => {
   }
 });
 
-router.get("/GetAllMessage/:id", async (req, res) => {
+router.get("/GetAllMessages/:id", async (req, res) => {
   try {
     Message.find({ Chat: req?.params?.id })
-      .populate(["Admin", "User", "Media", "VoiceNote", "Chat"])
+      .populate(["Admin", "User", "Media", "VoiceNote"])
       .then((data) => {
         res.status(200).json({ status: 200, data: data });
       })

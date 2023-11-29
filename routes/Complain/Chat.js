@@ -30,20 +30,7 @@ router.get("/ChatInfo/:id", async (req, res) => {
               path: "profilePicture",
             },
           },
-          {
-            path: "Message",
-            populate: [
-              {
-                path: "VoiceNote",
-              },
-              {
-                path: "Media",
-              },
-            ],
-          },
-          "Media",
           "Property",
-          "Complain",
         ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
@@ -74,20 +61,7 @@ router.get("/GetAllChat", async (req, res) => {
               path: "profilePicture",
             },
           },
-          {
-            path: "Message",
-            populate: [
-              {
-                path: "VoiceNote",
-              },
-              {
-                path: "Media",
-              },
-            ],
-          },
-          "Media",
           "Property",
-          "Complain",
         ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
@@ -117,20 +91,7 @@ router.get("/GetAllChatUser", async (req, res) => {
               path: "profilePicture",
             },
           },
-          {
-            path: "Message",
-            populate: [
-              {
-                path: "VoiceNote",
-              },
-              {
-                path: "Media",
-              },
-            ],
-          },
-          "Media",
           "Property",
-          "Complain",
         ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
@@ -160,20 +121,7 @@ router.get("/GetAllChatAdmin", async (req, res) => {
               path: "profilePicture",
             },
           },
-          {
-            path: "Message",
-            populate: [
-              {
-                path: "VoiceNote",
-              },
-              {
-                path: "Media",
-              },
-            ],
-          },
-          "Media",
           "Property",
-          "Complain",
         ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
