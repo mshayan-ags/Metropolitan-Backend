@@ -215,7 +215,53 @@ router.post("/Forget-Password", async (req, res) => {
         .json({ status: 401, message: "You Have Entered Wrong email" });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
+    res.status(500).json({ status: 500, message: error });
+  }
+});
+
+router.post("/Resend-OTP", async (req, res) => {
+  try {
+    connectToDB();
+    const Check = await CheckAllRequiredFieldsAvailaible(
+      req?.body,
+      ["email"],
+      res
+    );
+    if (Check) {
+      return;
+    }
+
+    const otp = generateOTP(6);
+
+    SendOtp(req?.body?.email, otp);
+
+    const searchUser = await User.findOne({ email: req.body?.email });
+    if (searchUser?._id) {
+      await User.updateOne(
+        { _id: searchUser?._id },
+        { isVerified: false, otp: otp },
+        {
+          new: false,
+        }
+      )
+        .then((docs) => {
+          res.status(200).json({
+            status: 200,
+            message: "An Email is sent to your id",
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          res.status(500).json({ status: 500, message: error });
+        });
+    } else {
+      res
+        .status(401)
+        .json({ status: 401, message: "You Have Entered Wrong email" });
+    }
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ status: 500, message: error });
   }
 });
