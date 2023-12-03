@@ -593,7 +593,21 @@ router.get("/GetAllBillUser", async (req, res) => {
       const CurrUser = await User.findOne({ _id: id });
 
       Bill.find({ Property: CurrUser?.Property })
-        .populate(["Property", "Service"])
+        .populate([
+          "Property",
+          {
+            path: "Service",
+            populate: {
+              path: "ServiceOffered",
+            },
+          },
+          {
+            path: "Complain",
+            populate: {
+              path: "ComplainCategory",
+            },
+          },
+        ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
         })
