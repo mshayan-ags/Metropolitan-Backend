@@ -80,6 +80,7 @@ router.post("/Create-Payment", async (req, res) => {
             Bill.updateOne(
               { _id: Credentials?.Bill },
               {
+                status: "paid",
                 Payment: new mongoose.Types.ObjectId(newPayment?._id),
               }
             )

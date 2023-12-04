@@ -83,6 +83,7 @@ router.post("/Create-Bill-Complain", async (req, res) => {
           Complain.updateOne(
             { _id: Credentials?.Complain },
             {
+              status: "completed",
               Bill: saveBill?._id,
             }
           )
@@ -346,6 +347,7 @@ router.post("/Create-Bill", async (req, res) => {
           Service.updateOne(
             { _id: Credentials?.Service },
             {
+              status: "completed",
               Bill: saveBill?._id,
             }
           )
