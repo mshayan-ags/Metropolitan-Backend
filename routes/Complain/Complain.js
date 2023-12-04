@@ -58,8 +58,11 @@ router.post("/Request-Complain", async (req, res) => {
             searchComplainCategory?._id
           ),
           User: new mongoose.Types.ObjectId(searchUser?._id),
-          Admin: adminID ? new mongoose.Types.ObjectId(adminID) : "",
         });
+
+        if (adminID) {
+          newComplain.Admin = new mongoose.Types.ObjectId(adminID);
+        }
 
         if (Credentials?.VoiceNote) {
           const image = await SaveImageDB(
@@ -86,8 +89,11 @@ router.post("/Request-Complain", async (req, res) => {
           Property: new mongoose.Types.ObjectId(searchProperty?._id),
           Complain: new mongoose.Types.ObjectId(newComplain?._id),
           User: new mongoose.Types.ObjectId(searchUser?._id),
-          Admin: adminID ? new mongoose.Types.ObjectId(adminID) : "",
         });
+
+        if (adminID) {
+          newChat.Admin = new mongoose.Types.ObjectId(adminID);
+        }
 
         newComplain.Chat = new mongoose.Types.ObjectId(newChat?._id);
 
@@ -107,9 +113,6 @@ router.post("/Request-Complain", async (req, res) => {
           User: searchUser?._id,
         }).select("_id");
 
-        const Complain_Admin = await Complain.find({
-          Admin: adminID ? adminID : "",
-        }).select("_id");
         // Add Chat to Complain
         const Chat_Property = await Chat.find({
           Property: searchProperty?._id,
@@ -117,10 +120,6 @@ router.post("/Request-Complain", async (req, res) => {
 
         const Chat_User = await Chat.find({
           User: searchUser?._id,
-        }).select("_id");
-
-        const Chat_Admin = await Chat.find({
-          Admin: id,
         }).select("_id");
 
         // ComplainCategory
@@ -150,6 +149,13 @@ router.post("/Request-Complain", async (req, res) => {
                 )
                   .then(async (data) => {
                     if (adminID) {
+                      const Complain_Admin = await Complain.find({
+                        Admin: adminID,
+                      }).select("_id");
+                      const Chat_Admin = await Chat.find({
+                        Admin: adminID,
+                      }).select("_id");
+
                       await Admin.updateOne(
                         { _id: adminID },
                         {
