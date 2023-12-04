@@ -36,7 +36,7 @@ router.post("/Create-Admin", async (req, res) => {
       // Responsiblities: Credentials.Responsiblities,
     });
 
-    if (Credentials?.profilePicture) {
+    if (Credentials?.profilePicture?.name) {
       const image = await SaveImageDB(
         Credentials?.profilePicture,
         { Admin: new mongoose.Types.ObjectId(newAdmin?._id) },
