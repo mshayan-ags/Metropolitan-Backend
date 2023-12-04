@@ -173,6 +173,11 @@ router.post("/Request-Complain", async (req, res) => {
                           console.log(err, 2);
                           res.status(500).json({ status: 500, message: err });
                         });
+                    } else {
+                      res.status(200).json({
+                        status: 200,
+                        message: "Complain Created in Succesfully",
+                      });
                     }
                   })
                   .catch((err) => {
