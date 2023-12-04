@@ -38,8 +38,9 @@ router.post("/Request-Complain", async (req, res) => {
         _id: Credentials?.Property,
       });
 
+      const UserId = adminID ? Credentials?.User : id;
       const searchUser = await User.findOne({
-        _id: adminID ? Credentials?.User : id,
+        _id: UserId,
       });
 
       if (
@@ -103,7 +104,7 @@ router.post("/Request-Complain", async (req, res) => {
         }).select("_id");
 
         const Complain_User = await Complain.find({
-          User: id,
+          User: searchUser?._id,
         }).select("_id");
 
         const Complain_Admin = await Complain.find({
@@ -115,7 +116,7 @@ router.post("/Request-Complain", async (req, res) => {
         }).select("_id");
 
         const Chat_User = await Chat.find({
-          User: id,
+          User: searchUser?._id,
         }).select("_id");
 
         const Chat_Admin = await Chat.find({
@@ -132,7 +133,7 @@ router.post("/Request-Complain", async (req, res) => {
           .then(async (data) => {
             //  User
             User.updateOne(
-              { _id: id },
+              { _id: searchUser?._id },
               {
                 Complain: Complain_User,
                 Chat: Chat_User,
