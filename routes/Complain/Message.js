@@ -27,25 +27,37 @@ router.post("/Create-Message", async (req, res) => {
       }
       if (
         (!Credentials?.text || Credentials?.text == "") &&
-        !Credentials?.VoiceNote &&
-        !Credentials?.Media
+        (!Credentials?.VoiceNote || !Credentials?.VoiceNote?.name) &&
+        (!Credentials?.Media || !Credentials?.Media?.name)
       ) {
         res
           .status(500)
           .json({ status: 500, message: "Can't Send Empty Message" });
         return;
       }
+
       const searchChat = await Chat.findOne({
         _id: Credentials?.Chat,
       });
+
       if (searchChat?._id) {
         const Obj = {
           text: Credentials?.text,
           Chat: new mongoose.Types.ObjectId(Credentials?.Chat),
-          User: userId ? new mongoose.Types.ObjectId(userId) : null,
-          Admin: id ? new mongoose.Types.ObjectId(id) : null,
         };
         const newMessage = new Message(Obj);
+
+        if (Credentials?.text) {
+          Obj?.text= new mongoose.Types.ObjectId(Credentials?.text)
+        }
+
+        if (userId) {
+          Obj?.User= new mongoose.Types.ObjectId(userId)
+        }
+        
+        if (id) {
+          Obj?.Admin= new mongoose.Types.ObjectId(id)
+        }
 
         if (Credentials?.VoiceNote) {
           const image = await SaveImageDB(
