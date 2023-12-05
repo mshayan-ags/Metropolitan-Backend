@@ -59,7 +59,7 @@ router.post("/Create-Message", async (req, res) => {
           Obj.Admin = new mongoose.Types.ObjectId(id);
         }
 
-        if (Credentials?.VoiceNote) {
+        if (Credentials?.VoiceNote?.name) {
           const image = await SaveImageDB(
             Credentials?.VoiceNote,
             {
@@ -77,7 +77,7 @@ router.post("/Create-Message", async (req, res) => {
           }
         }
 
-        if (Credentials?.Media) {
+        if (Credentials?.Media?.name) {
           const image = await SaveImageDB(
             Credentials?.Media,
             {
