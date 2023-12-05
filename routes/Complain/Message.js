@@ -48,15 +48,15 @@ router.post("/Create-Message", async (req, res) => {
         const newMessage = new Message(Obj);
 
         if (Credentials?.text) {
-          Obj.text= new mongoose.Types.ObjectId(Credentials?.text)
+          Obj.text = Credentials?.text;
         }
 
         if (userId) {
-          Obj.User= new mongoose.Types.ObjectId(userId)
+          Obj.User = new mongoose.Types.ObjectId(userId);
         }
-        
+
         if (id) {
-          Obj.Admin= new mongoose.Types.ObjectId(id)
+          Obj.Admin = new mongoose.Types.ObjectId(id);
         }
 
         if (Credentials?.VoiceNote) {
