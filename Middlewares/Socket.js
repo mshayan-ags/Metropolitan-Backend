@@ -14,9 +14,22 @@ async function AllChatsSocket(socket) {
   // });
 }
 
-// io.on("connection", (socket) => {
-//   AllChatsSocket(socket);
-// });
+io.on("connection", (socket) => {
+  console.log("A user connected");
+
+  socket.on("join room", (room) => {
+    socket.join(room);
+    console.log(`User joined room: ${room}`);
+  });
+
+  socket.on("chat message", ({ room, message }) => {
+    io.to(room).emit("chat message", message);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected");
+  });
+});
 
 module.exports = {
   io,
