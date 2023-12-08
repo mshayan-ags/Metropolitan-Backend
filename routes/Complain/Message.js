@@ -45,7 +45,6 @@ router.post("/Create-Message", async (req, res) => {
           text: Credentials?.text,
           Chat: new mongoose.Types.ObjectId(Credentials?.Chat),
         };
-        const newMessage = new Message(Obj);
 
         if (Credentials?.text) {
           Obj.text = Credentials?.text;
@@ -58,6 +57,8 @@ router.post("/Create-Message", async (req, res) => {
         if (id) {
           Obj.Admin = new mongoose.Types.ObjectId(id);
         }
+
+        const newMessage = new Message(Obj);
 
         if (Credentials?.VoiceNote?.name) {
           const image = await SaveImageDB(
