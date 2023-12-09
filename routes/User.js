@@ -413,7 +413,7 @@ router.get("/userInfo/:id", async (req, res) => {
     if (adminId) {
       User.findOne({ _id: req?.params?.id })
         .populate([
-          { path: "Property", select: "description" },
+          { path: "Property"},
           { path: "profilePicture" },
         ])
         .then((data) => {

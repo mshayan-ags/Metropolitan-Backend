@@ -208,9 +208,8 @@ router.post("/Request-Complain", async (req, res) => {
     if (error?.code == 11000) {
       res.status(500).json({
         status: 500,
-        message: `Please Change your ${
-          Object.keys(error?.keyValue)[0]
-        } as it's not unique`,
+        message: `Please Change your ${Object.keys(error?.keyValue)[0]
+          } as it's not unique`,
       });
     } else {
       console.log(error, 5);
@@ -283,9 +282,8 @@ router.post("/Update-Complain", async (req, res) => {
     if (error?.code == 11000) {
       res.status(500).json({
         status: 500,
-        message: `Please Change your ${
-          Object.keys(error?.keyValue)[0]
-        } as it's not unique`,
+        message: `Please Change your ${Object.keys(error?.keyValue)[0]
+          } as it's not unique`,
       });
     } else {
       res.status(500).json({ status: 500, message: error });
@@ -380,7 +378,7 @@ router.get("/GetAllComplainUser", async (req, res) => {
           "VoiceNote",
         ])
         .then((data) => {
-          res.status(200).json({ status: 200, data: data });
+          res.status(200).json({ status: 200, data: data.filter((a) => a?.status != "completed") });
         })
         .catch((err) => {
           res.status(500).json({ status: 500, message: err });
