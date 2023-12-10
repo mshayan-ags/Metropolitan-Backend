@@ -14,20 +14,17 @@ const io = new Server(httpServer, {});
 //   // });
 // }
 
+io.on("connection", (socket) => {
+  socket.on("room", (room) => {
+    socket.join(room);
+  });
 
-io.on("join room", (room) => {
-  io.join(room);
-  console.log(`User joined room: ${room}`);
-});
+  socket.on("message", ({ room, message }) => {
+    console.log(room, message)
+    socket.to(room).emit("message", message);
+  });
 
-io.on("chat message", ({ room, message }) => {
-  io.to(room).emit("chat message", message);
-});
-
-io.on("disconnect", () => {
-  console.log("User disconnected");
-});
-
+})
 module.exports = {
   io,
 };

@@ -129,9 +129,8 @@ router.post("/Create-Message", async (req, res) => {
     if (error?.code == 11000) {
       res.status(500).json({
         status: 500,
-        message: `Please Change your ${
-          Object.keys(error?.keyValue)[0]
-        } as it's not unique`,
+        message: `Please Change your ${Object.keys(error?.keyValue)[0]
+          } as it's not unique`,
       });
     } else {
       res.status(500).json({ status: 500, message: error });
@@ -142,7 +141,12 @@ router.post("/Create-Message", async (req, res) => {
 router.get("/GetAllMessages/:id", async (req, res) => {
   try {
     Message.find({ Chat: req?.params?.id })
-      .populate(["Admin", "User", "Media", "VoiceNote"])
+      .populate(["Admin", {
+        path: "User",
+        populate: {
+          path: "profilePicture",
+        },
+      }, "Media", "VoiceNote"])
       .then((data) => {
         res.status(200).json({ status: 200, data: data });
       })
