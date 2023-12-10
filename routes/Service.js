@@ -450,12 +450,12 @@ router.get("/GetAllServiceUser", async (req, res) => {
       const CurrUser = await User.findOne({ _id: id });
       Service.find({ Property: CurrUser?.Property })
         .populate([
-          "ServiceOffered",
-          "Review",
-          "Bill",
-          "Property",
-          "Admin",
-          "Payment",
+          {
+            path: "ServiceOffered",
+            populate: {
+              path: "Icon",
+            },
+          },
         ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data.filter((a) => a?.status != "completed") });

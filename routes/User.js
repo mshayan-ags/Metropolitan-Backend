@@ -94,9 +94,8 @@ router.post("/SignUp", async (req, res) => {
                 if (error?.code == 11000) {
                   res.status(500).json({
                     status: 500,
-                    message: `Please Change your ${
-                      Object.keys(error?.keyValue)[0]
-                    } as it's not unique`,
+                    message: `Please Change your ${Object.keys(error?.keyValue)[0]
+                      } as it's not unique`,
                   });
                   return;
                 } else {
@@ -122,9 +121,8 @@ router.post("/SignUp", async (req, res) => {
     if (error?.code == 11000) {
       res.status(500).json({
         status: 500,
-        message: `Please Change your ${
-          Object.keys(error?.keyValue)[0]
-        } as it's not unique`,
+        message: `Please Change your ${Object.keys(error?.keyValue)[0]
+          } as it's not unique`,
       });
     } else {
       res.status(500).json({ status: 500, message: error });
@@ -413,8 +411,8 @@ router.get("/userInfo/:id", async (req, res) => {
     if (adminId) {
       User.findOne({ _id: req?.params?.id })
         .populate([
-          { path: "Property"},
-          { path: "profilePicture" },
+          "Property",
+          "profilePicture",
         ])
         .then((data) => {
           res.status(200).json({ status: 200, data: data });
@@ -437,7 +435,7 @@ router.get("/userInfo", async (req, res) => {
     if (id) {
       User.findOne({ _id: id })
         .populate([
-          { path: "Property", select: "description" },
+          { path: "Property" },
           { path: "profilePicture" },
         ])
         .then((data) => {

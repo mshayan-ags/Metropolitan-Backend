@@ -369,7 +369,12 @@ router.get("/GetAllComplainUser", async (req, res) => {
     if (id) {
       Complain.find({ User: id })
         .populate([
-          "ComplainCategory",
+          {
+            path: "ComplainCategory",
+            populate: {
+              path: "Icon",
+            },
+          }, ,
           "Review",
           "Bill",
           "Property",

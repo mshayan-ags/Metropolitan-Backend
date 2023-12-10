@@ -601,12 +601,18 @@ router.get("/GetAllBillUser", async (req, res) => {
             path: "Service",
             populate: {
               path: "ServiceOffered",
+              populate: {
+                path: "Icon",
+              },
             },
           },
           {
             path: "Complain",
             populate: {
               path: "ComplainCategory",
+              populate: {
+                path: "Icon",
+              },
             },
           },
         ])

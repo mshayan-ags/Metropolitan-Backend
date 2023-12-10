@@ -91,6 +91,15 @@ router.get("/GetAllChatUser", async (req, res) => {
               path: "profilePicture",
             },
           },
+          {
+            path: "Complain",
+            populate: {
+              path: "ComplainCategory",
+              populate: {
+                path: "Icon",
+              },
+            },
+          },
           "Property",
         ])
         .then((data) => {
