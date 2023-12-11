@@ -1,8 +1,8 @@
-const { Server } = require("socket.io");
+// const { Server } = require("socket.io");
 const { httpServer } = require("./Server");
 const { Chat } = require("../models/Complain/Chat");
 
-const io = new Server(httpServer, {});
+// const io = new Server(httpServer, {});
 
 // async function AllChatsSocket(socket) {
 //   const AllChat = await Chat.find().select("_id");
@@ -14,17 +14,18 @@ const io = new Server(httpServer, {});
 //   // });
 // }
 
-io.on("connection", (socket) => {
-  socket.on("room", (room) => {
-    socket.join(room);
-  });
+// io.on("connection", (socket) => {
+//   socket.on("room", (room) => {
+//     socket.join(room);
+//   });
 
-  socket.on("message", ({ room, message }) => {
-    console.log(room, message)
-    socket.to(room).emit("message", message);
-  });
+//   socket.on("message", ({ room, message }) => {
+//     console.log(room, message)
+//     socket.to(room).emit("message", message);
+//   });
 
-})
+// })
+
 module.exports = {
-  io,
+  // io,
 };
