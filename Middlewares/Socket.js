@@ -1,31 +1,62 @@
-// const { Server } = require("socket.io");
+const socketIO = require("socket.io");
 const { httpServer } = require("./Server");
-const { Chat } = require("../models/Complain/Chat");
 
-// const io = new Server(httpServer, {});
+const io = socketIO(httpServer, {
+  cors: {
+    origin: "*", // Replace with your frontend URL
+  },
+});
 
-// async function AllChatsSocket(socket) {
-//   const AllChat = await Chat.find().select("_id");
+io.on("connection", (socket) => {
+  function isUserInRoom(room, userId) {
+    const roomSockets = io.sockets.adapter.rooms[room];
+    if (roomSockets != undefined) {
+      return roomSockets && roomSockets?.has(userId);
+    } else {
+      return false;
+    }
+  }
 
-//   // return AllChat.map((a) => {
-//   //   return socket.on(a?._id?.toString(), (msg) => {
-//   //     // io.emit(a?._id?.toString(), msg);
-//   //   });
-//   // });
-// }
+  socket.on("room", ({ room }) => {
+    try {
+      const roomExists = io.sockets.adapter.rooms[room] !== undefined;
 
-// io.on("connection", (socket) => {
-//   socket.on("room", (room) => {
-//     socket.join(room);
-//   });
+      if (!roomExists) {
+        socket.join(room);
+      }
 
-//   socket.on("message", ({ room, message }) => {
-//     console.log(room, message)
-//     socket.to(room).emit("message", message);
-//   });
+      const userAlreadyInRoom = isUserInRoom(room, socket.id);
+      if (!userAlreadyInRoom) {
+        socket.join(room);
+      }
 
-// })
+    } catch (error) {
+      console.log(error)
+    }
+  });
+
+  socket.on("leaveRoom", ({ room, user }) => {
+    if (isUserInRoom(room, socket.id)) {
+      socket.leave(room);
+      io.to(room).emit("userDisconnected", { room, user });
+    }
+  });
+
+  socket.on("message", ({ room, message, user }) => {
+    io.to(room).emit("newmessage", { room, message, user });
+  });
+
+  socket.on("disconnect", () => {
+    const rooms = Object.keys(socket.rooms);
+    rooms.forEach((room) => {
+      if (room !== socket.id) {
+        socket.leave(room);
+        io.to(room).emit("userDisconnected", { room, user: socket.id });
+      }
+    });
+  });
+});
 
 module.exports = {
-  // io,
+  io,
 };
