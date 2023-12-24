@@ -30,6 +30,15 @@ router.get("/ChatInfo/:id", async (req, res) => {
               path: "profilePicture",
             },
           },
+          {
+            path: "Complain",
+            populate: {
+              path: "ComplainCategory",
+              populate: {
+                path: "Icon",
+              },
+            },
+          },
           "Property",
         ])
         .then((data) => {
@@ -128,6 +137,15 @@ router.get("/GetAllChatAdmin", async (req, res) => {
             path: "User",
             populate: {
               path: "profilePicture",
+            },
+          },
+          {
+            path: "Complain",
+            populate: {
+              path: "ComplainCategory",
+              populate: {
+                path: "Icon",
+              },
             },
           },
           "Property",
