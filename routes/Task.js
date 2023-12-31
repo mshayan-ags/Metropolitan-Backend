@@ -48,7 +48,7 @@ router.post("/CreateTask", async (req, res) => {
       } else if (Credentials.serviceId) {
         or.push({ service: Credentials.serviceId });
       }
-     await Task.updateMany(
+      await Task.updateMany(
         { $or: or },
         { $set: { status: "Forwarded" } },
         { multi: true }
@@ -326,8 +326,6 @@ router.get("/GetAllAdminTask/:id", async (req, res) => {
           adminsObjectsWithoutTask.push(admin.toObject());
         }
       }
-
-      console.log(tasks.length, adminsObjectsWithoutTask.length, adminsObjectsWithoutTask);
 
       res.status(200).json({
         status: 200,
