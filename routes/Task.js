@@ -66,7 +66,7 @@ router.post("/CreateTask", async (req, res) => {
 
         if (Credentials.serviceId) {
           const Task_Service = await Task.find({
-            Service: Credentials?.serviceId,
+            service: Credentials?.serviceId,
           }).select("_id");
 
           await Service.updateOne(
@@ -86,7 +86,7 @@ router.post("/CreateTask", async (req, res) => {
         }
         else if (Credentials.complainId) {
           const Task_Complain = await Task.find({
-            Complain: Credentials?.complainId,
+            complain: Credentials?.complainId,
           }).select("_id");
 
           await Complain.updateOne(
@@ -246,7 +246,6 @@ router.get("/TaskInfoService/:serviceId", async (req, res) => {
   }
 });
 
-
 router.get("/GetAllTasks", async (req, res) => {
   try {
     connectToDB();
@@ -268,5 +267,32 @@ router.get("/GetAllTasks", async (req, res) => {
     res.status(500).json({ status: 500, message: error.message });
   }
 });
+
+router.get("/GetAllAdminTask/:id", async (req, res) => {
+  try {
+    connectToDB();
+    const { id, message } = await getAdminId(req);
+
+    if (id) {
+      const tasks = await Admin.find().then(admins =>
+        admins.filter(a =>
+          a.Tasks.filter(b =>
+            b?.complain !== req.params.id && b?.service !== req.params.id
+          ).length < 1
+        )
+      );
+
+      res.status(200).json({
+        status: 200,
+        data: tasks,
+      });
+    } else {
+      res.status(401).json({ status: 401, message: message });
+    }
+  } catch (error) {
+    res.status(500).json({ status: 500, message: error.message });
+  }
+});
+
 
 module.exports = router;
