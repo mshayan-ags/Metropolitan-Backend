@@ -72,7 +72,7 @@ router.post("/CreateTask", async (req, res) => {
           await Service.updateOne(
             { _id: Credentials?.serviceId },
             {
-              Task: Task_Service,
+              Tasks: Task_Service,
             }
           ).then((data) => {
             res.status(200).json({
@@ -92,7 +92,7 @@ router.post("/CreateTask", async (req, res) => {
           await Complain.updateOne(
             { _id: Credentials?.complainId },
             {
-              Task: Task_Complain,
+              Tasks: Task_Complain,
             }
           ).then((data) => {
             res.status(200).json({

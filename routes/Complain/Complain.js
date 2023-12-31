@@ -342,7 +342,22 @@ router.get("/GetAllComplain", async (req, res) => {
           "Review",
           "Bill",
           "Property",
-          "Admin",
+          {
+            path: "Admin",
+            populate: {
+              path: "profilePicture",
+            },
+          },
+          {
+            path: "Tasks",
+            populate:
+            {
+              path: "assignedTo",
+              populate: {
+                path: "profilePicture",
+              },
+            },
+          },
           "Payment",
         ])
         .then((data) => {
