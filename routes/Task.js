@@ -7,6 +7,7 @@ const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
 const { connectToDB } = require("../Middlewares/Db");
 const { getAdminId } = require("../utils/AuthCheck");
 const { default: mongoose } = require("mongoose");
+const { Chat } = require("../models/Complain/Chat");
 
 const router = express.Router();
 
@@ -73,6 +74,7 @@ router.post("/CreateTask", async (req, res) => {
             { _id: Credentials?.serviceId },
             {
               Tasks: Task_Service,
+              Admin: new mongoose.Types.ObjectId(Credentials.assignedTo)
             }
           ).then((data) => {
             res.status(200).json({
@@ -93,11 +95,22 @@ router.post("/CreateTask", async (req, res) => {
             { _id: Credentials?.complainId },
             {
               Tasks: Task_Complain,
+              Admin: new mongoose.Types.ObjectId(Credentials.assignedTo)
             }
-          ).then((data) => {
-            res.status(200).json({
-              status: 200,
-              message: "Task Assigned Successfully",
+          ).then(async (data) => {
+            await Chat.updateOne(
+              { Complain: Credentials?.complainId },
+              {
+                Admin: new mongoose.Types.ObjectId(Credentials.assignedTo)
+              }
+            ).then((data) => {
+              res.status(200).json({
+                status: 200,
+                message: "Task Assigned Successfully",
+              });
+            }).catch((err) => {
+              console.log(err);
+              res.status(500).json({ status: 500, message: err });
             });
           }).catch((err) => {
             console.log(err);
