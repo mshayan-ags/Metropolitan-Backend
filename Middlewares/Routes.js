@@ -14,6 +14,7 @@ const ComplainCategory = require("../routes/Complain/ComplainCategory");
 const Complain = require("../routes/Complain/Complain");
 const Chat = require("../routes/Complain/Chat");
 const Message = require("../routes/Complain/Message");
+const Task = require("../routes/Task");
 
 app.use(Car);
 app.use(User);
@@ -31,3 +32,6 @@ app.use(ComplainCategory);
 app.use(Complain);
 app.use(Chat);
 app.use(Message);
+// 
+app.use(Task);
+

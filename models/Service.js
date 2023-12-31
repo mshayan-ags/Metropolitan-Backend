@@ -45,6 +45,10 @@ const ServiceSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Payment",
     },
+    Tasks: {
+      type: [mongoose.Schema.Types.ObjectId],
+      ref: "Task",
+    },
   },
   {
     timestamps: {
