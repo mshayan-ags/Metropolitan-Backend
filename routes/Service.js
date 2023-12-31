@@ -419,7 +419,12 @@ router.get("/GetAllService", async (req, res) => {
     const { id: userId, message: userMessage } = await getUserId(req);
     const { id, message } = await getAdminId(req);
     if (id || userId) {
-      Service.find()
+      const FindAdmin = (await Admin.findOne({ _id: id }))?.Role;
+      const Filter = {};
+      if (FindAdmin == "user" || FindAdmin == "manager") {
+        Filter.Admin = id
+      }
+      Service.find(Filter)
         .populate([
           "ServiceOffered",
           "Review",

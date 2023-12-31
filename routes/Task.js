@@ -42,6 +42,18 @@ router.post("/CreateTask", async (req, res) => {
         return;
       }
 
+      const or = [];
+      if (Credentials.complainId) {
+        or.push({ complai: Credentials.complainId });
+      } else if (Credentials.serviceId) {
+        or.push({ service: Credentials.serviceId });
+      }
+     await Task.updateMany(
+        { $or: or },
+        { $set: { status: "Forwarded" } },
+        { multi: true }
+      );
+
       // Create Task
       const newTask = new Task({
         assignedBy: assignedById,
@@ -287,22 +299,45 @@ router.get("/GetAllAdminTask/:id", async (req, res) => {
     const { id, message } = await getAdminId(req);
 
     if (id) {
-      const tasks = await Admin.find().then(admins =>
-        admins.filter(a =>
-          a.Tasks.filter(b =>
-            b?.complain !== req.params.id && b?.service !== req.params.id
-          ).length < 1
-        )
-      );
+      const taskId = req?.params?.id;
+
+      const tasks = await Task.find({
+        $or: [
+          { complain: taskId },
+          { service: taskId }
+        ]
+      });
+
+      const allAdmins = await Admin.find();
+
+      const adminsObjectsWithoutTask = [];
+
+      for (const admin of allAdmins) {
+        let hasTask = false;
+
+        for (const task of tasks) {
+          if (admin.Tasks.some(adminTask => adminTask.equals(task._id))) {
+            hasTask = true;
+            break;
+          }
+        }
+
+        if (!hasTask) {
+          adminsObjectsWithoutTask.push(admin.toObject());
+        }
+      }
+
+      console.log(tasks.length, adminsObjectsWithoutTask.length, adminsObjectsWithoutTask);
 
       res.status(200).json({
         status: 200,
-        data: tasks,
+        data: adminsObjectsWithoutTask,
       });
     } else {
       res.status(401).json({ status: 401, message: message });
     }
   } catch (error) {
+    console.log(error)
     res.status(500).json({ status: 500, message: error.message });
   }
 });

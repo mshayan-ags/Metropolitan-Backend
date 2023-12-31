@@ -335,7 +335,12 @@ router.get("/GetAllComplain", async (req, res) => {
     connectToDB();
     const { id, message } = await getAdminId(req);
     if (id) {
-      Complain.find()
+      const FindAdmin = (await Admin.findOne({ _id: id }))?.Role;
+      const Filter = {};
+      if (FindAdmin == "user" || FindAdmin == "manager") {
+        Filter.Admin = id
+      }
+      Complain.find(Filter)
         .populate([
           "ComplainCategory",
           "VoiceNote",

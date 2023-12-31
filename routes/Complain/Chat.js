@@ -3,6 +3,7 @@ const { getUserId, getAdminId } = require("../../utils/AuthCheck");
 const { Router } = require("express");
 const { CheckAllRequiredFieldsAvailaible } = require("../../utils/functions");
 const { connectToDB } = require("../../Middlewares/Db");
+const { Admin } = require("../../models/Admin");
 
 const router = Router();
 
@@ -130,7 +131,12 @@ router.get("/GetAllChatAdmin", async (req, res) => {
     connectToDB();
     const { id, message } = await getAdminId(req);
     if (id) {
-      Chat.find({ Admin: id })
+      const FindAdmin = (await Admin.findOne({ _id: id }))?.Role;
+      const Filter = {};
+      if (FindAdmin == "user" || FindAdmin == "manager") {
+        Filter.Admin = id
+      }
+      Chat.find(Filter)
         .populate([
           "Admin",
           {
