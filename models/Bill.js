@@ -6,7 +6,8 @@ const BillSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 			trim: true,
-			lowercase: true
+			lowercase: true,
+			enum: ["unpaid", "paid", "canceled"]
 		},
 		Total: {
 			type: Number,
