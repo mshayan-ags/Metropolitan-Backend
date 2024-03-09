@@ -19,19 +19,19 @@ router.get("/DashboardAdmin/:from/:to", async (req, res) => {
 
 			const FindAdmin = (await Admin.findOne({ _id: id }))?.Role;
 			const Filter = {
-				created_at: {
-					$gte: fromDate,
-					$lt: toDate
-				}
+				// created_at: {
+				// 	$gte: fromDate,
+				// 	$lt: toDate
+				// }
 			};
 			const FilterTasks = {
-				created_at: {
-					$gte: fromDate,
-					$lt: toDate
-				}
+				// created_at: {
+				// 	$gte: fromDate,
+				// 	$lt: toDate
+				// }
 			};
 
-			if (FindAdmin == "user" || FindAdmin == "manager") {
+			if (FindAdmin == "user" || FindAdmin == "manager" || FindAdmin == "reception") {
 				Filter.Admin = id;
 				FilterTasks.assignedTo = id;
 			}
@@ -56,7 +56,7 @@ router.get("/DashboardAdmin/:from/:to", async (req, res) => {
 					Services: await ServicesArr,
 					Complain: await ComplainsArr,
 					Bill: await BillsArr,
-					Payment: await PaymentsArr,
+					Payment: await PaymentsArr
 				}
 			});
 		} else {

@@ -399,7 +399,7 @@ router.get("/GetAllService", async (req, res) => {
 		if (id || userId) {
 			const FindAdmin = (await Admin.findOne({ _id: id }))?.Role;
 			const Filter = {};
-			if (FindAdmin == "user" || FindAdmin == "manager") {
+			if (FindAdmin == "user" || FindAdmin == "manager" || FindAdmin == "reception") {
 				Filter.Admin = id;
 			}
 			Service.find(Filter)
