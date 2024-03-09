@@ -56,7 +56,7 @@ router.get("/DashboardAdmin/:from/:to", async (req, res) => {
 					Services: await ServicesArr,
 					Complain: await ComplainsArr,
 					Bill: await BillsArr,
-					Payment: await PaymentsArr
+					Payment: await PaymentsArr,
 				}
 			});
 		} else {

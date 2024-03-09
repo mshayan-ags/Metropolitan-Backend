@@ -22,7 +22,7 @@ router.post("/Create-Bill-Complain", async (req, res) => {
 
 			const Check = await CheckAllRequiredFieldsAvailaible(
 				Credentials,
-				["status", "Property", "Complain", "Field", "AdditionalCharges"],
+				["status", "Property", "Complain", "Field", "AdditionalCharges", "Remarks"],
 				res
 			);
 			if (Check) {
@@ -70,6 +70,7 @@ router.post("/Create-Bill-Complain", async (req, res) => {
 					Discount: parseInt(Credentials?.Discount),
 					TotalAfterDiscount: parseInt(parseInt(Total) - parseInt(Credentials?.Discount)),
 					reasonForDiscount: Credentials?.reasonForDiscount,
+					Remarks: Credentials?.Remarks,
 					Details: Field,
 					AdditionalCharges: AdditionalCharges,
 					Property: new mongoose.Types.ObjectId(Credentials?.Property),
@@ -196,6 +197,7 @@ router.post("/Update-Bill-Complain", async (req, res) => {
 						Discount: parseInt(Credentials?.Discount),
 						TotalAfterDiscount: parseInt(parseInt(Total) - parseInt(Credentials?.Discount)),
 						reasonForDiscount: Credentials?.reasonForDiscount,
+						Remarks: Credentials?.Remarks,
 						Details: Field,
 						AdditionalCharges: AdditionalCharges
 					};
@@ -245,7 +247,7 @@ router.post("/Create-Bill", async (req, res) => {
 
 			const Check = await CheckAllRequiredFieldsAvailaible(
 				Credentials,
-				["status", "Property", "Service", "AdditionalCharges"],
+				["status", "Property", "Service", "AdditionalCharges", "Remarks"],
 				res
 			);
 			if (Check) {
@@ -313,6 +315,7 @@ router.post("/Create-Bill", async (req, res) => {
 					Discount: parseInt(Credentials?.Discount),
 					TotalAfterDiscount: parseInt(parseInt(Total) - parseInt(Credentials?.Discount)),
 					reasonForDiscount: Credentials?.reasonForDiscount,
+					Remarks: Credentials?.Remarks,
 					Details: Obj,
 					AdditionalCharges: AdditionalCharges,
 					FieldsOfServiceOffered: searchServiceOffered?.Fields,
@@ -451,6 +454,7 @@ router.post("/Update-Bill", async (req, res) => {
 						Discount: parseInt(Credentials?.Discount),
 						TotalAfterDiscount: parseInt(parseInt(Total) - parseInt(Credentials?.Discount)),
 						reasonForDiscount: Credentials?.reasonForDiscount,
+						Remarks: Credentials?.Remarks,
 						Details: Obj,
 						AdditionalCharges: AdditionalCharges
 					};

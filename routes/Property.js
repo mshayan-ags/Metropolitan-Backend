@@ -126,13 +126,19 @@ router.post("/Update-Property", async (req, res) => {
 							id: searchProperty?._id,
 							res
 						});
-						const uniqueImage = await Image.find({
-							Property: searchProperty?._id
-						}).select("_id");
 
-						Credentials.Image = uniqueImage;
+						await setTimeout(async () => {
+							await console.log("Waiting For Images To Be Saved And Connected To Property ... ");
+						}, 3000);
 					}
 				}
+
+				const uniqueImage = await Image.find({
+					Property: searchProperty?._id
+				}).select("_id");
+
+				Credentials.Image = uniqueImage;
+
 				await Property.updateOne(
 					{ _id: searchProperty?._id },
 					{

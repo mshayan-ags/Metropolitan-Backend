@@ -27,6 +27,11 @@ const BillSchema = new mongoose.Schema(
 			type: String,
 			trim: true
 		},
+		Remarks: {
+			type: String,
+			trim: true,
+			required: true
+		},
 		Discount: {
 			type: Number,
 			default: 0

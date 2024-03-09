@@ -2,6 +2,13 @@ const mongoose = require("mongoose");
 
 const ServiceSchema = new mongoose.Schema(
 	{
+		Number: {
+			type: String,
+			required: true,
+			trim: true,
+			lowercase: true,
+			unique: true
+		},
 		status: {
 			type: String,
 			required: true,
