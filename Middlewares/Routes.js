@@ -16,6 +16,7 @@ const Chat = require("../routes/Complain/Chat");
 const Message = require("../routes/Complain/Message");
 const Task = require("../routes/Task");
 const Dashboard = require("../routes/Dashboard");
+const CNIC = require("../routes/CNIC");
 
 app.use(Car);
 app.use(User);
@@ -35,4 +36,5 @@ app.use(Chat);
 app.use(Message);
 //
 app.use(Task);
+app.use(CNIC);
 app.use(Dashboard);
