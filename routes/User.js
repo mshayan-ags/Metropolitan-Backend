@@ -388,7 +388,21 @@ router.get("/userInfo", async (req, res) => {
 		const { id, message } = await getUserId(req);
 		if (id) {
 			User.findOne({ _id: id })
-				.populate([{ path: "Property" }, { path: "profilePicture" }])
+				.populate([
+					{ path: "Property" },
+					{ path: "profilePicture" },
+					{
+						path: "CNIC",
+						populate: [
+							{
+								path: "Front"
+							},
+							{
+								path: "Back"
+							}
+						]
+					}
+				])
 				.then((data) => {
 					res.status(200).json({ status: 200, data: data });
 				})

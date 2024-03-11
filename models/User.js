@@ -60,6 +60,76 @@ const UserSchema = new mongoose.Schema(
 			required: true,
 			default: ""
 		},
+		Qualification: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		Designation: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		Proffesion: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		NameOfOrganization: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		AddressOfOrganization: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		PresentAddress: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		PermanentAddress: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		TelePhoneOffice: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		Residence: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		Fax: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		Other: {
+			type: String,
+			required: false,
+			default: ""
+		},
+		NoOfFamilyMembers: {
+			type: Number,
+			required: false,
+			default: ""
+		},
+		Adults: {
+			type: Number,
+			required: false,
+			default: ""
+		},
+		Children: {
+			type: Number,
+			required: false,
+			default: ""
+		},
 		CNIC: {
 			type: [mongoose.Schema.Types.ObjectId],
 			ref: "CNIC"

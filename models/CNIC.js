@@ -69,11 +69,13 @@ const CNICSchema = new mongoose.Schema(
 		},
 		Front: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Image"
+			ref: "Image",
+			required: true
 		},
 		Back: {
 			type: mongoose.Schema.Types.ObjectId,
-			ref: "Image"
+			ref: "Image",
+			required: true
 		}
 	},
 	{

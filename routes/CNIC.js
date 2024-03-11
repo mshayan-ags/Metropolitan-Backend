@@ -3,7 +3,9 @@ const { CNIC } = require("../models/CNIC");
 const { User } = require("../models/User");
 const { connectToDB } = require("../Middlewares/Db");
 const { getAdminId, getUserId } = require("../utils/AuthCheck");
-const { CheckAllRequiredFieldsAvailable } = require("../utils/functions");
+const { CheckAllRequiredFieldsAvailaible } = require("../utils/functions");
+const { default: mongoose } = require("mongoose");
+const { SaveImageDB } = require("./Image");
 
 const router = Router();
 
@@ -13,13 +15,13 @@ router.post("/Create-CNIC", async (req, res) => {
 		connectToDB();
 
 		const { id, message } = await getUserId(req);
-		if (!id) {
+		if (!id || id == "") {
 			return res.status(401).json({ status: 401, message: message });
 		}
 
 		const credentials = req.body;
 
-		const check = await CheckAllRequiredFieldsAvailable(
+		const check = await CheckAllRequiredFieldsAvailaible(
 			credentials,
 			[
 				"CNICNumber",
@@ -41,7 +43,7 @@ router.post("/Create-CNIC", async (req, res) => {
 			return res.status(404).json({ message: "User not found" });
 		}
 
-		const newUser = new CNIC({
+		const newCNIC = new CNIC({
 			...credentials,
 			User: new mongoose.Types.ObjectId(id)
 		});
@@ -49,34 +51,35 @@ router.post("/Create-CNIC", async (req, res) => {
 		if (credentials?.Front?.data) {
 			const image = await SaveImageDB(
 				credentials?.Front,
-				{ User: new mongoose.Types.ObjectId(newUser?._id) },
+				{ CNIC: new mongoose.Types.ObjectId(newCNIC?._id) },
 				res
 			);
 
 			if (image?.file?._id) {
-				newUser.Front = new mongoose.Types.ObjectId(image?.file?._id);
+				newCNIC.Front = new mongoose.Types.ObjectId(image?.file?._id);
 			} else {
 				res.status(500).json({ status: 500, message: image?.Error });
+				return;
 			}
 		}
 
 		if (credentials?.Back?.data) {
 			const image = await SaveImageDB(
 				credentials?.Back,
-				{ User: new mongoose.Types.ObjectId(newUser?._id) },
+				{ CNIC: new mongoose.Types.ObjectId(newCNIC?._id) },
 				res
 			);
 
 			if (image?.file?._id) {
-				newUser.Back = new mongoose.Types.ObjectId(image?.file?._id);
+				newCNIC.Back = new mongoose.Types.ObjectId(image?.file?._id);
 			} else {
 				res.status(500).json({ status: 500, message: image?.Error });
+				return;
 			}
 		}
-		await newUser.save();
+		await newCNIC.save();
 
 		const getAllCNICUser = await CNIC.find({ User: id }).select("_id");
-
 		await User.updateOne(
 			{
 				_id: id
