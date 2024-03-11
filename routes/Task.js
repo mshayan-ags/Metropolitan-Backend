@@ -44,7 +44,7 @@ router.post("/CreateTask", async (req, res) => {
 
       const or = [];
       if (Credentials.complainId) {
-        or.push({ complai: Credentials.complainId });
+        or.push({ complain: Credentials.complainId });
       } else if (Credentials.serviceId) {
         or.push({ service: Credentials.serviceId });
       }
