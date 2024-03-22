@@ -34,7 +34,6 @@ router.post("/Create-Admin", async (req, res) => {
 			password: password,
 			Role: Credentials?.Role,
 			TowerNo: Credentials?.TowerNo
-			// Responsiblities: Credentials.Responsiblities,
 		});
 
 		if (Credentials?.profilePicture?.name) {
@@ -47,6 +46,7 @@ router.post("/Create-Admin", async (req, res) => {
 			if (image?.file?._id) {
 				newAdmin.profilePicture = new mongoose.Types.ObjectId(image?.file?._id);
 			} else {
+				console.log("1");
 				res.status(500).json({ status: 500, message: image?.Error });
 			}
 		}
@@ -59,6 +59,8 @@ router.post("/Create-Admin", async (req, res) => {
 			message: "Admin Created in Succesfully"
 		});
 	} catch (error) {
+		console.log("2", error);
+
 		if (error?.code == 11000) {
 			res.status(500).json({
 				status: 500,
