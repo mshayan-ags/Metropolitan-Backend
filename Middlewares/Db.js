@@ -10,35 +10,49 @@ const { Review } = require("../models/Review");
 const { Utility } = require("../models/Utility");
 
 const connectToDB = async () => {
-  mongoose
-    .connect(
-      "mongodb+srv://user:RgBCB1vlcT0Cow6A@chatapp.4yxjjzq.mongodb.net/Metropolitan?retryWrites=true&w=majority"
-    )
-    .catch((err) => console.log(err));
+	mongoose
+		.connect(
+			"mongodb+srv://metropolis365fm:9ovLhi6P5K723tx9@metropolis.yillo40.mongodb.net/?retryWrites=true&w=majority&appName=Metropolis"
+		)
+		.catch((err) => console.log(err));
 
-  return await mongoose;
+	return await mongoose;
 };
 
-const connect = async () => {
-  mongoose
-    .connect(
-      "mongodb+srv://user:RgBCB1vlcT0Cow6A@chatapp.4yxjjzq.mongodb.net/Metropolitan?retryWrites=true&w=majority"
-    )
-    .then(async () => {
-      console.log("Connected to mongodb");
-      await User.find();
-      await Admin.find();
-      await Property.find();
-      await ServiceOffered.find();
-      await Service.find();
-      await Bill.find();
-      await Payment.find();
-      await Review.find();
-      await Utility.find();
-    })
-    .catch((err) => console.log(err));
+function AddProperty(params) {
+	const Arr = [
+		{
+			FlatNo: "",
+			Floor: "",
+			Tower: "",
+			Tower_FlatNo: "",
+			Category: "",
+			description: ""
+		}
+	];
+	// await Property.insertMany({})
+}
 
-  return await mongoose;
+const connect = async () => {
+	mongoose
+		.connect(
+			"mongodb+srv://metropolis365fm:9ovLhi6P5K723tx9@metropolis.yillo40.mongodb.net/?retryWrites=true&w=majority&appName=Metropolis"
+		)
+		.then(async () => {
+			console.log("Connected to mongodb");
+			await User.find();
+			await Admin.find();
+			await Property.find();
+			await ServiceOffered.find();
+			await Service.find();
+			await Bill.find();
+			await Payment.find();
+			await Review.find();
+			await Utility.find();
+		})
+		.catch((err) => console.log(err));
+
+	return await mongoose;
 };
 
 module.exports = { connectToDB, connect };
