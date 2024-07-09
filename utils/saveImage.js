@@ -38,6 +38,7 @@ async function saveImageCloud(image, res) {
     if (Check) {
       return { Error: "There Was Some Issue" };
     }
+    image.Folder="Metropolis"
     const Request = await axios.post(
       "http://motiwalabuilders.online/SaveImage",
       { image: image }

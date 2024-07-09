@@ -1,0 +1,3399 @@
+[
+        {
+            "Tower": 1,
+            "FlatNo": "T1-101",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "1_T1-101",
+            "description": "T1-101_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-102",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "1_T1-102",
+            "description": "T1-102_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-103",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "1_T1-103",
+            "description": "T1-103_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-104",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "1_T1-104",
+            "description": "T1-104_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-201",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "1_T1-201",
+            "description": "T1-201_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-202",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "1_T1-202",
+            "description": "T1-202_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-203",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "1_T1-203",
+            "description": "T1-203_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-204",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "1_T1-204",
+            "description": "T1-204_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-301",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "1_T1-301",
+            "description": "T1-301_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-302",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "1_T1-302",
+            "description": "T1-302_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-303",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "1_T1-303",
+            "description": "T1-303_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-304",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "1_T1-304",
+            "description": "T1-304_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-401",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "1_T1-401",
+            "description": "T1-401_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-402 \n",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "1_T1-402 \n",
+            "description": "T1-402 \n_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-403",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "1_T1-403",
+            "description": "T1-403_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-404",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "1_T1-404",
+            "description": "T1-404_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-501",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "1_T1-501",
+            "description": "T1-501_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-502\n PH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 5,
+            "Tower_FlatNo": "1_T1-502\n PH-A",
+            "description": "T1-502\n PH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-503",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "1_T1-503",
+            "description": "T1-503_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-504",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "1_T1-504",
+            "description": "T1-504_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-601",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "1_T1-601",
+            "description": "T1-601_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-603",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "1_T1-603",
+            "description": "T1-603_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-604",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "1_T1-604",
+            "description": "T1-604_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-701 \n ",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "1_T1-701 \n ",
+            "description": "T1-701 \n _3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-703",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "1_T1-703",
+            "description": "T1-703_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-704",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "1_T1-704",
+            "description": "T1-704_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-801",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "1_T1-801",
+            "description": "T1-801_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-803\n PH-A1",
+            "Category": "PENT \nHOUSE",
+            "Floor": 8,
+            "Tower_FlatNo": "1_T1-803\n PH-A1",
+            "description": "T1-803\n PH-A1_PENT \nHOUSE"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-804",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "1_T1-804",
+            "description": "T1-804_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-901",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "1_T1-901",
+            "description": "T1-901_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-904",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "1_T1-904",
+            "description": "T1-904_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-1001\nPH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 10,
+            "Tower_FlatNo": "1_T1-1001\nPH-A",
+            "description": "T1-1001\nPH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-1004",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "1_T1-1004",
+            "description": "T1-1004_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-1104",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "1_T1-1104",
+            "description": "T1-1104_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-1204 \n",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "1_T1-1204 \n",
+            "description": "T1-1204 \n_3 BED"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "T1-1304 \n PH-A1",
+            "Category": "PENT \nHOUSE",
+            "Floor": 13,
+            "Tower_FlatNo": "1_T1-1304 \n PH-A1",
+            "description": "T1-1304 \n PH-A1_PENT \nHOUSE"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "SHOW ROOM\nT1-01",
+            "Category": "HEAD \nOFFICE",
+            "Floor": 0,
+            "Tower_FlatNo": "1_SHOW ROOM\nT1-01",
+            "description": "SHOW ROOM\nT1-01_HEAD \nOFFICE"
+        },
+        {
+            "Tower": 1,
+            "FlatNo": "SHOW ROOM\nT1-02",
+            "Category": "SHOP",
+            "Floor": 0,
+            "Tower_FlatNo": "1_SHOW ROOM\nT1-02",
+            "description": "SHOW ROOM\nT1-02_SHOP"
+        }
+    ,
+        {
+            "Tower": 2,
+            "FlatNo": "T2-101",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "2_T2-101",
+            "description": "T2-101_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-102",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "2_T2-102",
+            "description": "T2-102_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-103",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "2_T2-103",
+            "description": "T2-103_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-104",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "2_T2-104",
+            "description": "T2-104_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-201",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "2_T2-201",
+            "description": "T2-201_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-202",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "2_T2-202",
+            "description": "T2-202_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-203",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "2_T2-203",
+            "description": "T2-203_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-204",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "2_T2-204",
+            "description": "T2-204_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-301",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "2_T2-301",
+            "description": "T2-301_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-302",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "2_T2-302",
+            "description": "T2-302_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-303",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "2_T2-303",
+            "description": "T2-303_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-304",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "2_T2-304",
+            "description": "T2-304_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-401",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "2_T2-401",
+            "description": "T2-401_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-402 \n",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "2_T2-402 \n",
+            "description": "T2-402 \n_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-403",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "2_T2-403",
+            "description": "T2-403_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-404",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "2_T2-404",
+            "description": "T2-404_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-501",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "2_T2-501",
+            "description": "T2-501_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-502\n PH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 5,
+            "Tower_FlatNo": "2_T2-502\n PH-A",
+            "description": "T2-502\n PH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-503",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "2_T2-503",
+            "description": "T2-503_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-504",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "2_T2-504",
+            "description": "T2-504_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-601",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "2_T2-601",
+            "description": "T2-601_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-603",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "2_T2-603",
+            "description": "T2-603_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-604",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "2_T2-604",
+            "description": "T2-604_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-701 \n ",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "2_T2-701 \n ",
+            "description": "T2-701 \n _3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-703",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "2_T2-703",
+            "description": "T2-703_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-704",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "2_T2-704",
+            "description": "T2-704_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-801",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "2_T2-801",
+            "description": "T2-801_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-803\n PH-A1",
+            "Category": "PENT \nHOUSE",
+            "Floor": 8,
+            "Tower_FlatNo": "2_T2-803\n PH-A1",
+            "description": "T2-803\n PH-A1_PENT \nHOUSE"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-804",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "2_T2-804",
+            "description": "T2-804_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-901",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "2_T2-901",
+            "description": "T2-901_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-904",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "2_T2-904",
+            "description": "T2-904_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-1001\nPH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 10,
+            "Tower_FlatNo": "2_T2-1001\nPH-A",
+            "description": "T2-1001\nPH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-1004",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "2_T2-1004",
+            "description": "T2-1004_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-1104",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "2_T2-1104",
+            "description": "T2-1104_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-1204 \n",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "2_T2-1204 \n",
+            "description": "T2-1204 \n_3 BED"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "T2-1304 \n PH-A1",
+            "Category": "PENT \nHOUSE",
+            "Floor": 13,
+            "Tower_FlatNo": "2_T2-1304 \n PH-A1",
+            "description": "T2-1304 \n PH-A1_PENT \nHOUSE"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "SHOW ROOM \nT2-01",
+            "Category": "POLANI\nOFFICE",
+            "Floor": 0,
+            "Tower_FlatNo": "2_SHOW ROOM \nT2-01",
+            "description": "SHOW ROOM \nT2-01_POLANI\nOFFICE"
+        },
+        {
+            "Tower": 2,
+            "FlatNo": "SHOW ROOM \nT2-02",
+            "Category": "GUN SHOP",
+            "Floor": 0,
+            "Tower_FlatNo": "2_SHOW ROOM \nT2-02",
+            "description": "SHOW ROOM \nT2-02_GUN SHOP"
+        }
+    ,
+        {
+            "Tower": 3,
+            "FlatNo": "T3-101",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "3_T3-101",
+            "description": "T3-101_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-102",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "3_T3-102",
+            "description": "T3-102_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-103",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "3_T3-103",
+            "description": "T3-103_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-104",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "3_T3-104",
+            "description": "T3-104_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-201",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "3_T3-201",
+            "description": "T3-201_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-202",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "3_T3-202",
+            "description": "T3-202_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-203",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "3_T3-203",
+            "description": "T3-203_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-204",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "3_T3-204",
+            "description": "T3-204_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-301",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "3_T3-301",
+            "description": "T3-301_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-302",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "3_T3-302",
+            "description": "T3-302_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-303",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "3_T3-303",
+            "description": "T3-303_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-304",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "3_T3-304",
+            "description": "T3-304_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-401",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "3_T3-401",
+            "description": "T3-401_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-402",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "3_T3-402",
+            "description": "T3-402_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-403",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "3_T3-403",
+            "description": "T3-403_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-404",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "3_T3-404",
+            "description": "T3-404_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-501",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "3_T3-501",
+            "description": "T3-501_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-502",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "3_T3-502",
+            "description": "T3-502_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-503",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "3_T3-503",
+            "description": "T3-503_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-504",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "3_T3-504",
+            "description": "T3-504_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-601",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "3_T3-601",
+            "description": "T3-601_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-602",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "3_T3-602",
+            "description": "T3-602_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-603",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "3_T3-603",
+            "description": "T3-603_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-604",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "3_T3-604",
+            "description": "T3-604_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-701",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "3_T3-701",
+            "description": "T3-701_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-702",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "3_T3-702",
+            "description": "T3-702_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-703",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "3_T3-703",
+            "description": "T3-703_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-704",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "3_T3-704",
+            "description": "T3-704_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-801",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "3_T3-801",
+            "description": "T3-801_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-802",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "3_T3-802",
+            "description": "T3-802_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-803",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "3_T3-803",
+            "description": "T3-803_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-804",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "3_T3-804",
+            "description": "T3-804_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-901",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "3_T3-901",
+            "description": "T3-901_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-902",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "3_T3-902",
+            "description": "T3-902_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-903",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "3_T3-903",
+            "description": "T3-903_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-904",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "3_T3-904",
+            "description": "T3-904_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1001",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "3_T3-1001",
+            "description": "T3-1001_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1002          \n    PH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 10,
+            "Tower_FlatNo": "3_T3-1002          \n    PH-A",
+            "description": "T3-1002          \n    PH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1003",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "3_T3-1003",
+            "description": "T3-1003_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1004",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "3_T3-1004",
+            "description": "T3-1004_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1101",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "3_T3-1101",
+            "description": "T3-1101_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1103",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "3_T3-1103",
+            "description": "T3-1103_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1104",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "3_T3-1104",
+            "description": "T3-1104_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1201 \n    PH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 12,
+            "Tower_FlatNo": "3_T3-1201 \n    PH-A",
+            "description": "T3-1201 \n    PH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1203",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "3_T3-1203",
+            "description": "T3-1203_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1204",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "3_T3-1204",
+            "description": "T3-1204_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1303 \n    PH-A1",
+            "Category": "PENT \nHOUSE",
+            "Floor": 13,
+            "Tower_FlatNo": "3_T3-1303 \n    PH-A1",
+            "description": "T3-1303 \n    PH-A1_PENT \nHOUSE"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1304",
+            "Category": "3 BED",
+            "Floor": 13,
+            "Tower_FlatNo": "3_T3-1304",
+            "description": "T3-1304_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1404",
+            "Category": "3 BED",
+            "Floor": 14,
+            "Tower_FlatNo": "3_T3-1404",
+            "description": "T3-1404_3 BED"
+        },
+        {
+            "Tower": 3,
+            "FlatNo": "T3-1504 \n    PH-A1",
+            "Category": "PENT \nHOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "3_T3-1504 \n    PH-A1",
+            "description": "T3-1504 \n    PH-A1_PENT \nHOUSE"
+        }
+    ,
+       {
+            "Tower": 4,
+            "FlatNo": "T4-101",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "4_T4-101",
+            "description": "T4-101_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-102",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "4_T4-102",
+            "description": "T4-102_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-103",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "4_T4-103",
+            "description": "T4-103_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-104",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "4_T4-104",
+            "description": "T4-104_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-201",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "4_T4-201",
+            "description": "T4-201_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-202",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "4_T4-202",
+            "description": "T4-202_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-203",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "4_T4-203",
+            "description": "T4-203_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-204",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "4_T4-204",
+            "description": "T4-204_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-301",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "4_T4-301",
+            "description": "T4-301_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-302",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "4_T4-302",
+            "description": "T4-302_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-303",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "4_T4-303",
+            "description": "T4-303_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-304",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "4_T4-304",
+            "description": "T4-304_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-401",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "4_T4-401",
+            "description": "T4-401_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-402",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "4_T4-402",
+            "description": "T4-402_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-403",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "4_T4-403",
+            "description": "T4-403_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-404",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "4_T4-404",
+            "description": "T4-404_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-501",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "4_T4-501",
+            "description": "T4-501_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-502",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "4_T4-502",
+            "description": "T4-502_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-503",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "4_T4-503",
+            "description": "T4-503_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-504",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "4_T4-504",
+            "description": "T4-504_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-601",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "4_T4-601",
+            "description": "T4-601_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-602",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "4_T4-602",
+            "description": "T4-602_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-603",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "4_T4-603",
+            "description": "T4-603_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-604",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "4_T4-604",
+            "description": "T4-604_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-701",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "4_T4-701",
+            "description": "T4-701_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-702",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "4_T4-702",
+            "description": "T4-702_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-703",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "4_T4-703",
+            "description": "T4-703_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-704",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "4_T4-704",
+            "description": "T4-704_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-801",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "4_T4-801",
+            "description": "T4-801_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-802",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "4_T4-802",
+            "description": "T4-802_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-803",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "4_T4-803",
+            "description": "T4-803_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-804",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "4_T4-804",
+            "description": "T4-804_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-901",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "4_T4-901",
+            "description": "T4-901_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-902",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "4_T4-902",
+            "description": "T4-902_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-903",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "4_T4-903",
+            "description": "T4-903_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-904",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "4_T4-904",
+            "description": "T4-904_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1001",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "4_T4-1001",
+            "description": "T4-1001_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1002          \n    PH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 10,
+            "Tower_FlatNo": "4_T4-1002          \n    PH-A",
+            "description": "T4-1002          \n    PH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1003",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "4_T4-1003",
+            "description": "T4-1003_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1004",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "4_T4-1004",
+            "description": "T4-1004_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1101",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "4_T4-1101",
+            "description": "T4-1101_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1103",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "4_T4-1103",
+            "description": "T4-1103_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1104",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "4_T4-1104",
+            "description": "T4-1104_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1201 \n    PH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 12,
+            "Tower_FlatNo": "4_T4-1201 \n    PH-A",
+            "description": "T4-1201 \n    PH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1203",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "4_T4-1203",
+            "description": "T4-1203_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1204",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "4_T4-1204",
+            "description": "T4-1204_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1303 \n    PH-A1",
+            "Category": "PENT \nHOUSE",
+            "Floor": 13,
+            "Tower_FlatNo": "4_T4-1303 \n    PH-A1",
+            "description": "T4-1303 \n    PH-A1_PENT \nHOUSE"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1304",
+            "Category": "3 BED",
+            "Floor": 13,
+            "Tower_FlatNo": "4_T4-1304",
+            "description": "T4-1304_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1404",
+            "Category": "3 BED",
+            "Floor": 14,
+            "Tower_FlatNo": "4_T4-1404",
+            "description": "T4-1404_3 BED"
+        },
+        {
+            "Tower": 4,
+            "FlatNo": "T4-1504 \n    PH-A1",
+            "Category": "PENT \nHOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "4_T4-1504 \n    PH-A1",
+            "description": "T4-1504 \n    PH-A1_PENT \nHOUSE"
+        }
+    ,
+      {
+            "Tower": 5,
+            "FlatNo": "T5-101",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "5_T5-101",
+            "description": "T5-101_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-102",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "5_T5-102",
+            "description": "T5-102_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-103",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "5_T5-103",
+            "description": "T5-103_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-104",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "5_T5-104",
+            "description": "T5-104_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-201",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "5_T5-201",
+            "description": "T5-201_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-202",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "5_T5-202",
+            "description": "T5-202_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-203",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "5_T5-203",
+            "description": "T5-203_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-204",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "5_T5-204",
+            "description": "T5-204_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-301",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "5_T5-301",
+            "description": "T5-301_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-302",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "5_T5-302",
+            "description": "T5-302_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-303",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "5_T5-303",
+            "description": "T5-303_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-304",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "5_T5-304",
+            "description": "T5-304_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-401",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "5_T5-401",
+            "description": "T5-401_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-402",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "5_T5-402",
+            "description": "T5-402_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-403",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "5_T5-403",
+            "description": "T5-403_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-404",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "5_T5-404",
+            "description": "T5-404_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-501",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "5_T5-501",
+            "description": "T5-501_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-502",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "5_T5-502",
+            "description": "T5-502_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-503",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "5_T5-503",
+            "description": "T5-503_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-504",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "5_T5-504",
+            "description": "T5-504_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-601",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "5_T5-601",
+            "description": "T5-601_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-602",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "5_T5-602",
+            "description": "T5-602_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-603",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "5_T5-603",
+            "description": "T5-603_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-604",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "5_T5-604",
+            "description": "T5-604_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-701",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "5_T5-701",
+            "description": "T5-701_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-702",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "5_T5-702",
+            "description": "T5-702_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-703",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "5_T5-703",
+            "description": "T5-703_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-704",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "5_T5-704",
+            "description": "T5-704_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-801",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "5_T5-801",
+            "description": "T5-801_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-802",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "5_T5-802",
+            "description": "T5-802_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-803",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "5_T5-803",
+            "description": "T5-803_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-804",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "5_T5-804",
+            "description": "T5-804_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-901 \n",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "5_T5-901 \n",
+            "description": "T5-901 \n_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-902",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "5_T5-902",
+            "description": "T5-902_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-903\n ",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "5_T5-903\n ",
+            "description": "T5-903\n _3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-904 \n",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "5_T5-904 \n",
+            "description": "T5-904 \n_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1001",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "5_T5-1001",
+            "description": "T5-1001_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1002",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "5_T5-1002",
+            "description": "T5-1002_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1003",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "5_T5-1003",
+            "description": "T5-1003_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1004",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "5_T5-1004",
+            "description": "T5-1004_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1101",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "5_T5-1101",
+            "description": "T5-1101_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1102",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "5_T5-1102",
+            "description": "T5-1102_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1103",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "5_T5-1103",
+            "description": "T5-1103_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1104 \n    ",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "5_T5-1104 \n    ",
+            "description": "T5-1104 \n    _3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1201 \n",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "5_T5-1201 \n",
+            "description": "T5-1201 \n_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1202",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "5_T5-1202",
+            "description": "T5-1202_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1203\n ",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "5_T5-1203\n ",
+            "description": "T5-1203\n _3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1204 ",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "5_T5-1204 ",
+            "description": "T5-1204 _3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1301 ",
+            "Category": "3 BED",
+            "Floor": 13,
+            "Tower_FlatNo": "5_T5-1301 ",
+            "description": "T5-1301 _3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1302\n",
+            "Category": "3 BED",
+            "Floor": 13,
+            "Tower_FlatNo": "5_T5-1302\n",
+            "description": "T5-1302\n_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1303\n",
+            "Category": "3 BED",
+            "Floor": 13,
+            "Tower_FlatNo": "5_T5-1303\n",
+            "description": "T5-1303\n_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1304 ",
+            "Category": "3 BED",
+            "Floor": 13,
+            "Tower_FlatNo": "5_T5-1304 ",
+            "description": "T5-1304 _3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1401 ",
+            "Category": "3 BED",
+            "Floor": 14,
+            "Tower_FlatNo": "5_T5-1401 ",
+            "description": "T5-1401 _3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1402\n ",
+            "Category": "3 BED",
+            "Floor": 14,
+            "Tower_FlatNo": "5_T5-1402\n ",
+            "description": "T5-1402\n _3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1403\n",
+            "Category": "3 BED",
+            "Floor": 14,
+            "Tower_FlatNo": "5_T5-1403\n",
+            "description": "T5-1403\n_3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1404 ",
+            "Category": "3 BED",
+            "Floor": 14,
+            "Tower_FlatNo": "5_T5-1404 ",
+            "description": "T5-1404 _3 BED"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1501 \nPH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "5_T5-1501 \nPH-A",
+            "description": "T5-1501 \nPH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1502\n PH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "5_T5-1502\n PH-A",
+            "description": "T5-1502\n PH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1503\n PH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "5_T5-1503\n PH-A",
+            "description": "T5-1503\n PH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 5,
+            "FlatNo": "T5-1504 \nPH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "5_T5-1504 \nPH-A",
+            "description": "T5-1504 \nPH-A_PENT \nHOUSE"
+        }
+    ,
+    {
+            "Tower": 6,
+            "FlatNo": "T6-101",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "6_T6-101",
+            "description": "T6-101_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-102",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "6_T6-102",
+            "description": "T6-102_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-103",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "6_T6-103",
+            "description": "T6-103_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-104",
+            "Category": "3 BED",
+            "Floor": 1,
+            "Tower_FlatNo": "6_T6-104",
+            "description": "T6-104_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-201",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "6_T6-201",
+            "description": "T6-201_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-202",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "6_T6-202",
+            "description": "T6-202_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-203",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "6_T6-203",
+            "description": "T6-203_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-204",
+            "Category": "3 BED",
+            "Floor": 2,
+            "Tower_FlatNo": "6_T6-204",
+            "description": "T6-204_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-301",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "6_T6-301",
+            "description": "T6-301_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-302",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "6_T6-302",
+            "description": "T6-302_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-303",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "6_T6-303",
+            "description": "T6-303_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-304",
+            "Category": "3 BED",
+            "Floor": 3,
+            "Tower_FlatNo": "6_T6-304",
+            "description": "T6-304_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-401",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "6_T6-401",
+            "description": "T6-401_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-402",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "6_T6-402",
+            "description": "T6-402_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-403",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "6_T6-403",
+            "description": "T6-403_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-404",
+            "Category": "3 BED",
+            "Floor": 4,
+            "Tower_FlatNo": "6_T6-404",
+            "description": "T6-404_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-501",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "6_T6-501",
+            "description": "T6-501_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-502",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "6_T6-502",
+            "description": "T6-502_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-503",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "6_T6-503",
+            "description": "T6-503_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-504",
+            "Category": "3 BED",
+            "Floor": 5,
+            "Tower_FlatNo": "6_T6-504",
+            "description": "T6-504_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-601",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "6_T6-601",
+            "description": "T6-601_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-602",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "6_T6-602",
+            "description": "T6-602_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-603",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "6_T6-603",
+            "description": "T6-603_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-604",
+            "Category": "3 BED",
+            "Floor": 6,
+            "Tower_FlatNo": "6_T6-604",
+            "description": "T6-604_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-701",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "6_T6-701",
+            "description": "T6-701_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-702",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "6_T6-702",
+            "description": "T6-702_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-703",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "6_T6-703",
+            "description": "T6-703_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-704",
+            "Category": "3 BED",
+            "Floor": 7,
+            "Tower_FlatNo": "6_T6-704",
+            "description": "T6-704_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-801",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "6_T6-801",
+            "description": "T6-801_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-802",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "6_T6-802",
+            "description": "T6-802_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-803",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "6_T6-803",
+            "description": "T6-803_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-804",
+            "Category": "3 BED",
+            "Floor": 8,
+            "Tower_FlatNo": "6_T6-804",
+            "description": "T6-804_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-901 \n",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "6_T6-901 \n",
+            "description": "T6-901 \n_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-902",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "6_T6-902",
+            "description": "T6-902_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-903\n ",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "6_T6-903\n ",
+            "description": "T6-903\n _3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-904 \n",
+            "Category": "3 BED",
+            "Floor": 9,
+            "Tower_FlatNo": "6_T6-904 \n",
+            "description": "T6-904 \n_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1001",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "6_T6-1001",
+            "description": "T6-1001_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1002",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "6_T6-1002",
+            "description": "T6-1002_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1003",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "6_T6-1003",
+            "description": "T6-1003_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1004",
+            "Category": "3 BED",
+            "Floor": 10,
+            "Tower_FlatNo": "6_T6-1004",
+            "description": "T6-1004_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1101",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "6_T6-1101",
+            "description": "T6-1101_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1102",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "6_T6-1102",
+            "description": "T6-1102_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1103",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "6_T6-1103",
+            "description": "T6-1103_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1104 \n    ",
+            "Category": "3 BED",
+            "Floor": 11,
+            "Tower_FlatNo": "6_T6-1104 \n    ",
+            "description": "T6-1104 \n    _3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1201 \n",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "6_T6-1201 \n",
+            "description": "T6-1201 \n_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1202\n",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "6_T6-1202\n",
+            "description": "T6-1202\n_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1203\n ",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "6_T6-1203\n ",
+            "description": "T6-1203\n _3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1204 ",
+            "Category": "3 BED",
+            "Floor": 12,
+            "Tower_FlatNo": "6_T6-1204 ",
+            "description": "T6-1204 _3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1301 ",
+            "Category": "3 BED",
+            "Floor": 13,
+            "Tower_FlatNo": "6_T6-1301 ",
+            "description": "T6-1301 _3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1302\n",
+            "Category": "3 BED",
+            "Floor": 13,
+            "Tower_FlatNo": "6_T6-1302\n",
+            "description": "T6-1302\n_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1303\n",
+            "Category": "3 BED",
+            "Floor": 13,
+            "Tower_FlatNo": "6_T6-1303\n",
+            "description": "T6-1303\n_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1304 ",
+            "Category": "3 BED",
+            "Floor": 13,
+            "Tower_FlatNo": "6_T6-1304 ",
+            "description": "T6-1304 _3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1401 ",
+            "Category": "3 BED",
+            "Floor": 14,
+            "Tower_FlatNo": "6_T6-1401 ",
+            "description": "T6-1401 _3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1402\n ",
+            "Category": "3 BED",
+            "Floor": 14,
+            "Tower_FlatNo": "6_T6-1402\n ",
+            "description": "T6-1402\n _3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1403\n",
+            "Category": "3 BED",
+            "Floor": 14,
+            "Tower_FlatNo": "6_T6-1403\n",
+            "description": "T6-1403\n_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1404 ",
+            "Category": "3 BED",
+            "Floor": 14,
+            "Tower_FlatNo": "6_T6-1404 ",
+            "description": "T6-1404 _3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1501 \nPH-A",
+            "Category": "3 BED",
+            "Floor": 15,
+            "Tower_FlatNo": "6_T6-1501 \nPH-A",
+            "description": "T6-1501 \nPH-A_3 BED"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1502\n PH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "6_T6-1502\n PH-A",
+            "description": "T6-1502\n PH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1503\n PH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "6_T6-1503\n PH-A",
+            "description": "T6-1503\n PH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 6,
+            "FlatNo": "T6-1504 \nPH-A",
+            "Category": "PENT \nHOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "6_T6-1504 \nPH-A",
+            "description": "T6-1504 \nPH-A_PENT \nHOUSE"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-101",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "7_T7-101",
+            "description": "T7-101_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-102",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "7_T7-102",
+            "description": "T7-102_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-103",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "7_T7-103",
+            "description": "T7-103_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-104",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "7_T7-104",
+            "description": "T7-104_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-105",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "7_T7-105",
+            "description": "T7-105_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-106",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "7_T7-106",
+            "description": "T7-106_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-107",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "7_T7-107",
+            "description": "T7-107_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-108",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "7_T7-108",
+            "description": "T7-108_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-301",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "7_T7-301",
+            "description": "T7-301_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-302",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "7_T7-302",
+            "description": "T7-302_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-303",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "7_T7-303",
+            "description": "T7-303_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-304",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "7_T7-304",
+            "description": "T7-304_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-305",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "7_T7-305",
+            "description": "T7-305_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-306",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "7_T7-306",
+            "description": "T7-306_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-307",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "7_T7-307",
+            "description": "T7-307_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-308",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "7_T7-308",
+            "description": "T7-308_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-501",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "7_T7-501",
+            "description": "T7-501_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-502",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "7_T7-502",
+            "description": "T7-502_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-503",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "7_T7-503",
+            "description": "T7-503_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-504",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "7_T7-504",
+            "description": "T7-504_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-505",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "7_T7-505",
+            "description": "T7-505_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-506",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "7_T7-506",
+            "description": "T7-506_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-507",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "7_T7-507",
+            "description": "T7-507_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-508",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "7_T7-508",
+            "description": "T7-508_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-701",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "7_T7-701",
+            "description": "T7-701_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-702",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "7_T7-702",
+            "description": "T7-702_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-703",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "7_T7-703",
+            "description": "T7-703_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-704",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "7_T7-704",
+            "description": "T7-704_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-705",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "7_T7-705",
+            "description": "T7-705_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-706",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "7_T7-706",
+            "description": "T7-706_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-707",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "7_T7-707",
+            "description": "T7-707_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-708",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "7_T7-708",
+            "description": "T7-708_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-901",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "7_T7-901",
+            "description": "T7-901_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-902",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "7_T7-902",
+            "description": "T7-902_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-903",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "7_T7-903",
+            "description": "T7-903_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-904",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "7_T7-904",
+            "description": "T7-904_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-905",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "7_T7-905",
+            "description": "T7-905_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-906",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "7_T7-906",
+            "description": "T7-906_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-907",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "7_T7-907",
+            "description": "T7-907_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-908",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "7_T7-908",
+            "description": "T7-908_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1101",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "7_T7-1101",
+            "description": "T7-1101_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1102",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "7_T7-1102",
+            "description": "T7-1102_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1103",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "7_T7-1103",
+            "description": "T7-1103_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1104",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "7_T7-1104",
+            "description": "T7-1104_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1105",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "7_T7-1105",
+            "description": "T7-1105_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1106",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "7_T7-1106",
+            "description": "T7-1106_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1107",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "7_T7-1107",
+            "description": "T7-1107_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1108",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "7_T7-1108",
+            "description": "T7-1108_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1301",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "7_T7-1301",
+            "description": "T7-1301_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1302",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "7_T7-1302",
+            "description": "T7-1302_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1303",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "7_T7-1303",
+            "description": "T7-1303_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1304",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "7_T7-1304",
+            "description": "T7-1304_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1305",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "7_T7-1305",
+            "description": "T7-1305_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1306",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "7_T7-1306",
+            "description": "T7-1306_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1307",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "7_T7-1307",
+            "description": "T7-1307_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1308",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "7_T7-1308",
+            "description": "T7-1308_4 BED DUPLEX"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1501",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "7_T7-1501",
+            "description": "T7-1501_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1502",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "7_T7-1502",
+            "description": "T7-1502_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1503",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "7_T7-1503",
+            "description": "T7-1503_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1504",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "7_T7-1504",
+            "description": "T7-1504_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1505",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "7_T7-1505",
+            "description": "T7-1505_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1506",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "7_T7-1506",
+            "description": "T7-1506_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1507",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "7_T7-1507",
+            "description": "T7-1507_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 7,
+            "FlatNo": "T7-1508",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "7_T7-1508",
+            "description": "T7-1508_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-101",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "8_T8-101",
+            "description": "T8-101_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-102",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "8_T8-102",
+            "description": "T8-102_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-103",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "8_T8-103",
+            "description": "T8-103_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-104",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "8_T8-104",
+            "description": "T8-104_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-105",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "8_T8-105",
+            "description": "T8-105_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-106",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "8_T8-106",
+            "description": "T8-106_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-107",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "8_T8-107",
+            "description": "T8-107_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-108",
+            "Category": "4 BED DUPLEX",
+            "Floor": 1,
+            "Tower_FlatNo": "8_T8-108",
+            "description": "T8-108_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-301",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "8_T8-301",
+            "description": "T8-301_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-302",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "8_T8-302",
+            "description": "T8-302_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-303",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "8_T8-303",
+            "description": "T8-303_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-304",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "8_T8-304",
+            "description": "T8-304_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-305",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "8_T8-305",
+            "description": "T8-305_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-306",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "8_T8-306",
+            "description": "T8-306_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-307",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "8_T8-307",
+            "description": "T8-307_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-308",
+            "Category": "4 BED DUPLEX",
+            "Floor": 3,
+            "Tower_FlatNo": "8_T8-308",
+            "description": "T8-308_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-501",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "8_T8-501",
+            "description": "T8-501_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-502",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "8_T8-502",
+            "description": "T8-502_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-503",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "8_T8-503",
+            "description": "T8-503_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-504",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "8_T8-504",
+            "description": "T8-504_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-505",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "8_T8-505",
+            "description": "T8-505_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-506",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "8_T8-506",
+            "description": "T8-506_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-507",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "8_T8-507",
+            "description": "T8-507_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-508",
+            "Category": "4 BED DUPLEX",
+            "Floor": 5,
+            "Tower_FlatNo": "8_T8-508",
+            "description": "T8-508_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-701",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "8_T8-701",
+            "description": "T8-701_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-702",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "8_T8-702",
+            "description": "T8-702_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-703",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "8_T8-703",
+            "description": "T8-703_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-704",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "8_T8-704",
+            "description": "T8-704_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-705",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "8_T8-705",
+            "description": "T8-705_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-706",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "8_T8-706",
+            "description": "T8-706_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-707",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "8_T8-707",
+            "description": "T8-707_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-708",
+            "Category": "4 BED DUPLEX",
+            "Floor": 7,
+            "Tower_FlatNo": "8_T8-708",
+            "description": "T8-708_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-901",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "8_T8-901",
+            "description": "T8-901_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-902",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "8_T8-902",
+            "description": "T8-902_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-903",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "8_T8-903",
+            "description": "T8-903_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-904",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "8_T8-904",
+            "description": "T8-904_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-905",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "8_T8-905",
+            "description": "T8-905_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-906",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "8_T8-906",
+            "description": "T8-906_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-907",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "8_T8-907",
+            "description": "T8-907_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-908",
+            "Category": "4 BED DUPLEX",
+            "Floor": 9,
+            "Tower_FlatNo": "8_T8-908",
+            "description": "T8-908_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1101",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "8_T8-1101",
+            "description": "T8-1101_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1102",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "8_T8-1102",
+            "description": "T8-1102_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1103",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "8_T8-1103",
+            "description": "T8-1103_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1104",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "8_T8-1104",
+            "description": "T8-1104_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1105",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "8_T8-1105",
+            "description": "T8-1105_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1106",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "8_T8-1106",
+            "description": "T8-1106_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1107",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "8_T8-1107",
+            "description": "T8-1107_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1108",
+            "Category": "4 BED DUPLEX",
+            "Floor": 11,
+            "Tower_FlatNo": "8_T8-1108",
+            "description": "T8-1108_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1301",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "8_T8-1301",
+            "description": "T8-1301_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1302",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "8_T8-1302",
+            "description": "T8-1302_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1303",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "8_T8-1303",
+            "description": "T8-1303_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1304",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "8_T8-1304",
+            "description": "T8-1304_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1305",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "8_T8-1305",
+            "description": "T8-1305_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1306",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "8_T8-1306",
+            "description": "T8-1306_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1307",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "8_T8-1307",
+            "description": "T8-1307_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1308",
+            "Category": "4 BED DUPLEX",
+            "Floor": 13,
+            "Tower_FlatNo": "8_T8-1308",
+            "description": "T8-1308_4 BED DUPLEX"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1501",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "8_T8-1501",
+            "description": "T8-1501_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1502",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "8_T8-1502",
+            "description": "T8-1502_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1503",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "8_T8-1503",
+            "description": "T8-1503_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1504",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "8_T8-1504",
+            "description": "T8-1504_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1505",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "8_T8-1505",
+            "description": "T8-1505_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1506",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "8_T8-1506",
+            "description": "T8-1506_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1507",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "8_T8-1507",
+            "description": "T8-1507_4 BED DUPLEX\nPENT HOUSE"
+        },
+        {
+            "Tower": 8,
+            "FlatNo": "T8-1508",
+            "Category": "4 BED DUPLEX\nPENT HOUSE",
+            "Floor": 15,
+            "Tower_FlatNo": "8_T8-1508",
+            "description": "T8-1508_4 BED DUPLEX\nPENT HOUSE"
+        }
+    ]

@@ -19,18 +19,8 @@ const connectToDB = async () => {
 	return await mongoose;
 };
 
-function AddProperty(params) {
-	const Arr = [
-		{
-			FlatNo: "",
-			Floor: "",
-			Tower: "",
-			Tower_FlatNo: "",
-			Category: "",
-			description: ""
-		}
-	];
-	// await Property.insertMany({})
+async function AddProperty() {
+	// await Property.insertMany(data)
 }
 
 const connect = async () => {
