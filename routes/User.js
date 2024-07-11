@@ -41,9 +41,9 @@ router.post("/SignUp", async (req, res) => {
 			});
 
 			if (newUser) {
-				const verifierkey = new Verifier("at_Qc0l6wLRvlfI875zbloS9GD7YLltj");
-				return await verifierkey.verify(newUser?.email, async (err, data) => {
-					if (data && data?.freeCheck && data?.dnsCheck && data?.smtpCheck && data?.formatCheck) {
+				// const verifierkey = new Verifier("at_YVIT9hDNQyVuukKm6g0S4EE1HYXxi");
+				// return await verifierkey.verify(newUser?.email, async (err, data) => {
+				// 	if (data && data?.freeCheck && data?.dnsCheck && data?.smtpCheck && data?.formatCheck) {
 						const otp = generateOTP(6);
 						newUser.otp = otp;
 
@@ -95,13 +95,13 @@ router.post("/SignUp", async (req, res) => {
 							message: `Please Change your email as it's not valid`
 						});
 					}
-				});
-			} else {
-				res.status(500).json({
-					status: 500,
-					message: `There was Some Issue`
-				});
-			}
+			// 	});
+			// } else {
+			// 	res.status(500).json({
+			// 		status: 500,
+			// 		message: `There was Some Issue`
+			// 	});
+			// }
 		}
 	} catch (error) {
 		if (error?.code == 11000) {
