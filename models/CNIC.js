@@ -13,54 +13,42 @@ const CNICSchema = new mongoose.Schema(
 		},
 		DateOfBirth: {
 			type: Date,
-			required: true
 		},
 		Gender: {
 			type: String,
-			required: true,
 			enum: ["Male", "Female", "Other"]
 		},
 		Address: {
 			type: String,
-			required: true
 		},
 		phoneNumber: {
 			type: String,
-			required: false
 		},
 		Relation: {
 			type: String,
-			required: true
 		},
 		Description: {
 			type: String,
-			required: false
 		},
 		PassportNo: {
 			type: String,
-			required: false,
 			unique: true
 		},
 		MaritalStatus: {
 			type: String,
-			required: false,
 			enum: ["Single", "Married", "Divorced", "Widowed"]
 		},
 		Domicile: {
 			type: String,
-			required: false
 		},
 		Nationality: {
 			type: String,
-			required: true
 		},
 		Religion: {
 			type: String,
-			required: false
 		},
 		Sect: {
 			type: String,
-			required: false
 		},
 		User: {
 			type: mongoose.Schema.Types.ObjectId,
@@ -70,12 +58,10 @@ const CNICSchema = new mongoose.Schema(
 		Front: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Image",
-			required: true
 		},
 		Back: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "Image",
-			required: true
 		}
 	},
 	{

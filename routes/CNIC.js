@@ -26,12 +26,12 @@ router.post("/Create-CNIC", async (req, res) => {
 			[
 				"CNICNumber",
 				"FullName",
-				"DateOfBirth",
-				"Gender",
-				"Address",
-				"Nationality",
-				"Front",
-				"Back"
+				// "DateOfBirth",
+				// "Gender",
+				// "Address",
+				// "Nationality",
+				// "Front",
+				// "Back"
 			],
 			res
 		);
