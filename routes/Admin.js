@@ -95,7 +95,11 @@ router.post("/Update-Admin", async (req, res) => {
 						res.status(500).json({ status: 500, message: image?.Error });
 					}
 				}
-				await Admin.updateOne({ _id: id }, Credentials, {
+				await Admin.updateOne({ _id: id }, {
+					TowerNo: Credentials?.TowerNo,
+					Role: Credentials?.Role,
+					isArchived: Credentials?.isArchived
+				}, {
 					new: false
 				})
 					.then((docs) => {
@@ -131,7 +135,7 @@ router.post("/Login-Admin", async (req, res) => {
 
 		const searchAdmin = await Admin.findOne({ email: Credentials?.email });
 
-		if (searchAdmin?.password && searchAdmin?._id) {
+		if (searchAdmin?.password && searchAdmin?._id && !searchAdmin?.isArchived) {
 			const valid = await bcrypt.compare(Credentials?.password, searchAdmin?.password);
 
 			if (valid) {

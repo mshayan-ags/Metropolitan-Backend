@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const AdminSchema = new mongoose.Schema(
 	{
+		isArchived: {
+			type: String,
+			required: true,
+			default: false
+		},
 		name: {
 			type: String,
 			required: true,
