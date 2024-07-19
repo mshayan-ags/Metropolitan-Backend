@@ -135,7 +135,7 @@ router.post("/Login-Admin", async (req, res) => {
 
 		const searchAdmin = await Admin.findOne({ email: Credentials?.email });
 
-		if (searchAdmin?.password && searchAdmin?._id && !searchAdmin?.isArchived) {
+		if (searchAdmin?.password && searchAdmin?._id && ((Boolean(searchAdmin?.isArchived) == false) || !searchAdmin?.isArchived)) {
 			const valid = await bcrypt.compare(Credentials?.password, searchAdmin?.password);
 
 			if (valid) {
