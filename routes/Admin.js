@@ -80,7 +80,7 @@ router.post("/Update-Admin", async (req, res) => {
 		if (id) {
 			const Credentials = req.body;
 
-			const searchAdmin = await Admin.findOne({ _id: id });
+			const searchAdmin = await Admin.findOne({ _id: Credentials?.id });
 
 			if (searchAdmin?._id) {
 				if (Credentials?.profilePicture?.name) {
@@ -95,7 +95,7 @@ router.post("/Update-Admin", async (req, res) => {
 						res.status(500).json({ status: 500, message: image?.Error });
 					}
 				}
-				await Admin.updateOne({ _id: id }, {
+				await Admin.updateOne({ _id: searchAdmin?._id }, {
 					TowerNo: Credentials?.TowerNo,
 					Role: Credentials?.Role,
 					isArchived: Credentials?.isArchived
