@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const AdminSchema = new mongoose.Schema(
 	{
 		isArchived: {
-			type: String,
+			type: Boolean,
 			required: true,
 			default: false
 		},
