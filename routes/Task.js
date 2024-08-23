@@ -21,7 +21,7 @@ router.post("/CreateTask", async (req, res) => {
 
       const Check = await CheckAllRequiredFieldsAvailaible(
         Credentials,
-        ["assignedTo", "status"],
+        ["assignedTo", "status", "comments"],
         res
       );
 
@@ -59,6 +59,7 @@ router.post("/CreateTask", async (req, res) => {
         assignedBy: assignedById,
         assignedTo: Credentials.assignedTo,
         status: Credentials.status,
+        comments: Credentials.comments,
       });
 
       // Check if the task ID is not already in the array before pushing

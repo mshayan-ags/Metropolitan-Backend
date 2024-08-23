@@ -12,6 +12,12 @@ const TaskSchema = new mongoose.Schema(
       ref: "Admin",
       required: true,
     },
+    comments: {
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+    },
     complain: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Complain",
