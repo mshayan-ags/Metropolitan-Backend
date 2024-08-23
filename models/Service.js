@@ -56,6 +56,10 @@ const ServiceSchema = new mongoose.Schema(
 		Tasks: {
 			type: [mongoose.Schema.Types.ObjectId],
 			ref: "Task"
+		},
+		Comment: {
+			type: [mongoose.Schema.Types.ObjectId],
+			ref: "Comment"
 		}
 	},
 	{
