@@ -267,6 +267,7 @@ router.post("/Update-Complain", async (req, res) => {
 				message: `Please Change your ${Object.keys(error?.keyValue)[0]} as it's not unique`
 			});
 		} else {
+			console.log(error)
 			res.status(500).json({ status: 500, message: error });
 		}
 	}
