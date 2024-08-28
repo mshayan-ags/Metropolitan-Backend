@@ -231,7 +231,7 @@ router.post("/Update-Complain", async (req, res) => {
 				description: Credentials?.description ? Credentials?.description : currComplain?.description
 			};
 
-			if (Credentials?.VoiceNote) {
+			if (Credentials?.VoiceNote?.name) {
 				const image = await SaveImageDB(
 					Credentials?.VoiceNote,
 					{
